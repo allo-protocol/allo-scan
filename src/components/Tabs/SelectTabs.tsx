@@ -1,6 +1,6 @@
 "use client";
 import { Context } from "@/Context/Context";
-import { Tabs } from "@/types";
+import { Tabs } from "@/types/types";
 import { useContext } from "react";
 import SelectNetwork from "../SelectNetwork";
 

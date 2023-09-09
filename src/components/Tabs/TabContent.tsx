@@ -1,7 +1,9 @@
 import { Context } from "@/Context/Context";
-import { Tabs } from "@/types";
+import { Tabs } from "@/types/types";
 import { useContext } from "react";
 import Overview from "./Overview";
+import Profile from "@/components/Registry/Profile";
+import Pool from "../Allo/Pool";
 
 const TabContent = () => {
 
@@ -9,12 +11,13 @@ const TabContent = () => {
 
   const loadContent = () => {
     switch (tab) {
-      case Tabs.IDENTITIES:
-        return <div>IDENTITIES</div>;
-      case Tabs.POOLS:
-        return <div>POOLS</div>;
-        case Tabs.OVERVIEW:
-        default:
+      case Tabs.PROFILE:
+        return <Profile />;
+      case Tabs.POOL:
+        return <Pool />;
+      case Tabs.OVERVIEW:
+        return <Overview />;
+      default:
         return <Overview />;
     }
   };
@@ -23,7 +26,7 @@ const TabContent = () => {
   return (
     <div className="tab-content justify-center">
       <div className="p-2 card shadow-lg compact bg-base-100">
-        <div className="card-body">
+        <div className="card-body flex flex-row align-middle justify-between">
           <h2 className="card-title">{tab}</h2>
           {loadContent()}
         </div>

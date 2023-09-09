@@ -8,8 +8,8 @@ export enum Slugs {
 
 export enum Tabs {
   OVERVIEW = "Overview",
-  IDENTITIES = "Identities",
-  POOLS = "Pools",
+  PROFILE = "Profiles",
+  POOL = "Pools",
 }
 
 export interface Contract {

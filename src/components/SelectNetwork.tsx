@@ -2,7 +2,7 @@
 
 import { Context } from "@/Context/Context";
 import { getNetworks } from "@/api/networks";
-import { Network } from "@/types";
+import { Network } from "@/types/types";
 import { useContext } from "react";
 
 const SelectNetwork = () => {

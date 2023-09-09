@@ -1,5 +1,5 @@
 "use client";
-import { Slugs, Tabs } from "@/types";
+import { Slugs, Tabs } from "@/types/types";
 import React, { useState } from "react";
 
 interface IContextProps {

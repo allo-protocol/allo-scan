@@ -1,4 +1,4 @@
-import { Contracts, Network, Slugs } from "@/types";
+import { Contracts, Network, Slugs } from "@/types/types";
 
 const contracts: Contracts = {
   registryImplementation: {
