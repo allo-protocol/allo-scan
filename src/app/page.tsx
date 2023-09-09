@@ -9,12 +9,12 @@ export default function Home() {
   const { network, setNetwork } = useContext(Context);
 
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="min-h-screen bg-base-200">
       <div
-        className="hero-content text-center w-full"
+        className="text-center w-full"
       >
         {/* content size */}
-        <div className="">
+        <div className="flex flex-col align-top justify-center p-4">
           <SelectTabs />
           <TabContent />
         </div>

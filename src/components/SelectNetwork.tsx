@@ -17,7 +17,7 @@ const SelectNetwork = () => {
     <select
       defaultValue={network}
       onChange={setNetworkHandler}
-      className="tab tab-active text-left"
+      className="tab tab-active text-left pr-1 bg-base rounded-md shadow-md p-2 border-none active:border-none focus:border-none"
     >
       {networks.map((_network: Network) => (
         <option
