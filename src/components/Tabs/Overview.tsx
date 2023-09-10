@@ -10,7 +10,7 @@ const Overview = () => {
   const loadContent = () => {
     // filter networks by network
     const networkData = networks.filter(
-      (_network) => _network.slug === network,
+      (_network) => _network.slug === network
     )[0];
     const contracts = networkData.contracts;
 
@@ -19,9 +19,17 @@ const Overview = () => {
     };
 
     return Object.values(contracts).map((_contract) => (
-      <tr>
+      <tr key={_contract}>
         <td>{_contract.name}</td>
-        <td className="font-mono">{_contract.address}</td>
+        <td className="font-mono">
+          <div
+            className="cursor-pointer tooltip"
+            data-tip="copy address"
+            onClick={() => copyAddress(_contract.address)}
+          >
+            {_contract.address}
+          </div>
+        </td>
         <th>
           <div
             className="cursor-pointer tooltip"
@@ -46,7 +54,7 @@ const Overview = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col">
       <div className="overflow-x-auto">
         <table className="table table-auto">
           {/* head */}
@@ -62,7 +70,7 @@ const Overview = () => {
           <tbody>{loadContent()}</tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 

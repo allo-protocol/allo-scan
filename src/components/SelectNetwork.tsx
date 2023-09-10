@@ -21,6 +21,7 @@ const SelectNetwork = () => {
     >
       {networks.map((_network: Network) => (
         <option
+          key={_network.slug}
           value={_network.slug}
         >
           {_network.name}

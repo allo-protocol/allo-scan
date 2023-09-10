@@ -4,6 +4,20 @@ import { ProfileContext } from "@/Context/ProfileContext";
 const Profile = () => {
   const { profiles } = useContext(ProfileContext);
 
+  const loadProfiles = () => {
+    const profileData = [
+      {
+        anchor: "0x123",
+      },
+    ];
+
+    return Object.values(profileData).map((profile) => (
+      <tr key={profile.anchor}>
+        <td>{profile.anchor}</td>
+      </tr>
+    ));
+  };
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-row">
@@ -18,13 +32,14 @@ const Profile = () => {
         </button>
       </div>
       <div className="flex">
-        {profiles.map((profile: any) => (
-          <div key={profile.id}>
-            <div>{profile.id}</div>
-            <div>{profile.name}</div>
-            <div>{profile.address}</div>
-          </div>
-        ))}
+        <table className="table table-auto mt-2">
+          <thead>
+            <tr>
+              <th>Anchor</th>
+            </tr>
+          </thead>
+          <tbody>{loadProfiles()}</tbody>
+        </table>
       </div>
     </div>
   );

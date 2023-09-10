@@ -6,7 +6,7 @@ type TProfile = {
 }
 
 interface IProfileContextProps {
-  profiles: [];
+  profiles: TProfile[];
 }
 
 export const ProfileContext = React.createContext<IProfileContextProps>({ profiles: []});

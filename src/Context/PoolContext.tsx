@@ -1,8 +1,15 @@
 "use client";
 import React from "react";
 
+type Pool = {
+    id: number;
+    name: string;
+    address: string;
+    balance: number;
+}
+
 interface IPoolContextProps {
-  pools: [];
+  pools: Pool[];
 }
 
 export const PoolContext = React.createContext<IPoolContextProps>({

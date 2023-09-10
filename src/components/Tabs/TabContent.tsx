@@ -6,7 +6,6 @@ import Profile from "@/components/Registry/Profile";
 import Pool from "../Allo/Pool";
 
 const TabContent = () => {
-
   const { tab } = useContext(Context);
 
   const loadContent = () => {
@@ -22,17 +21,16 @@ const TabContent = () => {
     }
   };
 
-
   return (
-    <div className="tab-content justify-center">
+    <div className="tab-content">
       <div className="p-2 card shadow-lg compact bg-base-100">
         <div className="card-body flex flex-row align-middle justify-between">
           <h2 className="card-title">{tab}</h2>
-          {loadContent()}
         </div>
+        <div className="flex flex-col">{loadContent()}</div>
       </div>
     </div>
   );
-}
+};
 
 export default TabContent;
