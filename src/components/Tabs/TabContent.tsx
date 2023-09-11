@@ -1,9 +1,9 @@
 import { Context } from "@/Context/Context";
+import Profile from "@/components/Registry/Profile";
 import { Tabs } from "@/types/types";
 import { useContext } from "react";
-import Overview from "./Overview";
-import Profile from "@/components/Registry/Profile";
 import Pool from "../Allo/Pool";
+import Overview from "./Overview";
 
 const TabContent = () => {
   const { tab } = useContext(Context);
@@ -21,16 +21,7 @@ const TabContent = () => {
     }
   };
 
-  return (
-    <div className="tab-content">
-      <div className="p-2 card shadow-lg compact bg-base-100">
-        <div className="card-body flex flex-row align-middle justify-between">
-          <h2 className="card-title">{tab}</h2>
-        </div>
-        <div className="flex flex-col">{loadContent()}</div>
-      </div>
-    </div>
-  );
+  return <div>{loadContent()}</div>;
 };
 
 export default TabContent;

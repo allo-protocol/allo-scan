@@ -9,25 +9,25 @@ const SelectNetwork = () => {
   const { network, setNetwork } = useContext(Context);
   const networks: Network[] = getNetworks();
 
-  const setNetworkHandler = (event :any) => {
+  const setNetworkHandler = (event: any) => {
     setNetwork(event.target.value);
   };
 
   return (
-    <select
-      defaultValue={network}
-      onChange={setNetworkHandler}
-      className="tab tab-active text-left pr-1 bg-base rounded-md shadow-md p-2 border-none active:border-none focus:border-none"
-    >
-      {networks.map((_network: Network) => (
-        <option
-          key={_network.slug}
-          value={_network.slug}
-        >
-          {_network.name}
-        </option>
-      ))}
-    </select>
+    <div>
+      <select
+        id="network"
+        name="network"
+        className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        defaultValue="Canada"
+      >
+        {networks.map((_network: Network) => (
+          <option key={_network.slug} value={_network.slug}>
+            {_network.name}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 

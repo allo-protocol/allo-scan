@@ -1,8 +1,8 @@
+import { ContextProvider } from "@/Context/Context";
 import Navbar from "@/components/Navbar";
-import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ContextProvider } from "@/Context/Context";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,10 +20,11 @@ export default function RootLayout({
     <html>
       <ContextProvider>
         <body>
-          <div>
-            <Navbar />
+          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div><Navbar /></div>
+            <div className={inter.className}>{children}</div>
           </div>
-          <div className={inter.className}>{children}</div>
+          
         </body>
       </ContextProvider>
     </html>

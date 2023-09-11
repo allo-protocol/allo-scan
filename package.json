@@ -10,6 +10,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
+    "@tailwindcss/forms": "^0.5.6",
+    "@tailwindcss/typography": "^0.5.10",
     "@types/node": "20.5.9",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
@@ -17,6 +21,7 @@
     "daisyui": "^3.7.3",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.16",
+    "heroicons": "^2.0.18",
     "next": "13.4.16",
     "postcss": "8.4.29",
     "react": "18.2.0",
