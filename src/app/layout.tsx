@@ -21,10 +21,9 @@ export default function RootLayout({
       <ContextProvider>
         <body>
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div><Navbar /></div>
+            <Navbar />
             <div className={inter.className}>{children}</div>
           </div>
-          
         </body>
       </ContextProvider>
     </html>
