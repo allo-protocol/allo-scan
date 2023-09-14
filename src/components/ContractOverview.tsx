@@ -1,12 +1,13 @@
 import { Context } from "@/Context/Context";
-import { getCoreContracts, getStrategyContracts } from "@/api/networks";
+import { getAllContracts } from "@/api/networks";
 import { useContext } from "react";
 import { TbCopy, TbExternalLink } from "react-icons/tb";
 
 export const ContractOverview = () => {
   const { network, setNetwork } = useContext(Context);
-  const coreContracts = getCoreContracts();
-  const strategyContracts = getStrategyContracts();
+  const allContracts = getAllContracts();
+  const coreContracts = allContracts.core;
+  const strategyContracts = allContracts.strategy;
 
   const loadCoreContracts = () => {
     // filter coreContracts by network
@@ -182,7 +183,7 @@ export const ContractOverview = () => {
         Core Contracts
       </h2>
       {/* Core Contracts */}
-      <div className=" p-4 border rounded-md">
+      <div className=" p-4 border rounded-md shadow-md">
         <table className="min-w-full divide-y divide-gray-300">
           {/* head */}
           <thead>
@@ -223,7 +224,7 @@ export const ContractOverview = () => {
       <h2 className="text-lg text-center font-medium my-4 leading-6 text-gray-900">
         Cloneable Strategy Contracts
       </h2>
-      <div className=" p-4 border rounded-md">
+      <div className=" p-4 border rounded-md shadow-md">
         <table className="min-w-full divide-y divide-gray-300">
           {/* head */}
           <thead>

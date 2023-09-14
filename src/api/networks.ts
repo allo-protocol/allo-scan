@@ -1,9 +1,4 @@
-import {
-  Network,
-  NetworkOption,
-  Slugs,
-  Contract,
-} from "@/types/types";
+import { Network, NetworkOption, Slugs, Contract } from "@/types/types";
 
 export const getNetworkOptions = (): NetworkOption[] => {
   return [
@@ -33,7 +28,7 @@ export const getNetworkOptions = (): NetworkOption[] => {
       slug: Slugs.CELO_ALFAJORES,
     },
   ];
-}
+};
 
 const coreContracts = [
   {
@@ -58,7 +53,7 @@ const coreContracts = [
   },
 ];
 
-const strategyContracts =  [
+const strategyContracts = [
   {
     id: "donationVotingMerkleDistribution",
     name: "Donation Voting Merkle Distribution",
@@ -70,6 +65,13 @@ const strategyContracts =  [
     address: "0xf243619f931c81617EE00bAAA5c5d97aCcC5af10",
   },
 ];
+
+export const getAllContracts = (): { core: Network[]; strategy: Network[] } => {
+  return {
+    core: getCoreContracts(),
+    strategy: getStrategyContracts(),
+  };
+};
 
 // goerli, optimism-goerli, sepolia, pgn-sepolia, celo-alfajores
 export const getCoreContracts = (): Network[] => {
@@ -150,4 +152,4 @@ export const getStrategyContracts = (): Network[] => {
       strategyContracts: strategyContracts,
     },
   ];
-}; 
+};
