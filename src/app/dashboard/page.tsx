@@ -1,6 +1,6 @@
 "use client";
 
-import { Overview } from "@/components/Tabs/Overview";
+import { Overview } from "@/components/Overview";
 
 export default function Dashboard() {
   return <Overview />;

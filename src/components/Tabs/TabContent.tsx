@@ -3,7 +3,7 @@ import Profile from "@/components/Registry/Profile";
 import { Tabs } from "@/types/types";
 import { useContext } from "react";
 import Pool from "../Allo/Pool";
-import Overview from "./Overview";
+import Overview from "../Overview";
 
 const TabContent = () => {
   const { tab } = useContext(Context);
