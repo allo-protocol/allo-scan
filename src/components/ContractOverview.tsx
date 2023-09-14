@@ -23,7 +23,7 @@ export const ContractOverview = () => {
     return Object.values(contracts!).map((_contract) => {
       return (
         <tr key={_contract.address}>
-          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:pl-0">
+          <td className="whitespace-nowrap p-2 text-sm font-medium text-gray-900 sm:w-auto sm:px-0">
             {_contract.name}
             <dl className="font-normal lg:hidden">
               <dd className="mt-1 truncate text-gray-700">
@@ -178,12 +178,12 @@ export const ContractOverview = () => {
   };
 
   return (
-    <div className="px-4 mt-2 sm:px-6 lg:px-8">
+    <div className="px-1 mt-2 sm:px-1 lg:px-4">
       <h2 className="text-lg text-center font-medium my-4 leading-6 text-gray-900">
         Core Contracts
       </h2>
       {/* Core Contracts */}
-      <div className=" p-4 border rounded-md shadow-md">
+      <div className="p-2 lg:border lg:rounded-md lg:shadow-black lg:shadow-md">
         <table className="min-w-full divide-y divide-gray-300">
           {/* head */}
           <thead>
@@ -196,19 +196,19 @@ export const ContractOverview = () => {
               </th>
               <th
                 scope="col"
-                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                className="hidden py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 lg:table-cell"
               >
                 Address
               </th>
               <th
                 scope="col"
-                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                className="hidden py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 lg:table-cell"
               >
                 Copy
               </th>
               <th
                 scope="col"
-                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                className="hidden py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 lg:table-cell"
               >
                 Explorer
               </th>
@@ -224,7 +224,7 @@ export const ContractOverview = () => {
       <h2 className="text-lg text-center font-medium my-4 leading-6 text-gray-900">
         Cloneable Strategy Contracts
       </h2>
-      <div className=" p-4 border rounded-md shadow-md">
+      <div className="p-2 lg:border lg:rounded-md lg:shadow-black lg:shadow-md">
         <table className="min-w-full divide-y divide-gray-300">
           {/* head */}
           <thead>
@@ -237,19 +237,19 @@ export const ContractOverview = () => {
               </th>
               <th
                 scope="col"
-                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                className="hidden py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 lg:table-cell"
               >
                 Address
               </th>
               <th
                 scope="col"
-                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                className="hidden py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 lg:table-cell"
               >
                 Copy
               </th>
               <th
                 scope="col"
-                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                className="hidden py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 lg:table-cell"
               >
                 Explorer
               </th>
