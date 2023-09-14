@@ -6,27 +6,34 @@ export enum Slugs {
   CELO_ALFAJORES = "celo-alfajores",
 }
 
-export enum Tabs {
-  OVERVIEW = "Overview",
-  PROFILE = "Profiles",
-  POOL = "Pools",
-}
-
 export interface Contract {
+  id: string;
   name: string;
   address: string;
 }
-export interface Contracts {
-  registryImplementation: Contract;
-  registryProxy: Contract;
-  alloImplementation: Contract;
-  alloProxy: Contract;
-}
+// export interface CoreContract {
+//   registryImplementation: Contract;
+//   registryProxy: Contract;
+//   alloImplementation: Contract;
+//   alloProxy: Contract;
+// }
+
+// export interface StrategyContract {
+//   donationVotingMerkleDistribution?: Contract;
+//   directGrantsSimple: Contract;
+// }
 
 export interface Network {
   id: string;
   slug: Slugs;
   name: string;
   explorer: string;
-  contracts: Contracts;
+  coreContracts?: Contract[];
+  strategyContracts?: Contract[];
+}
+
+export interface NetworkOption {
+  id: string;
+  name: string;
+  slug: Slugs;
 }

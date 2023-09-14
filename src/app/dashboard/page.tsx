@@ -1,7 +1,7 @@
 "use client";
 
-import { Overview } from "@/components/Overview";
+import { ContractOverview } from "@/components/ContractOverview";
 
 export default function Dashboard() {
-  return <Overview />;
+  return <ContractOverview />;
 }
