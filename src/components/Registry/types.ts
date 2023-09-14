@@ -1,5 +1,7 @@
-type Profile = {
+type TProfile = {
+  id: string;
   anchor: string;
-  role: string;
-  image: string;
-};
+  name: string;
+  chainId: number;
+  sender: string;
+}

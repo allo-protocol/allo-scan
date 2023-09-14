@@ -1,10 +1,6 @@
 "use client";
 import React from "react";
 
-type TProfile = {
-  anchor: string;
-}
-
 interface IProfileContextProps {
   profiles: TProfile[];
 }
