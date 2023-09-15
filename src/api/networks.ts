@@ -1,6 +1,6 @@
-import { Contracts, INetwork, TNetworkData, Slug } from "@/types/types";
+import { ICoreContracts, INetwork, TNetworkData, Slug } from "@/types/types";
 
-const contracts: Contracts = {
+const contracts: ICoreContracts = {
   registryImplementation: {
     name: "Registry Implementation",
     address: "0xAEc621EC8D9dE4B524f4864791171045d6BBBe27",
