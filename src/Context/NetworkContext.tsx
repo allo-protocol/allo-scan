@@ -2,27 +2,27 @@
 import { Slug } from "@/types/types";
 import React, { useState } from "react";
 
-interface IContextProps {
+interface INetworkContextProps {
   network: Slug;
   setNetwork: (network: Slug) => void;
 }
 
-export const Context = React.createContext<IContextProps>({
+export const NetworkContext = React.createContext<INetworkContextProps>({
   network: Object.values(Slug)[0],
   setNetwork: () => {},
 });
 
-export const ContextProvider = (props: any) => {
+export const NetworkContextProvider = (props: any) => {
   const [network, setNetwork] = useState(Object.values(Slug)[0]);
 
   return (
-    <Context.Provider
+    <NetworkContext.Provider
       value={{
         network: network,
         setNetwork: setNetwork,
       }}
     >
       {props.children}
-    </Context.Provider>
+    </NetworkContext.Provider>
   );
 };

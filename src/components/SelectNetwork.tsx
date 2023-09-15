@@ -1,12 +1,12 @@
 "use client";
 
-import { Context } from "@/Context/Context";
+import { NetworkContext } from "@/Context/NetworkContext";
 import { getNetworks } from "@/api/networks";
 import { INetwork } from "@/types/types";
 import { useContext } from "react";
 
 const SelectNetwork = () => {
-  const { network, setNetwork } = useContext(Context);
+  const { network, setNetwork } = useContext(NetworkContext);
   const networks: INetwork = getNetworks();
 
   const setNetworkHandler = (event: any) => {

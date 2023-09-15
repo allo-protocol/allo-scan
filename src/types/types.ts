@@ -17,6 +17,10 @@ export interface ICoreContracts {
   alloProxy: IContract;
 }
 
+export interface IStrategyContracts {
+  [key: string]: IContract;
+}
+
 export interface INetwork {
   [key: number]: TNetworkData;
 }
@@ -26,5 +30,6 @@ export type TNetworkData = {
   slug: Slug;
   name: string;
   explorer: string;
-  contracts: ICoreContracts;
+  coreContracts: ICoreContracts;
+  strategyContracts?: IStrategyContracts;
 };
