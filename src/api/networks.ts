@@ -1,4 +1,4 @@
-import { Contracts, Network, NetworkData, Slug } from "@/types/types";
+import { Contracts, INetwork, TNetworkData, Slug } from "@/types/types";
 
 const contracts: Contracts = {
   registryImplementation: {
@@ -19,7 +19,7 @@ const contracts: Contracts = {
   },
 };
 
-export const getNetworksBySlug = (slug: Slug): NetworkData => {
+export const getNetworksBySlug = (slug: Slug): TNetworkData => {
   const networks = getNetworks();
   const network = Object.values(networks).find((network) => network.slug === slug);
   if (!network) {
@@ -28,7 +28,7 @@ export const getNetworksBySlug = (slug: Slug): NetworkData => {
   return network; 
 };
 // goerli, optimism-goerli, sepolia, pgn-sepolia, celo-alfajores
-export const getNetworks = (): Network => {
+export const getNetworks = (): INetwork => {
   return {
     [5]: {
       id: "5",

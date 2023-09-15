@@ -6,31 +6,25 @@ export enum Slug {
   CELO_ALFAJORES = "celo-alfajores",
 }
 
-export enum Tabs {
-  OVERVIEW = "Overview",
-  PROFILE = "Profiles",
-  POOL = "Pools",
-}
-
-export interface Contract {
+export interface IContract {
   name: string;
   address: string;
 }
-export interface Contracts {
-  registryImplementation: Contract;
-  registryProxy: Contract;
-  alloImplementation: Contract;
-  alloProxy: Contract;
+export interface ICoreContracts {
+  registryImplementation: IContract;
+  registryProxy: IContract;
+  alloImplementation: IContract;
+  alloProxy: IContract;
 }
 
-export interface Network {
-  [key: number]: NetworkData;
+export interface INetwork {
+  [key: number]: TNetworkData;
 }
 
-export type NetworkData = {
+export type TNetworkData = {
   id: string;
   slug: Slug;
   name: string;
   explorer: string;
-  contracts: Contracts;
-}
+  contracts: ICoreContracts;
+};
