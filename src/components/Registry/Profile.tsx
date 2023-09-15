@@ -9,31 +9,7 @@ import { TbCopy, TbExternalLink } from "react-icons/tb";
 import { getNetworks } from "@/api/networks";
 
 const ProfileContent = () => {
-  const { network, setNetwork } = useContext(ProfileContext);
-  const networks = getNetworks();
-
-  const { profiles } = useContext(ProfileContext);
-
-  return (
-    <ProfileTable
-      networks={networks}
-      network={network}
-      setNetwork={setNetwork}
-    />
-  );
-};
-
-const ProfileTable = (props: {
-  networks: any;
-  network: any;
-  setNetwork: any;
-}) => {
-  // filter networks by network
-  const networkData = props.networks.filter(
-    (_network: any) => _network.slug === props.network
-  )[0];
-
-  const profileData: TProfile[] = [
+  const profileTestData: TProfile[] = [
     {
       id: "0x2b4a116a803067abc982458913a2eac20b9348777dbe9795bf3b1aa522160415",
       anchor: "0x3f15B8c6F9939879Cb030D6dd935348E57109637",
@@ -45,19 +21,32 @@ const ProfileTable = (props: {
       id: "0x2b4a116a803067abc982458913a2eac20b9348777dbe9795bf3b1aa522160415",
       anchor: "0x3f15B8c6F9939879Cb030D6dd935348E57109637",
       name: "Developer Profile",
-      chainId: 5,
+      chainId: 42069,
       sender: "0xa671616e3580D3611139834Cd34D7838e82A04cD",
     },
     {
       id: "0x2b4a116a803067abc982458913a2eac20b9348777dbe9795bf3b1aa522160415",
       anchor: "0x3f15B8c6F9939879Cb030D6dd935348E57109637",
       name: "Developer Profile",
-      chainId: 5,
+      chainId: 58008,
       sender: "0xa671616e3580D3611139834Cd34D7838e82A04cD",
     },
   ];
 
-  const profiles = profileData;
+  // const { network, setNetwork } = useContext(ProfileContext);
+  const networks = getNetworks();
+
+  const profiles = profileTestData;
+  // const { profiles } = useContext(ProfileContext);
+
+  return <ProfileTable profiles={profiles} />;
+};
+
+const ProfileTable = (props: { profiles: TProfile[] }) => {
+  // filter networks by network
+  // const networkData = Object.keys(props.networks).filter(
+  //   (_network: any) => _network.slug === props.network
+  // )[0];
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 pt-2">
@@ -112,7 +101,7 @@ const ProfileTable = (props: {
               </thead>
               {/* Create Address.tsx component */}
               <tbody className="divide-y divide-gray-200 bg-white">
-                {profiles.map((profile) => (
+                {props.profiles.map((profile) => (
                   <tr key={profile.anchor}>
                     <td className="hidden w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0 lg:table-cell">
                       {convertBytesToShortString(profile.id)}
@@ -122,7 +111,7 @@ const ProfileTable = (props: {
                       <div>
                         <Address
                           address={profile.anchor}
-                          network={networkData}
+                          chainId={profile.chainId}
                         />
                       </div>
                     </td>
@@ -133,7 +122,7 @@ const ProfileTable = (props: {
                       <div>
                         <Address
                           address={profile.sender}
-                          network={networkData}
+                          chainId={profile.chainId}
                         />
                       </div>
                     </td>

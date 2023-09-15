@@ -1,4 +1,4 @@
-export enum Slugs {
+export enum Slug {
   GOERLI = "goerli",
   OPTIMISM_GOERLI = "optimism-goerli",
   SEPOLIA = "sepolia",
@@ -24,8 +24,12 @@ export interface Contracts {
 }
 
 export interface Network {
+  [key: number]: NetworkData;
+}
+
+export type NetworkData = {
   id: string;
-  slug: Slugs;
+  slug: Slug;
   name: string;
   explorer: string;
   contracts: Contracts;

@@ -1,21 +1,21 @@
 "use client";
 import React, { useState } from "react";
-import { Slugs } from "@/types/types";
+import { Slug } from "@/types/types";
 
 interface IProfileContextProps {
   profiles: TProfile[];
-  network: Slugs;
-  setNetwork: (network: Slugs) => void;
+  network: Slug;
+  setNetwork: (network: Slug) => void;
 }
 
 export const ProfileContext = React.createContext<IProfileContextProps>({
   profiles: [],
-  network: Object.values(Slugs)[0],
+  network: Object.values(Slug)[0],
   setNetwork: () => {},
 });
 
 export const ProfileContextProvider = (props: any) => {
-  const [network, setNetwork] = useState(Object.values(Slugs)[0]);
+  const [network, setNetwork] = useState(Object.values(Slug)[0]);
 
   return (
     <ProfileContext.Provider

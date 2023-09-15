@@ -1,17 +1,17 @@
 import { Context } from "@/Context/Context";
-import { getNetworks } from "@/api/networks";
+import { getNetworks, getNetworksBySlug } from "@/api/networks";
 import { useContext } from "react";
 import { TbCopy, TbExternalLink } from "react-icons/tb";
 
 export const Overview = () => {
   const { network, setNetwork } = useContext(Context);
-  const networks = getNetworks();
+  const networkData = getNetworksBySlug(network);
 
   const loadContent = () => {
     // filter networks by network
-    const networkData = networks.filter(
-      (_network) => _network.slug === network
-    )[0];
+    // const networkData = networks.filter(
+    //   (_network) => _network.slug === network
+    // )[0];
     const contracts = networkData.contracts;
 
     const copyAddress = (address: string) => {

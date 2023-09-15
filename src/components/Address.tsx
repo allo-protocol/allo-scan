@@ -1,3 +1,5 @@
+import { getNetworks } from "@/api/networks";
+import { Slug } from "@/types/types";
 import { TbCopy, TbExternalLink } from "react-icons/tb";
 
 export const convertAddressToShortString = (address: string) => {
@@ -8,10 +10,13 @@ export const convertBytesToShortString = (address: string) => {
   return address.slice(0, 6) + "..." + address.slice(-4);
 };
 
-export const Address = (props: { address: string; network: any }) => {
+export const Address = (props: { address: string; chainId: number }) => {
   const copyAddress = (address: string) => {
     navigator.clipboard.writeText(address);
   };
+
+  const explorerLink =
+    getNetworks()[props.chainId].explorer + "/address/" + props.address;
 
   return (
     <div className="flex items-center">
@@ -29,7 +34,7 @@ export const Address = (props: { address: string; network: any }) => {
           // className="tooltip"
           // data-tip="view on explorer"
           target="_blank"
-          href={props.network.explorer + "/address/" + props.address}
+          href={explorerLink}
         >
           <TbExternalLink />
         </a>
