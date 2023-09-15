@@ -5,7 +5,8 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
-import SelectNetwork from "./SelectNetwork";
+// import SelectNetwork from "./SelectNetwork";
+// import Sort from "./Sort";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -20,7 +21,13 @@ const Navbar = () => {
             <div className="flex h-16 justify-between">
               <div className="flex px-2 lg:px-0">
                 <div className="flex flex-shrink-0 items-center">
-                  <Image priority src={logo} alt="AlloScan" height={25} width={25} />
+                  <Image
+                    priority
+                    src={logo}
+                    alt="AlloScan"
+                    height={25}
+                    width={25}
+                  />
                   <Link href="/">
                     <p className="text-2xl font-semibold text-gray-900 ml-2">
                       AlloScan
@@ -28,12 +35,6 @@ const Navbar = () => {
                   </Link>
                 </div>
                 <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
-                  <Link
-                    href="/dashboard"
-                    className="inline-flex items-center border-b-2 border-transparent active:border-green-800 px-1 pt-1 text-sm font-medium text-gray-900 hover:border-green-800 hover:text-gray-700"
-                  >
-                    Dashboard
-                  </Link>
                   <Link
                     href="/profile"
                     className="inline-flex items-center border-b-2 border-transparent active:border-green-800 px-1 pt-1 text-sm font-medium text-gray-500 hover:border-green-800 hover:text-gray-700"
@@ -50,7 +51,8 @@ const Navbar = () => {
               </div>
               <div className="flex flex-1 items-center justify-center px-2 lg:ml-6 lg:justify-end">
                 <div className="w-full max-w-lg lg:max-w-xs">
-                  <SelectNetwork />
+                  {/* <Sort /> */}
+                  {/* <SelectNetwork /> */}
                 </div>
               </div>
               <div className="flex items-center lg:hidden">

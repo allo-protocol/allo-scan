@@ -1,4 +1,4 @@
-export enum Slugs {
+export enum Slug {
   GOERLI = "goerli",
   OPTIMISM_GOERLI = "optimism-goerli",
   SEPOLIA = "sepolia",
@@ -6,27 +6,25 @@ export enum Slugs {
   CELO_ALFAJORES = "celo-alfajores",
 }
 
-export enum Tabs {
-  OVERVIEW = "Overview",
-  PROFILE = "Profiles",
-  POOL = "Pools",
-}
-
-export interface Contract {
+export interface IContract {
   name: string;
   address: string;
 }
-export interface Contracts {
-  registryImplementation: Contract;
-  registryProxy: Contract;
-  alloImplementation: Contract;
-  alloProxy: Contract;
+export interface ICoreContracts {
+  registryImplementation: IContract;
+  registryProxy: IContract;
+  alloImplementation: IContract;
+  alloProxy: IContract;
 }
 
-export interface Network {
+export interface INetwork {
+  [key: number]: TNetworkData;
+}
+
+export type TNetworkData = {
   id: string;
-  slug: Slugs;
+  slug: Slug;
   name: string;
   explorer: string;
-  contracts: Contracts;
-}
+  contracts: ICoreContracts;
+};

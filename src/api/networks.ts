@@ -1,6 +1,6 @@
-import { Contracts, Network, Slugs } from "@/types/types";
+import { ICoreContracts, INetwork, TNetworkData, Slug } from "@/types/types";
 
-const contracts: Contracts = {
+const contracts: ICoreContracts = {
   registryImplementation: {
     name: "Registry Implementation",
     address: "0xAEc621EC8D9dE4B524f4864791171045d6BBBe27",
@@ -19,43 +19,51 @@ const contracts: Contracts = {
   },
 };
 
+export const getNetworksBySlug = (slug: Slug): TNetworkData => {
+  const networks = getNetworks();
+  const network = Object.values(networks).find((network) => network.slug === slug);
+  if (!network) {
+    throw new Error(`Network ${slug} not found`);
+  }
+  return network; 
+};
 // goerli, optimism-goerli, sepolia, pgn-sepolia, celo-alfajores
-export const getNetworks = (): Network[] => {
-  return [
-    {
+export const getNetworks = (): INetwork => {
+  return {
+    [5]: {
       id: "5",
-      slug: Slugs.GOERLI,
+      slug: Slug.GOERLI,
       name: "Goerli",
       explorer: "https://goerli.etherscan.io/",
       contracts: contracts,
     },
-    {
+    [420]: {
       id: "420",
-      slug: Slugs.OPTIMISM_GOERLI,
+      slug: Slug.OPTIMISM_GOERLI,
       name: "Optimism Goerli",
       explorer: "https://goerli-optimism.etherscan.io/",
       contracts: contracts,
     },
-    {
+    [42069]: {
       id: "42069",
-      slug: Slugs.SEPOLIA,
+      slug: Slug.SEPOLIA,
       name: "Sepolia",
       explorer: "https://sepolia.etherscan.io/",
       contracts: contracts,
     },
-    {
+    [58008]: {
       id: "58008",
-      slug: Slugs.PGN_SEPOLIA,
+      slug: Slug.PGN_SEPOLIA,
       name: "PGN Sepolia",
       explorer: "https://explorer.sepolia.publicgoods.network/",
       contracts: contracts,
     },
-    {
+    [44787]: {
       id: "44787",
-      slug: Slugs.CELO_ALFAJORES,
+      slug: Slug.CELO_ALFAJORES,
       name: "Celo Alfajores",
       explorer: "https://explorer.celo.org/alfajores/",
       contracts: contracts,
     },
-  ];
+  };
 };

@@ -1,19 +1,14 @@
 import { Context } from "@/Context/Context";
-import { getNetworks } from "@/api/networks";
+import { getNetworks, getNetworksBySlug } from "@/api/networks";
 import { useContext } from "react";
 import { TbCopy, TbExternalLink } from "react-icons/tb";
 
 export const Overview = () => {
   const { network, setNetwork } = useContext(Context);
-  const networks = getNetworks();
+  const networkData = getNetworksBySlug(network);
 
   const loadContent = () => {
-    // filter networks by network
-    const networkData = networks.filter(
-      (_network) => _network.slug === network
-    )[0];
     const contracts = networkData.contracts;
-
     const copyAddress = (address: string) => {
       navigator.clipboard.writeText(address);
     };
@@ -87,6 +82,11 @@ export const Overview = () => {
 
   return (
     <div className="px-4 mt-2 sm:px-6 lg:px-8">
+      <div className="text-center mt-6">
+        <h2>
+          <span className="text-lg font-medium">Allo Contracts</span>
+        </h2>
+      </div>
       <table className="min-w-full divide-y divide-gray-300">
         {/* head */}
         <thead>
