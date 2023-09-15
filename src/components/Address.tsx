@@ -8,7 +8,7 @@ export const convertBytesToShortString = (address: string) => {
   return address.slice(0, 6) + "..." + address.slice(-4);
 };
 
-export const Address = (props: { address: string, network }) => {
+export const Address = (props: { address: string; network: any }) => {
   const copyAddress = (address: string) => {
     navigator.clipboard.writeText(address);
   };
@@ -25,16 +25,14 @@ export const Address = (props: { address: string, network }) => {
         <TbCopy />
       </div>
       <div>
-      <a
-                        // className="tooltip"
-                        // data-tip="view on explorer"
-                        target="_blank"
-                        href={
-                          networkData.explorer + "/address/" + props.address
-                        }
-                      >
-                        <TbExternalLink />
-                      </a>
+        <a
+          // className="tooltip"
+          // data-tip="view on explorer"
+          target="_blank"
+          href={props.network.explorer + "/address/" + props.address}
+        >
+          <TbExternalLink />
+        </a>
       </div>
     </div>
   );

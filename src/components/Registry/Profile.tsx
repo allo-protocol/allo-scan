@@ -108,7 +108,6 @@ const ProfileTable = (props: {
                   >
                     <div className="group inline-flex">Network</div>
                   </th>
-                  <th></th>
                 </tr>
               </thead>
               {/* Create Address.tsx component */}
@@ -121,7 +120,10 @@ const ProfileTable = (props: {
                     {/* Link to explorer */}
                     <td className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">
                       <div>
-                        <Address address={profile.anchor} />
+                        <Address
+                          address={profile.anchor}
+                          network={networkData}
+                        />
                       </div>
                     </td>
                     <td className="px-3 py-4 text-sm text-gray-500 lg:table-cell">
@@ -129,24 +131,15 @@ const ProfileTable = (props: {
                     </td>
                     <td className="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">
                       <div>
-                        <Address address={profile.sender} />
+                        <Address
+                          address={profile.sender}
+                          network={networkData}
+                        />
                       </div>
                     </td>
                     {/* TODO: add a filter/sort by network feature */}
                     <td className="px-3 py-4 text-sm text-gray-500 lg:table-cell">
                       {convertChainIdToNetworkName(profile.chainId)}
-                    </td>
-                    <td>
-                      <a
-                        // className="tooltip"
-                        // data-tip="view on explorer"
-                        target="_blank"
-                        href={
-                          networkData.explorer + "/address/" + profile.anchor
-                        }
-                      >
-                        <TbExternalLink />
-                      </a>
                     </td>
                   </tr>
                 ))}
