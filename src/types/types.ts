@@ -18,7 +18,8 @@ export interface ICoreContracts {
 }
 
 export interface IStrategyContracts {
-  [key: string]: IContract;
+  donationVotingMerklePaout: IContract;
+  directGrantsSimple: IContract;
 }
 
 export interface INetwork {
@@ -31,5 +32,5 @@ export type TNetworkData = {
   name: string;
   explorer: string;
   coreContracts: ICoreContracts;
-  strategyContracts?: IStrategyContracts;
+  strategyContracts: IStrategyContracts;
 };

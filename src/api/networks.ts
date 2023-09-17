@@ -1,4 +1,4 @@
-import { ICoreContracts, INetwork, TNetworkData, Slug } from "@/types/types";
+import { ICoreContracts, INetwork, TNetworkData, Slug, IStrategyContracts } from "@/types/types";
 
 const coreContracts: ICoreContracts = {
   registryImplementation: {
@@ -19,6 +19,17 @@ const coreContracts: ICoreContracts = {
   },
 };
 
+const strategyContracts: IStrategyContracts = {
+  donationVotingMerklePaout: {
+    name: "Donation Voting Merkle Paout",
+    address: "0x0000000000000000000000000000000000000000",
+  },
+  directGrantsSimple: {
+    name: "Direct Grants Simple",
+    address: "0x0000000000000000000000000000000000000000",
+  },
+}
+
 export const getNetworksBySlug = (slug: Slug): TNetworkData => {
   const networks = getNetworks();
   const network = Object.values(networks).find((network) => network.slug === slug);
@@ -36,6 +47,7 @@ export const getNetworks = (): INetwork => {
       name: "Goerli",
       explorer: "https://goerli.etherscan.io/",
       coreContracts: coreContracts,
+      strategyContracts: strategyContracts,
     },
     [420]: {
       id: "420",
@@ -43,6 +55,7 @@ export const getNetworks = (): INetwork => {
       name: "Optimism Goerli",
       explorer: "https://goerli-optimism.etherscan.io/",
       coreContracts: coreContracts,
+      strategyContracts: strategyContracts,
     },
     [42069]: {
       id: "42069",
@@ -50,6 +63,7 @@ export const getNetworks = (): INetwork => {
       name: "Sepolia",
       explorer: "https://sepolia.etherscan.io/",
       coreContracts: coreContracts,
+      strategyContracts: strategyContracts,
     },
     [58008]: {
       id: "58008",
@@ -57,6 +71,7 @@ export const getNetworks = (): INetwork => {
       name: "PGN Sepolia",
       explorer: "https://explorer.sepolia.publicgoods.network/",
       coreContracts: coreContracts,
+      strategyContracts: strategyContracts,
     },
     [44787]: {
       id: "44787",
@@ -64,6 +79,7 @@ export const getNetworks = (): INetwork => {
       name: "Celo Alfajores",
       explorer: "https://explorer.celo.org/alfajores/",
       coreContracts: coreContracts,
+      strategyContracts: strategyContracts,
     },
   };
 };

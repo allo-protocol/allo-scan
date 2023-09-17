@@ -42,3 +42,36 @@ export const Address = (props: { address: string; chainId: number }) => {
     </div>
   );
 };
+
+export const AddressFull = (props: { address: string; chainId: number }) => {
+  const copyAddress = (address: string) => {
+    navigator.clipboard.writeText(address);
+  };
+
+  const explorerLink =
+    getNetworks()[props.chainId].explorer + "/address/" + props.address;
+
+  return (
+    <div className="flex items-center">
+      <div className="ml-3 text-sm font-medium text-gray-900">
+        {props.address}
+      </div>
+      <div
+        onClick={() => copyAddress(props.address)}
+        className="flex-shrink-0 h-5 w-5 mt-1.5 ml-1 cursor-pointer"
+      >
+        <TbCopy />
+      </div>
+      <div>
+        <a
+          // className="tooltip"
+          // data-tip="view on explorer"
+          target="_blank"
+          href={explorerLink}
+        >
+          <TbExternalLink />
+        </a>
+      </div>
+    </div>
+  );
+};
