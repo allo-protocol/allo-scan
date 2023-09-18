@@ -6,33 +6,6 @@ import { convertChainIdToNetworkName, formatAmount, shortenPoolName } from "@/ut
 import Status from "../Status";
 
 const Pool = (data: any) => {
-  const testPools = [
-    {
-      id: 1,
-      address: "0xAEc621EC8D9dE4B524f4864791171045d6BBBe27",
-      name: "DonationVotingMerklePayout",
-      token: "0x0000000000000000000000000000000000000000",
-      amount: 500,
-      status: true,
-      profileOwner: "0x0000000000000000000000000000000000000000",
-      strategyIdentifier:
-        "0xd71275a698bbfb611216b5ed38a4b48cc165febd4c3da5bc13bc8398792e6bca",
-      chainId: 5,
-    },
-    {
-      id: 2,
-      address: "0xAEc621EC8D9dE4B524f4864791171045d6BBBe27",
-      name: "DonationVotingMerklePayout",
-      token: "0x0000000000000000000000000000000000000000",
-      amount: 20,
-      status: false,
-      profileOwner: "0x0000000000000000000000000000000000000000",
-      strategyIdentifier:
-        "0xd71275a698bbfb611216b5ed38a4b48cc165febd4c3da5bc13bc8398792e6bca",
-      chainId: 5,
-    },
-  ];
-
   const tableData: TTableData = {
     name: "Pools",
     description:
@@ -49,7 +22,6 @@ const Pool = (data: any) => {
       "Network",
     ],
     rows: Object.values(data.data).map((pool: any) => {
-      console.log("pool", pool);
       return [
         pool.poolId,
         // eslint-disable-next-line react/jsx-key

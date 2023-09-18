@@ -11,7 +11,6 @@ const Profile = (data: any) => {
       "A list of all the profiles in the registry on all supported networks",
     headers: ["ID", "Anchor", "Name", "Sender", "Network"],
     rows: Object.values(data.data).map((profile: any) => {
-      console.log("profile", profile);
       return [
         convertBytesToShortString(profile.profileId),
         // eslint-disable-next-line react/jsx-key

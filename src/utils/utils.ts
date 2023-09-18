@@ -1,4 +1,4 @@
-import { getNetworks } from "../api/networks";
+import { getNetworks } from "./networks";
 import { ethers } from "ethers";
 
 const networks = getNetworks();
