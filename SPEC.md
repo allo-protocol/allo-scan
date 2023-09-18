@@ -15,6 +15,7 @@ With that said, let's hit it 😎
 * [Alloscan Project Setup](#alloscan-project-setup)
 * [Running Spec Locally](#running-spec-locally)
 * [Instant GraphQL API](#instant-graphql-api)
+* [Helpful Tips](#helpful-tips)
 
 # Intro to Spec Projects
 
@@ -265,4 +266,31 @@ Try running some test commands:
     chainId
   }
 }
+```
+
+# Helpful Tips 
+
+One of the most helpful commands when debugging / inspecting the live data coming out of the Spec network is the `spec tail` command, which lets you live tail any event stream on Spec.
+
+## Tailing Contract Events
+
+If you ever want to tail a contract event stream when debugging Live Objects to make sure they are propertly being indexed by the Spec network, you can do something like the following:
+
+```bash
+$ spec tail allov2.Registry.ProfileCreated
+```
+
+## Tailing Live Object Events
+
+Every Live Object that's published to Spec will broadcast an event anytime one of its records is changed. These are the events your Live Tables subscribe to in order to stay up-to-date over time. Every Live Object event has the same naming structure, which is:
+
+```
+<namespace.LiveObject>Changed
+```
+
+Basically, the event name is simply the Live Object name with a "Changed" suffix tacked on.
+
+Example (this will be an empty stream until the first change occurs since the object was published):
+```bash
+$ spec tail allov2.ProfileChanged
 ```
