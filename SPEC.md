@@ -217,7 +217,7 @@ Try running some test commands:
 
 ```gql
 {
-	profile(
+  profile(
     profileId: "0x0021a52be387a4e0e8cf515870e4eb9e5a3f050b51d017121994245d2d82df56",
     chainId: "5"
   ) {
@@ -237,14 +237,14 @@ Try running some test commands:
 
 ```gql
 {
-	allo(chainId: "5") {
-	  registry
-	  feePercentage
-	  baseFee
-	  treasury
-	  cloneableStrategies
+  allo(chainId: "5") {
+    registry
+    feePercentage
+    baseFee
+    treasury
+    cloneableStrategies
     updatedAt
-	}
+  }
 }
 ```
 
