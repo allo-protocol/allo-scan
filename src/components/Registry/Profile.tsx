@@ -1,11 +1,8 @@
 "use client";
-// import { ProfileContext } from "@/Context/ProfileContext";
-// import { useContext } from "react";
 import { Address, convertBytesToShortString } from "../Address";
-import { getNetworks } from "@/api/networks";
 import Table from "../Table";
 import { TTableData } from "@/types/types";
-import { convertChainIdToNetworkName } from "@/utils";
+import { convertChainIdToNetworkName } from "@/utils/utils";
 
 const Profile = (data: any) => {
   const tableData: TTableData = {

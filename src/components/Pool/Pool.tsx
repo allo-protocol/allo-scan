@@ -1,16 +1,12 @@
-import { PoolContext } from "@/context/PoolContext";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { useContext } from "react";
+"use client";
 import Table from "../Table";
 import { TTableData } from "@/types/types";
 import { Address, convertBytesToShortString } from "../Address";
-import { convertChainIdToNetworkName } from "@/utils";
+import { convertChainIdToNetworkName, formatAmount, shortenPoolName } from "@/utils/utils";
 import Status from "../Status";
 
-const Pool = () => {
-  // const { pools } = useContext(PoolContext);
-
-  const pools = [
+const Pool = (data: any) => {
+  const testPools = [
     {
       id: 1,
       address: "0xAEc621EC8D9dE4B524f4864791171045d6BBBe27",
@@ -37,10 +33,10 @@ const Pool = () => {
     },
   ];
 
-  const data: TTableData = {
+  const tableData: TTableData = {
     name: "Pools",
     description:
-      "A list of all the pools in the registry on all supported networks",
+      "A list of all the ools in the registry on all supported networks",
     headers: [
       "ID",
       "Address",
@@ -52,26 +48,28 @@ const Pool = () => {
       "Identifier",
       "Network",
     ],
-    rows: pools.map((pool) => {
+    rows: Object.values(data.data).map((pool: any) => {
+      console.log("pool", pool);
       return [
-        pool.id,
+        pool.poolId,
         // eslint-disable-next-line react/jsx-key
-        <Address address={pool.address} chainId={pool.chainId} />,
-        pool.name,
+        <Address address={pool.strategy} chainId={pool.chainId} />,
+        // pool.name, FIXME: THE API DOES NOT RETURN THE POOL NAME
+        shortenPoolName("Pool Name is really long"),
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.token} chainId={pool.chainId} />,
-        pool.amount,
+        formatAmount(pool.amount),
         // eslint-disable-next-line react/jsx-key
-        <Status status={pool.status} />,
+        <Status status={true} />, // FIXME: THE API DOES NOT RETURN THE POOL STATUS
         // eslint-disable-next-line react/jsx-key
-        <Address address={pool.profileOwner} chainId={pool.chainId} />,
-        convertBytesToShortString(pool.strategyIdentifier),
+        <Address address={pool.profile.owner} chainId={pool.chainId} />,
+        convertBytesToShortString(pool.strategy),
         convertChainIdToNetworkName(pool.chainId),
       ];
     }),
   };
 
-  return <Table data={data} />;
+  return <Table data={tableData} />;
 };
 
 export default Pool;

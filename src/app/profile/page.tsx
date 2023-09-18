@@ -16,7 +16,5 @@ export default async function ProfileHome() {
   const data: any = await request("http://localhost:5555/graphql", query);
   const { profiles } = data;
 
-  console.log("Pleasse work...", data);
-
   return <Profile data={profiles} />;
 }
