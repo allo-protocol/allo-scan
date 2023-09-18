@@ -5,7 +5,6 @@ import Table from "../Table";
 import { TTableData } from "@/types/types";
 import { Address, convertBytesToShortString } from "../Address";
 
-
 const Pool = () => {
   // const { pools } = useContext(PoolContext);
 
@@ -38,25 +37,38 @@ const Pool = () => {
 
   const data: TTableData = {
     name: "Pools",
-    description: "A list of all the pools in the registry on all supported networks",
-    headers: ["ID", "Address", "Name", "Token", "Amount", "Status", "Profile Owner", "Strategy Identifier", "Network"],
+    description:
+      "A list of all the pools in the registry on all supported networks",
+    headers: [
+      "ID",
+      "Address",
+      "Name",
+      "Token",
+      "Amount",
+      "Status",
+      "Profile Owner",
+      "Strategy Identifier",
+      "Network",
+    ],
     rows: pools.map((pool) => {
       return [
         pool.id,
+        // eslint-disable-next-line react/jsx-key
         <Address address={pool.address} chainId={pool.chainId} />,
         pool.name,
+        // eslint-disable-next-line react/jsx-key
         <Address address={pool.token} chainId={pool.chainId} />,
         pool.amount,
         pool.status,
+        // eslint-disable-next-line react/jsx-key
         <Address address={pool.profileOwner} chainId={pool.chainId} />,
         convertBytesToShortString(pool.strategyIdentifier),
         pool.chainId,
       ];
-    }
-    )
-  }
+    }),
+  };
 
-  return <Table  data={data}/>;
+  return <Table data={data} />;
 };
 
 export default Pool;

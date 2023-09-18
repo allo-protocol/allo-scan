@@ -17,6 +17,7 @@ export const Dashboard = () => {
     rows: Object.values(networkData.coreContracts).map((contract) => {
       return [
         contract.name,
+        // eslint-disable-next-line react/jsx-key
         <AddressFull
           address={contract.address}
           chainId={Number(networkData.id)}
@@ -33,6 +34,7 @@ export const Dashboard = () => {
     rows: Object.values(networkData.strategyContracts).map((contract) => {
       return [
         contract.name,
+        // eslint-disable-next-line react/jsx-key
         <AddressFull
           address={contract.address}
           chainId={Number(networkData.id)}

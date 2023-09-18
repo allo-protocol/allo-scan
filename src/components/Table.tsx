@@ -1,6 +1,6 @@
 import { TTableData } from "@/types/types";
 
-const Table = ({ data }: {data: TTableData}) => {
+const Table = ({ data }: { data: TTableData }) => {
   return (
     <>
       <div className="px-4 sm:px-6 lg:px-8 pt-2 mt-10">
@@ -20,8 +20,9 @@ const Table = ({ data }: {data: TTableData}) => {
               <table className="min-w-full divide-y divide-gray-300">
                 <thead>
                   <tr>
-                    {data.headers.map((header) => (
+                    {data.headers.map((header, index) => (
                       <th
+                        key={"headers-" + index}
                         scope="col"
                         className="hidden py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
                       >
@@ -32,9 +33,12 @@ const Table = ({ data }: {data: TTableData}) => {
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {data.rows.map((row, index) => (
-                    <tr key={index}>
-                      {row.map((col) => (
-                        <td className="hidden w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0 lg:table-cell">
+                    <tr key={"rows-" + index}>
+                      {row.map((col, colIndex) => (
+                        <td
+                          key={"rows-" + index + "-col-" + colIndex}
+                          className="hidden w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0 lg:table-cell"
+                        >
                           {col}
                         </td>
                       ))}

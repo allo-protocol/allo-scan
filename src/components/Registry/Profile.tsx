@@ -39,19 +39,21 @@ const ProfileContent = () => {
 
   const tableData: TTableData = {
     name: "Profiles",
-    description: "A list of all the profiles in the registry on all supported networks",
+    description:
+      "A list of all the profiles in the registry on all supported networks",
     headers: ["ID", "Anchor", "Name", "Sender", "Network"],
     rows: profiles.map((profile) => {
       return [
         convertBytesToShortString(profile.id),
+        // eslint-disable-next-line react/jsx-key
         <Address address={profile.anchor} chainId={profile.chainId} />,
         profile.name,
+        // eslint-disable-next-line react/jsx-key
         <Address address={profile.sender} chainId={profile.chainId} />,
         convertChainIdToNetworkName(profile.chainId),
       ];
-    }
-    )
-  }
+    }),
+  };
 
   return <Table data={tableData} />;
 };
