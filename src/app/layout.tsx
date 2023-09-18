@@ -1,4 +1,4 @@
-import { NetworkContextProvider } from "@/Context/NetworkContext";
+import { NetworkContextProvider } from "@/context/NetworkContext";
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";

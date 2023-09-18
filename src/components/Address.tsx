@@ -1,5 +1,4 @@
 import { getNetworks } from "@/api/networks";
-import { Slug } from "@/types/types";
 import { TbCopy, TbExternalLink } from "react-icons/tb";
 
 export const convertAddressToShortString = (address: string) => {
