@@ -1,4 +1,4 @@
-import { PoolContext } from "@/Context/PoolContext";
+import { PoolContext } from "@/context/PoolContext";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useContext } from "react";
 import Table from "../Table";
