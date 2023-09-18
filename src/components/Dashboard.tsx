@@ -1,7 +1,7 @@
 import { NetworkContext } from "@/Context/NetworkContext";
 import { getNetworksBySlug } from "@/api/networks";
 import { useContext } from "react";
-import { Address, AddressFull } from "./Address";
+import { AddressResponsive } from "./Address";
 import Table from "./Table";
 import { TTableData } from "@/types/types";
 
@@ -18,7 +18,7 @@ export const Dashboard = () => {
       return [
         contract.name,
         // eslint-disable-next-line react/jsx-key
-        <AddressFull
+        <AddressResponsive
           address={contract.address}
           chainId={Number(networkData.id)}
         />,
@@ -35,7 +35,7 @@ export const Dashboard = () => {
       return [
         contract.name,
         // eslint-disable-next-line react/jsx-key
-        <AddressFull
+        <AddressResponsive
           address={contract.address}
           chainId={Number(networkData.id)}
         />,

@@ -24,7 +24,7 @@ const Table = ({ data }: { data: TTableData }) => {
                       <th
                         key={"headers-" + index}
                         scope="col"
-                        className="hidden py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
+                        className="py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
                       >
                         <div className="group inline-flex">{header}</div>
                       </th>
@@ -37,7 +37,7 @@ const Table = ({ data }: { data: TTableData }) => {
                       {row.map((col, colIndex) => (
                         <td
                           key={"rows-" + index + "-col-" + colIndex}
-                          className="hidden w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0 lg:table-cell"
+                          className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0 lg:table-cell"
                         >
                           {col}
                         </td>
