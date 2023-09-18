@@ -1,5 +1,5 @@
-import { NetworkContext } from "@/context/NetworkContext";
-import { getNetworksBySlug } from "@/api/networks";
+import { NetworkContext } from "@/Context/NetworkContext";
+import { getNetworksBySlug } from "@/utils/networks";
 import { useContext } from "react";
 import { AddressResponsive } from "./Address";
 import Table from "./Table";

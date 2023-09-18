@@ -1,7 +1,7 @@
 "use client";
 
-import { NetworkContext } from "@/context/NetworkContext";
-import { getNetworks } from "@/api/networks";
+import { NetworkContext } from "@/Context/NetworkContext";
+import { getNetworks } from "@/utils/networks";
 import { INetwork, Slug, TNetworkData } from "@/types/types";
 import { useContext } from "react";
 
