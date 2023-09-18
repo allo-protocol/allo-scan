@@ -172,8 +172,9 @@ Enabling this will do a couple things:
 
 ## Start the API
 
-To start your GraphQL API:
+Before starting your GraphQL API, make sure you already have another tab with Spec running (`spec start`).
 
+From another terminal tab:
 ```
 $ spec run graphql
 ```
