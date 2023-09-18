@@ -44,7 +44,7 @@ export const Dashboard = () => {
   };
 
   return (
-    <div className="gap-15">
+    <div>
       <Table data={dataCore} />
       <Table data={dataStrategy} />
     </div>
