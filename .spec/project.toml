@@ -21,7 +21,7 @@ id = 'allov2.Allo@0.0.1'
 [objects.Transaction]
 id = 'goerli.Transaction@0.0.1'
 
-# = Live Columns (Outputs) ------------------------------
+# = Live Tables (Outputs) ------------------------------
 
 [tables.public.profile]
 profile_id = 'Profile.profileId'
