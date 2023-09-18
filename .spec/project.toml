@@ -1,0 +1,161 @@
+# = Live Objects (Sources) ------------------------------
+
+[objects.Profile]
+id = 'allov2.Profile@0.0.1'
+
+[objects.Pool]
+id = 'allov2.Pool@0.0.1'
+
+[objects.Account]
+id = 'allov2.Account@0.0.1'
+
+[objects.Role]
+id = 'allov2.Role@0.0.1'
+
+[objects.RoleAccount]
+id = 'allov2.RoleAccount@0.0.1'
+
+[objects.Allo]
+id = 'allov2.Allo@0.0.1'
+
+[objects.Transaction]
+id = 'goerli.Transaction@0.0.1'
+
+# = Live Tables (Outputs) ------------------------------
+
+[tables.public.profile]
+profile_id = 'Profile.profileId'
+chain_id = 'Profile.chainId'
+nonce = 'Profile.nonce'
+name = 'Profile.name'
+metadata_protocol = 'Profile.metadataProtocol'
+metadata_pointer = 'Profile.metadataPointer'
+owner = 'Profile.owner'
+anchor = 'Profile.anchor'
+creator = 'Profile.creator'
+created_at = 'Profile.createdAt'
+block_hash = 'Profile.blockHash'
+block_number = 'Profile.blockNumber'
+updated_at = 'Profile.blockTimestamp'
+
+[tables.public.pool]
+pool_id = 'Pool.poolId'
+chain_id = 'Pool.chainId'
+profile_id = 'Pool.profileId'
+strategy = 'Pool.strategy'
+token = 'Pool.token'
+amount = 'Pool.amount'
+fee_paid = 'Pool.feePaid'
+base_fee_paid = 'Pool.baseFeePaid'
+metadata_protocol = 'Pool.metadataProtocol'
+metadata_pointer = 'Pool.metadataPointer'
+manager_role_id = 'Pool.managerRoleId'
+admin_role_id = 'Pool.adminRoleId'
+created_at = 'Pool.createdAt'
+block_hash = 'Pool.blockHash'
+block_number = 'Pool.blockNumber'
+updated_at = 'Pool.blockTimestamp'
+
+[tables.public.account]
+account_id = 'Account.accountId'
+chain_id = 'Account.chainId'
+block_hash = 'Account.blockHash'
+block_number = 'Account.blockNumber'
+updated_at = 'Account.blockTimestamp'
+
+[tables.public.role]
+role_id = 'Role.roleId'
+chain_id = 'Role.chainId'
+block_hash = 'Role.blockHash'
+block_number = 'Role.blockNumber'
+updated_at = 'Role.blockTimestamp'
+
+[tables.public.role_account]
+role_id = 'RoleAccount.roleId'
+account_id = 'RoleAccount.accountId'
+chain_id = 'RoleAccount.chainId'
+is_active = 'RoleAccount.isActive'
+block_hash = 'RoleAccount.blockHash'
+block_number = 'RoleAccount.blockNumber'
+updated_at = 'RoleAccount.blockTimestamp'
+
+[tables.public.allo]
+chain_id = 'Allo.chainId'
+registry = 'Allo.registry'
+fee_percentage = 'Allo.feePercentage'
+base_fee = 'Allo.baseFee'
+treasury = 'Allo.treasury'
+cloneable_strategies = 'Allo.cloneableStrategies'
+block_hash = 'Allo.blockHash'
+block_number = 'Allo.blockNumber'
+updated_at = 'Allo.blockTimestamp'
+
+[tables.public.allo_transaction]
+hash = 'Transaction.hash'
+chain_id = 'Transaction.chainId'
+nonce = 'Transaction.nonce'
+transaction_index = 'Transaction.transactionIndex'
+from_address = 'Transaction.from'
+to_address = 'Transaction.to'
+contract_address = 'Transaction.contractAddress'
+value = 'Transaction.value'
+input = 'Transaction.input'
+function_name = 'Transaction.functionName'
+function_args = 'Transaction.functionArgs'
+transaction_type = 'Transaction.transactionType'
+status = 'Transaction.status'
+root = 'Transaction.root'
+gas = 'Transaction.gas'
+gas_price = 'Transaction.gasPrice'
+max_fee_per_gas = 'Transaction.maxFeePerGas'
+max_priority_fee_per_gas = 'Transaction.maxPriorityFeePerGas'
+gas_used = 'Transaction.gasUsed'
+cumulative_gas_used = 'Transaction.cumulativeGasUsed'
+effective_gas_price = 'Transaction.effectiveGasPrice'
+block_hash = 'Transaction.blockHash'
+block_number = 'Transaction.blockNumber'
+block_timestamp = 'Transaction.blockTimestamp'
+
+# = Links & Filters --------------------------------------
+
+[[objects.Profile.links]]
+table = 'public.profile'
+uniqueBy = [ 'profileId', 'chainId' ]
+
+[[objects.Pool.links]]
+table = 'public.pool'
+uniqueBy = [ 'poolId', 'chainId' ]
+
+[[objects.Account.links]]
+table = 'public.account'
+uniqueBy = [ 'accountId', 'chainId' ]
+
+[[objects.Role.links]]
+table = 'public.role'
+uniqueBy = [ 'roleId', 'chainId' ]
+
+[[objects.RoleAccount.links]]
+table = 'public.role_account'
+uniqueBy = [ 'roleId', 'accountId', 'chainId' ]
+
+[[objects.Allo.links]]
+table = 'public.allo'
+uniqueBy = [ 'chainId' ]
+
+[[objects.Transaction.links]]
+table = 'public.allo_transaction'
+uniqueBy = [ 'hash', 'chainId' ]
+filterBy = [
+	{ from = { op = 'in', value = [
+		'0x79536cc062ee8fafa7a19a5fa07783bd7f792206',
+		'0xaec621ec8d9de4b524f4864791171045d6bbbe27',
+	] } },
+	{ to = { op = 'in', value = [
+		'0x79536cc062ee8fafa7a19a5fa07783bd7f792206',
+		'0xaec621ec8d9de4b524f4864791171045d6bbbe27',
+	] } },
+	{ hash = { op = 'in', value = [
+		'0xc5eb0a67b8aecf121fe83b0834c5f4f878218f376f394514eb9679e9689f886e',
+		'0xb8c7a1c4ada74d30fca6f9784e42f6a0eb6c1ad6d04ed4ae4d3137fe1ba9a666',
+	] } },
+]
