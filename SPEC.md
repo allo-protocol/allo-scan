@@ -172,7 +172,7 @@ Enabling this will do a couple things:
 
 ## Start the API
 
-Before starting your GraphQL API, make sure you already have another tab with Spec running (`spec start`).
+_Before starting your GraphQL API_, make sure you already have another tab with Spec running (`spec start`).
 
 From another terminal tab:
 ```
@@ -187,3 +187,82 @@ This will run Postgraphile against your local database and expose a couple diffe
 ## Open the GUI/IDE
 
 To explore your new GraphQL schema, navigate to `http://localhost:5555/graphiql`. This front-end is great for checking out which models/relationships exist, seeing which queries you can run, and then writing and executing test queries to see the results.
+
+Try running some test commands:
+
+#### Get all pools with related models
+
+```gql
+{
+  pools {
+    poolId
+    strategy
+    token
+    amount
+    feePaid
+    profile {
+      profileId
+      name
+      account {
+        accountId
+      }
+    }
+    createdAt
+    updatedAt
+  }
+}
+```
+
+#### Get a profile with all of its roles and role accounts
+
+```gql
+{
+	profile(
+    profileId: "0x0021a52be387a4e0e8cf515870e4eb9e5a3f050b51d017121994245d2d82df56",
+    chainId: "5"
+  ) {
+    profileId
+    name
+    owner
+    role {
+      roleAccounts {
+        accountId
+      }
+    }
+  }
+}
+```
+
+#### Get the global Allo stats
+
+```gql
+{
+	allo(chainId: "5") {
+	  registry
+	  feePercentage
+	  baseFee
+	  treasury
+	  cloneableStrategies
+    updatedAt
+	}
+}
+```
+
+#### Get all function calls to your contract groups (thus far)
+
+```gql
+{
+  alloTransactions {
+    hash
+    fromAddress
+    toAddress
+    functionName
+    functionArgs
+    status
+    blockHash
+    blockNumber
+    blockTimestamp
+    chainId
+  }
+}
+```
