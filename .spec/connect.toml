@@ -1,0 +1,7 @@
+# Local database
+[local]
+name = 'alloscan'
+port = 5432
+host = 'localhost'
+user = 'benwhittle'
+password = ''
