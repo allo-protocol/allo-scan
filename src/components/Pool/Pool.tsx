@@ -4,6 +4,8 @@ import { useContext } from "react";
 import Table from "../Table";
 import { TTableData } from "@/types/types";
 import { Address, convertBytesToShortString } from "../Address";
+import { convertChainIdToNetworkName } from "@/utils";
+import Status from "../Status";
 
 const Pool = () => {
   // const { pools } = useContext(PoolContext);
@@ -47,7 +49,7 @@ const Pool = () => {
       "Amount",
       "Status",
       "Profile Owner",
-      "Strategy Identifier",
+      "Identifier",
       "Network",
     ],
     rows: pools.map((pool) => {
@@ -59,11 +61,12 @@ const Pool = () => {
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.token} chainId={pool.chainId} />,
         pool.amount,
-        pool.status,
+        // eslint-disable-next-line react/jsx-key
+        <Status status={pool.status} />,
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.profileOwner} chainId={pool.chainId} />,
         convertBytesToShortString(pool.strategyIdentifier),
-        pool.chainId,
+        convertChainIdToNetworkName(pool.chainId),
       ];
     }),
   };
