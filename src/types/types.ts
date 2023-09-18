@@ -34,3 +34,10 @@ export type TNetworkData = {
   coreContracts: ICoreContracts;
   strategyContracts: IStrategyContracts;
 };
+
+export type TTableData = {
+  name: string;
+  description: string;
+  headers: string[];
+  rows: any[][];
+};

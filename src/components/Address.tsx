@@ -20,7 +20,7 @@ export const Address = (props: { address: string; chainId: number }) => {
 
   return (
     <div className="flex items-center">
-      <div className="ml-3 text-sm font-medium text-gray-900">
+      <div className="ml-3 text-sm font-medium text-gray-900 font-mono">
         {convertAddressToShortString(props.address)}
       </div>
       <div
@@ -53,7 +53,7 @@ export const AddressFull = (props: { address: string; chainId: number }) => {
 
   return (
     <div className="flex items-center">
-      <div className="ml-3 text-sm font-medium text-gray-900">
+      <div className="ml-3 text-sm font-medium text-gray-900 font-mono">
         {props.address}
       </div>
       <div
@@ -71,6 +71,22 @@ export const AddressFull = (props: { address: string; chainId: number }) => {
         >
           <TbExternalLink />
         </a>
+      </div>
+    </div>
+  );
+};
+
+export const AddressResponsive = (props: {
+  address: string;
+  chainId: number;
+}) => {
+  return (
+    <div>
+      <div className="hidden sm:block md:hidden"> {/* Show on sm screens, hide on md screens */}
+        <Address address={props.address} chainId={props.chainId} />
+      </div>
+      <div className="sm:hidden md:block"> {/* Show on md screens, hide on sm screens */}
+        <AddressFull address={props.address} chainId={props.chainId} />
       </div>
     </div>
   );

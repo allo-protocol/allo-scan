@@ -37,13 +37,13 @@ const Navbar = () => {
                 <div className="hidden lg:ml-6 lg:flex justify-between">
                   <Link
                     href="/profile"
-                    className="inline-flex items-center border-b-2 border-transparent active:border-green-800 px-1 pt-1 text-sm font-medium text-gray-500 hover:border-green-800 hover:text-gray-700"
+                    className="inline-flex items-center border-b-2 border-transparent active:border-green-800 px-5 pt-1 text-sm font-medium text-gray-500 hover:border-green-800 hover:text-gray-700"
                   >
                     Profiles
                   </Link>
                   <Link
                     href="/pool"
-                    className="inline-flex items-center border-b-2 border-transparent active:bottom-0 active:border-green-800 px-1 pt-1 text-sm font-medium text-gray-500 hover:border-green-800 hover:text-gray-700"
+                    className="inline-flex items-center border-b-2 border-transparent active:bottom-0 active:border-green-800 px-5 pt-1 text-sm font-medium text-gray-500 hover:border-green-800 hover:text-gray-700"
                   >
                     Pools
                   </Link>
