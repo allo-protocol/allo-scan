@@ -1,11 +1,11 @@
 "use client";
-import Overview from "@/components/Overview";
+import Dashboard from "@/components/Dashboard";
 
 export default function Home() {
   return (
     <div className="bg-white">
       <main>
-        <Overview />
+        <Dashboard />
       </main>
     </div>
   );

@@ -1,6 +1,6 @@
-import { ICoreContracts, INetwork, TNetworkData, Slug } from "@/types/types";
+import { ICoreContracts, INetwork, TNetworkData, Slug, IStrategyContracts } from "@/types/types";
 
-const contracts: ICoreContracts = {
+const coreContracts: ICoreContracts = {
   registryImplementation: {
     name: "Registry Implementation",
     address: "0xAEc621EC8D9dE4B524f4864791171045d6BBBe27",
@@ -19,6 +19,17 @@ const contracts: ICoreContracts = {
   },
 };
 
+const strategyContracts: IStrategyContracts = {
+  donationVotingMerklePaout: {
+    name: "Donation Voting Merkle Paout",
+    address: "0x0000000000000000000000000000000000000000",
+  },
+  directGrantsSimple: {
+    name: "Direct Grants Simple",
+    address: "0x0000000000000000000000000000000000000000",
+  },
+}
+
 export const getNetworksBySlug = (slug: Slug): TNetworkData => {
   const networks = getNetworks();
   const network = Object.values(networks).find((network) => network.slug === slug);
@@ -35,35 +46,40 @@ export const getNetworks = (): INetwork => {
       slug: Slug.GOERLI,
       name: "Goerli",
       explorer: "https://goerli.etherscan.io/",
-      contracts: contracts,
+      coreContracts: coreContracts,
+      strategyContracts: strategyContracts,
     },
     [420]: {
       id: "420",
       slug: Slug.OPTIMISM_GOERLI,
       name: "Optimism Goerli",
       explorer: "https://goerli-optimism.etherscan.io/",
-      contracts: contracts,
+      coreContracts: coreContracts,
+      strategyContracts: strategyContracts,
     },
     [42069]: {
       id: "42069",
       slug: Slug.SEPOLIA,
       name: "Sepolia",
       explorer: "https://sepolia.etherscan.io/",
-      contracts: contracts,
+      coreContracts: coreContracts,
+      strategyContracts: strategyContracts,
     },
     [58008]: {
       id: "58008",
       slug: Slug.PGN_SEPOLIA,
       name: "PGN Sepolia",
       explorer: "https://explorer.sepolia.publicgoods.network/",
-      contracts: contracts,
+      coreContracts: coreContracts,
+      strategyContracts: strategyContracts,
     },
     [44787]: {
       id: "44787",
       slug: Slug.CELO_ALFAJORES,
       name: "Celo Alfajores",
       explorer: "https://explorer.celo.org/alfajores/",
-      contracts: contracts,
+      coreContracts: coreContracts,
+      strategyContracts: strategyContracts,
     },
   };
 };
