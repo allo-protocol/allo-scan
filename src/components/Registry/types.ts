@@ -1,11 +1,11 @@
 import { Metadata } from "@/types/types";
 
 export type TProfile = {
-  id: string;
+  profileId: string;
   anchor: string;
   name: string;
   chainId: number;
-  sender: string;
+  creator: string;
 }
 
 export type TProfileDetails = TProfile & {

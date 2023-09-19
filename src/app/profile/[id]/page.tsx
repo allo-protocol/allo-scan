@@ -7,11 +7,12 @@ export default async function ProfileDetailPage({
   params: { id: string };
 }) {
   const profile: TProfileDetails = {
-    id: "0x2b4a116a803067abc982458913a2eac20b9348777dbe9795bf3b1aa522160415",
+    profileId:
+      "0x2b4a116a803067abc982458913a2eac20b9348777dbe9795bf3b1aa522160415",
     anchor: "0x3f15B8c6F9939879Cb030D6dd935348E57109637",
     name: "1000x Super Shiba Doge Moon Elon",
     chainId: 5,
-    sender: "0xa671616e3580D3611139834Cd34D7838e82A04cD",
+    creator: "0xa671616e3580D3611139834Cd34D7838e82A04cD",
     metadata: {
       protocol: 1,
       pointer: "bafkreigwiljyskihuaeyjsedoei3taprwbbheldxig25lhoqvw2kpcf4bu",

@@ -46,3 +46,8 @@ export type Metadata = {
   protocol: number;
   pointer: string;
 }
+
+export enum MetadataProtocol {
+  "Undefined",
+  "IPFS"
+}
