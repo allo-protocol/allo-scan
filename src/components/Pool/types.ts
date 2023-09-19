@@ -12,4 +12,5 @@ export type TPoolDetail = {
     protocol: number;
     pointer: string;
   };
+  creator: string;
 };

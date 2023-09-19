@@ -2,8 +2,9 @@
 // eslint-disable-file react/jsx-key
 import Table from "../Table";
 import { TTableData } from "@/types/types";
-import { Address, convertBytesToShortString } from "../Address";
+import { Address, convertBytesToShortString, truncatedString } from "../Address";
 import { convertChainIdToNetworkName, formatAmount, shortenPoolName } from "@/utils/utils";
+import Link from "next/link";
 // import Status from "../Status";
 
 const Pool = (data: any) => {
@@ -24,7 +25,9 @@ const Pool = (data: any) => {
     ],
     rows: Object.values(data.data).map((pool: any) => {
       return [
-        pool.poolId,
+        <Link href={`/pool/${pool.chainId}/${pool.poolId}`}>
+          {truncatedString(pool.poolId)}
+        </Link>,,
         <Address address={pool.strategy} chainId={pool.chainId} />,
         // pool.name, FIXME: THE API DOES NOT RETURN THE POOL NAME
         // shortenPoolName("Pool Name is really long"),

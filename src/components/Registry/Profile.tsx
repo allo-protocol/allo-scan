@@ -14,7 +14,7 @@ const Profile = (data: any) => {
     rows: Object.values(data.data).map((profile: any) => {
       return [
         // eslint-disable-next-line react/jsx-key
-        <Link href={`/profile/${profile.profileId}`}>
+        <Link href={`/profile/${profile.chainId}/${profile.profileId}`}>
           {truncatedString(profile.profileId)}
         </Link>,
         // eslint-disable-next-line react/jsx-key
