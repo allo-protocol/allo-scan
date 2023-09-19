@@ -4,14 +4,14 @@ import { TProfileDetails } from "@/components/Registry/types";
 export default async function ProfileDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: { id: string, chain: number };
 }) {
   const profile: TProfileDetails = {
     profileId:
       "0x2b4a116a803067abc982458913a2eac20b9348777dbe9795bf3b1aa522160415",
     anchor: "0x3f15B8c6F9939879Cb030D6dd935348E57109637",
     name: "1000x Super Shiba Doge Moon Elon",
-    chainId: 5,
+    chainId: params.chain,
     creator: "0xa671616e3580D3611139834Cd34D7838e82A04cD",
     metadata: {
       protocol: 1,
