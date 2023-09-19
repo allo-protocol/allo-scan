@@ -52,7 +52,7 @@ export const AddressFull = (props: { address: string; chainId: number }) => {
 
   return (
     <div className="flex items-center">
-      <div className="ml-3 text-sm font-medium text-gray-900 font-mono">
+      <div className="text-sm font-medium text-gray-900 font-mono">
         {props.address}
       </div>
       <div
