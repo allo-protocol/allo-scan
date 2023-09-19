@@ -1,5 +1,8 @@
+import { Loading } from "@/components/Loading";
 import Profile from "@/components/Registry/Profile";
+import { graphqlEndpoint } from "@/utils/utils";
 import { request, gql } from "graphql-request";
+import { Suspense } from "react";
 
 export default async function ProfileHome() {
   const query = gql`
@@ -13,8 +16,12 @@ export default async function ProfileHome() {
       }
     }
   `;
-  const data: any = await request("http://localhost:5555/graphql", query);
+  const data: any = await request(graphqlEndpoint, query);
   const { profiles } = data;
 
-  return <Profile data={profiles} />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <Profile data={profiles} />
+    </Suspense>
+  );
 }

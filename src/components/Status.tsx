@@ -1,6 +1,6 @@
 const Status = ({ status }: { status: boolean }) => {
   return (
-    <td className="flex items-center">
+    <>
       <div
         id="status-dot"
         className={`${
@@ -20,7 +20,7 @@ const Status = ({ status }: { status: boolean }) => {
         {/* Add margin for spacing */}
         {status ? "Active" : "Inactive"}
       </div>
-    </td>
+    </>
   );
 };
 

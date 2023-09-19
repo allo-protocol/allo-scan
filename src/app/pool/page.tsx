@@ -1,5 +1,8 @@
+import { Loading } from "@/components/Loading";
 import Pool from "@/components/Pool/Pool";
+import { graphqlEndpoint } from "@/utils/utils";
 import { request, gql } from "graphql-request";
+import { Suspense } from "react";
 
 export default async function PoolHome() {
   // FIXME: THE API DOES NOT RETURN THE POOL NAME AND STATUS
@@ -18,8 +21,12 @@ export default async function PoolHome() {
       }
     }
   `;
-  const data: any = await request("http://localhost:5555/graphql", query);
+  const data: any = await request(graphqlEndpoint, query);
   const { pools } = data;
 
-  return <Pool data={pools}/>;
+  return (
+    <Suspense fallback={<Loading />}>
+      <Pool data={pools} />
+    </Suspense>
+  );
 }
