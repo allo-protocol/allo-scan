@@ -1,3 +1,5 @@
+"use client";
+
 import { getNetworks } from "@/utils/networks";
 import { TbCopy, TbExternalLink } from "react-icons/tb";
 
