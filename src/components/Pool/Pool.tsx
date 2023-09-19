@@ -2,8 +2,12 @@
 // eslint-disable-file react/jsx-key
 import Table from "../Table";
 import { TTableData } from "@/types/types";
-import { Address, convertBytesToShortString, truncatedString } from "../Address";
-import { convertChainIdToNetworkName, formatAmount, shortenPoolName } from "@/utils/utils";
+import { Address } from "../Address";
+import {
+  convertChainIdToNetworkName,
+  formatAmount,
+  shortenPoolName,
+} from "@/utils/utils";
 import Link from "next/link";
 // import Status from "../Status";
 
@@ -25,9 +29,13 @@ const Pool = (data: any) => {
     ],
     rows: Object.values(data.data).map((pool: any) => {
       return [
-        <Link href={`/pool/${pool.chainId}/${pool.poolId}`}>
-          {truncatedString(pool.poolId)}
-        </Link>,,
+        <Link
+          className="text-green-800 hover:bg-green-200 p-2 rounded-md"
+          href={`/pool/${pool.chainId}/${pool.poolId}`}
+        >
+          {pool.poolId}
+        </Link>,
+        ,
         <Address address={pool.strategy} chainId={pool.chainId} />,
         // pool.name, FIXME: THE API DOES NOT RETURN THE POOL NAME
         // shortenPoolName("Pool Name is really long"),

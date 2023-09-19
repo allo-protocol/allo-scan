@@ -23,7 +23,7 @@ const PoolDetailPage = ({
           {/* {pool.name} */}
           "Pool Name"
         </h3>
-        <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500 font-mono">
+        <p className="mt-1 max-w-xs text-sm leading-6 text-gray-500 font-mono">
           {pool.poolId}
         </p>
       </div>

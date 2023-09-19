@@ -15,7 +15,9 @@ const Profile = (data: any) => {
       return [
         // eslint-disable-next-line react/jsx-key
         <Link href={`/profile/${profile.chainId}/${profile.profileId}`}>
-          {truncatedString(profile.profileId)}
+          <span className="text-green-800">
+            {truncatedString(profile.profileId)}
+          </span>
         </Link>,
         // eslint-disable-next-line react/jsx-key
         <Address address={profile.anchor} chainId={profile.chainId} />,
