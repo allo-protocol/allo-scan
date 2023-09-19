@@ -1,9 +1,9 @@
 "use client";
 import Table from "../Table";
 import { TTableData } from "@/types/types";
-import { Address, convertBytesToShortString } from "../Address";
+import { Address, convertBytesToShortString, truncatedString } from "../Address";
 import { convertChainIdToNetworkName, formatAmount, shortenPoolName } from "@/utils/utils";
-import Status from "../Status";
+// import Status from "../Status";
 
 const Pool = (data: any) => {
   const tableData: TTableData = {
@@ -13,12 +13,13 @@ const Pool = (data: any) => {
     headers: [
       "ID",
       "Address",
-      "Name",
+      // "Name",
       "Token",
       "Amount",
-      "Status",
+      // "Status",
+      "Profile Name",
       "Profile Owner",
-      "Identifier",
+      "Strategy",
       "Network",
     ],
     rows: Object.values(data.data).map((pool: any) => {
@@ -27,15 +28,16 @@ const Pool = (data: any) => {
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.strategy} chainId={pool.chainId} />,
         // pool.name, FIXME: THE API DOES NOT RETURN THE POOL NAME
-        shortenPoolName("Pool Name is really long"),
+        // shortenPoolName("Pool Name is really long"),
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.token} chainId={pool.chainId} />,
         formatAmount(pool.amount),
-        // eslint-disable-next-line react/jsx-key
-        <Status status={true} />, // FIXME: THE API DOES NOT RETURN THE POOL STATUS
+        // eslint-disable-next-line react/jsx-key js
+        // <Status status={true} />,
+        shortenPoolName(pool.profile.name),
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.profile.owner} chainId={pool.chainId} />,
-        convertBytesToShortString(pool.strategy),
+        <Address address={pool.strategy} chainId={pool.chainId} />,
         convertChainIdToNetworkName(pool.chainId),
       ];
     }),

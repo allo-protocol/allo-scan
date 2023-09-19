@@ -15,6 +15,7 @@ export default async function PoolHome() {
         token
         amount
         profile {
+          name
           owner
           metadataPointer
         }
