@@ -1,5 +1,5 @@
 "use client";
-import { Address, convertBytesToShortString } from "../Address";
+import { Address, truncatedString } from "../Address";
 import Table from "../Table";
 import { TTableData } from "@/types/types";
 import { convertChainIdToNetworkName } from "@/utils/utils";
@@ -12,7 +12,7 @@ const Profile = (data: any) => {
     headers: ["ID", "Anchor", "Name", "Sender", "Network"],
     rows: Object.values(data.data).map((profile: any) => {
       return [
-        convertBytesToShortString(profile.profileId),
+        truncatedString(profile.profileId),
         // eslint-disable-next-line react/jsx-key
         <Address address={profile.anchor} chainId={profile.chainId} />,
         profile.name,

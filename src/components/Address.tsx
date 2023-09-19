@@ -90,3 +90,7 @@ export const AddressResponsive = (props: {
     </div>
   );
 };
+
+export const truncatedString = (str: string) => {
+  return <div className="truncate font-mono w-32">{str}</div>;
+}
