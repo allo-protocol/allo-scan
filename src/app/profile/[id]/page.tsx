@@ -1,3 +1,8 @@
-export default function ProfileDetail({ params }: { params: { slug: string } }) {
-    return <h1>My Page</h1>;
+export default function ProfileDetail({ params }: { params: { id: string } }) {
+    return (
+      <div>
+        <h1>Profile Detail</h1>
+        <p>Profile ID: {params.id}</p>
+      </div>
+    )
   }

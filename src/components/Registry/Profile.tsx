@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { Address, truncatedString } from "../Address";
 import Table from "../Table";
 import { TTableData } from "@/types/types";
@@ -12,7 +13,10 @@ const Profile = (data: any) => {
     headers: ["ID", "Anchor", "Name", "Sender", "Network"],
     rows: Object.values(data.data).map((profile: any) => {
       return [
-        truncatedString(profile.profileId),
+        // eslint-disable-next-line react/jsx-key
+        <Link href={`/profile/${profile.profileId}`}>
+          {truncatedString(profile.profileId)}
+        </Link>,
         // eslint-disable-next-line react/jsx-key
         <Address address={profile.anchor} chainId={profile.chainId} />,
         profile.name,

@@ -1,7 +1,7 @@
 "use client";
 import Table from "../Table";
 import { TTableData } from "@/types/types";
-import { Address, convertBytesToShortString, truncatedString } from "../Address";
+import { Address, convertBytesToShortString } from "../Address";
 import { convertChainIdToNetworkName, formatAmount, shortenPoolName } from "@/utils/utils";
 // import Status from "../Status";
 
@@ -31,13 +31,15 @@ const Pool = (data: any) => {
         // shortenPoolName("Pool Name is really long"),
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.token} chainId={pool.chainId} />,
+        // eslint-disable-next-line react/jsx-key
         formatAmount(pool.amount),
-        // eslint-disable-next-line react/jsx-key js
-        // <Status status={true} />,
+        // eslint-disable-next-line react/jsx-key
         shortenPoolName(pool.profile.name),
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.profile.owner} chainId={pool.chainId} />,
+        // eslint-disable-next-line react/jsx-key
         <Address address={pool.strategy} chainId={pool.chainId} />,
+        // eslint-disable-next-line react/jsx-key
         convertChainIdToNetworkName(pool.chainId),
       ];
     }),
