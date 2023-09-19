@@ -41,3 +41,8 @@ export type TTableData = {
   headers: string[];
   rows: any[][];
 };
+
+export type Metadata = {
+  protocol: number;
+  pointer: string;
+}
