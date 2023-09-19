@@ -3,6 +3,8 @@ import { ethers } from "ethers";
 
 const networks = getNetworks();
 
+export const graphqlEndpoint = "http://localhost:5555/graphql";
+
 export const convertChainIdToNetworkName = (chainId: number) => {
   return `${networks[chainId].name} (${chainId})`;
 };
