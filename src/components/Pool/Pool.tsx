@@ -29,6 +29,7 @@ const Pool = (data: any) => {
     ],
     rows: Object.values(data.data).map((pool: any) => {
       return [
+        // eslint-disable-next-line react/jsx-key
         <Link
           className="text-green-800 hover:bg-green-200 p-2 rounded-md"
           href={`/pool/${pool.chainId}/${pool.poolId}`}
@@ -36,12 +37,15 @@ const Pool = (data: any) => {
           {pool.poolId}
         </Link>,
         ,
+        // eslint-disable-next-line react/jsx-key
         <Address address={pool.strategy} chainId={pool.chainId} />,
         // pool.name, FIXME: THE API DOES NOT RETURN THE POOL NAME
         // shortenPoolName("Pool Name is really long"),
+        // eslint-disable-next-line react/jsx-key
         <Address address={pool.token} chainId={pool.chainId} />,
         formatAmount(pool.amount),
         shortenPoolName(pool.profile.name),
+        // eslint-disable-next-line react/jsx-key
         <Address address={pool.profile.owner} chainId={pool.chainId} />,
         convertChainIdToNetworkName(pool.chainId),
       ];

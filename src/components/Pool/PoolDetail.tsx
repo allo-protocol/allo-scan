@@ -6,6 +6,7 @@ import { MetadataProtocol } from "@/types/types";
 import { TbExternalLink } from "react-icons/tb";
 import JsonView from "@uiw/react-json-view";
 import { ethers } from "ethers";
+import Link from "next/link";
 
 const PoolDetailPage = ({
   pool,
@@ -18,14 +19,23 @@ const PoolDetailPage = ({
 
   return (
     <div>
-      <div className="px-4 sm:px-0 my-10">
-        <h3 className="text-base font-semibold leading-7 text-gray-900">
-          {/* {pool.name} */}
-          "Pool Name"
-        </h3>
-        <p className="mt-1 max-w-xs text-sm leading-6 text-gray-500 font-mono">
-          {pool.poolId}
-        </p>
+      <div className="flex flex-row items-center justify-between px-4 sm:px-0 my-10">
+        <div className="flex flex-row">
+          <h3 className="text-base font-semibold leading-7 text-gray-900">
+            {/* {pool.name} */}
+            This is a test pool
+          </h3>
+          <p className="mt-1 ml-4 max-w-xs text-sm leading-6 text-gray-500 font-mono">
+            {pool.poolId}
+          </p>
+        </div>
+        <div>
+          <Link href={`/pool/`}>
+            <button className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md shadow-sm text-white bg-green-800 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+              Back
+            </button>
+          </Link>
+        </div>
       </div>
       <div className="mt-6 border-t border-gray-100">
         <dl className="divide-y divide-gray-100">

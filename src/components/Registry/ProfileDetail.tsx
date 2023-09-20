@@ -1,11 +1,11 @@
 "use client";
+
 import { convertChainIdToNetworkName } from "@/utils/utils";
 import { AddressResponsive } from "../Address";
 import { TProfileDetails } from "./types";
 import { MetadataProtocol } from "@/types/types";
 import { TbExternalLink } from "react-icons/tb";
 import JsonView from "@uiw/react-json-view";
-
 
 const ProfileDetail = ({
   profile,
@@ -83,8 +83,8 @@ const ProfileDetail = ({
             </dt>
             <dd className="mt-2 text-sm text-gray-900 sm:col-span-1 sm:mt-0">
               <ul role="list" className="">
-                {profile.members.map((member) => (
-                  <li className="flex items-center justify-between py-4 text-sm leading-6">
+                {profile.members.map((member, index) => (
+                  <li key={index} className="flex items-center justify-between py-4 text-sm leading-6">
                     <div className="flex w-0 flex-1 items-center">
                       <div className="flex">
                         <span className="font-medium">
@@ -120,7 +120,11 @@ const ProfileDetail = ({
           </div>
         </dl>
         <div className="pb-6">
-          <JsonView value={metadataObj} shortenTextAfterLength={120} collapsed={2} />
+          <JsonView
+            value={metadataObj}
+            shortenTextAfterLength={120}
+            collapsed={2}
+          />
         </div>
       </div>
     </div>
