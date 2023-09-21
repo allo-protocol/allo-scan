@@ -6,6 +6,10 @@ export enum Slug {
   CELO_ALFAJORES = "celo-alfajores",
 }
 
+export enum OrderBy {
+  BLOCK_TIMESTAMP_DESC
+}
+
 export interface IContract {
   name: string;
   address: string;

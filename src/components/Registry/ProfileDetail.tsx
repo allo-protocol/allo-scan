@@ -2,7 +2,7 @@
 
 import { convertChainIdToNetworkName } from "@/utils/utils";
 import { AddressResponsive } from "../Address";
-import { TProfileDetails } from "./types";
+import { TProfileDetail } from "./types";
 import { MetadataProtocol } from "@/types/types";
 import { TbExternalLink } from "react-icons/tb";
 import JsonView from "@uiw/react-json-view";
@@ -13,7 +13,7 @@ const ProfileDetail = ({
   profile,
   metadata,
 }: {
-  profile: TProfileDetails;
+  profile: TProfileDetail;
   metadata: string;
 }) => {
   let metadataObj;
