@@ -1,7 +1,6 @@
 import PoolDetailPage from "@/components/Pool/PoolDetail";
-import { TPoolDetail } from "@/components/Pool/types";
-import { getPoolDetailDataQuery } from "@/utils/query";
-import { graphqlEndpoint } from "@/utils/utils";
+import { IPoolDetailResponse, TPoolDetail } from "@/components/Pool/types";
+import { getPoolDetailDataQuery, graphqlEndpoint } from "@/utils/query";
 import { request } from "graphql-request";
 
 export default async function PoolDetail({
@@ -9,17 +8,16 @@ export default async function PoolDetail({
 }: {
   params: { chain: string; id: string };
 }) {
-
-  const poolDetails: any = await request(
+  const response: IPoolDetailResponse = await request(
     graphqlEndpoint,
     getPoolDetailDataQuery,
     {
       chainId: params.chain,
       poolId: params.id,
-    },
+    }
   );
 
-  const { pool }: { pool: TPoolDetail } = poolDetails;
+  const { pool }: { pool: TPoolDetail } = response;
 
   let poolMetadata = "{}";
 
@@ -33,7 +31,7 @@ export default async function PoolDetail({
       poolMetadata = await response.text();
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 
   return <PoolDetailPage pool={pool} poolMetadata={poolMetadata} />;

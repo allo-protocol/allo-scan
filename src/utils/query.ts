@@ -1,5 +1,7 @@
 import { gql } from "graphql-request";
 
+export const graphqlEndpoint = "http://localhost:5555/graphql";
+
 export const getPoolDataQuery = gql`
   {
     pools {

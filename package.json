@@ -38,6 +38,7 @@
   "devDependencies": {
     "@uiw/react-json-view": "^2.0.0-alpha.4",
     "bufferutil": "^4.0.7",
+    "encoding": "^0.1.13",
     "ts-jest": "^29.1.1",
     "utf-8-validate": "^6.0.3"
   }

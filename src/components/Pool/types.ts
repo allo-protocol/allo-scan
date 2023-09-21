@@ -1,5 +1,5 @@
 export type TPoolDetail = {
-  amount: string;
+  amount: number;
   chainId: string;
   metadataPointer: string;
   metadataProtocol: number;
@@ -19,3 +19,11 @@ export type TPoolDetail = {
     decimals: number;
   };
 };
+
+export interface IPoolsResponse {
+  pools: TPoolDetail[];
+}
+
+export interface IPoolDetailResponse {
+  pool: TPoolDetail;
+}
