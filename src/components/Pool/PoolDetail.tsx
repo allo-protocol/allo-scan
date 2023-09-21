@@ -11,31 +11,6 @@ import Link from "next/link";
 import { Loading } from "../Loading";
 import { getNetworks } from "@/utils/networks";
 
-
-// {
-//     "pool": {
-//         "poolId": "1",
-//         "chainId": "5",
-//         "token": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-//         "amount": "0",
-//         "strategy": "0x1a749965c9142c873298362333ed2545d4edd2da",
-//         "metadataProtocol": 1,
-//         "metadataPointer": "bafybeia4khbew3r2mkflyn7nzlvfzcb3qpfeftz5ivpzfwn77ollj47gqi",
-//         "tokenMetadata": {
-//             "name": null,
-//             "symbol": null,
-//             "decimals": null
-//         },
-//         "profile": {
-//             "name": "Whoop Whoop",
-//             "owner": "0xe7eb5d2b5b188777df902e89c54570e7ef4f59ce",
-//             "anchor": "0x4157199a3dfae237b67aba88b593735aea9d5d33",
-//             "creator": "0xe7eb5d2b5b188777df902e89c54570e7ef4f59ce"
-//         }
-//     }
-// }
-
-
 const PoolDetailPage = ({
   pool,
   poolMetadata,
@@ -44,9 +19,6 @@ const PoolDetailPage = ({
   poolMetadata: string;
 }) => {
   const metadataObj: {} = JSON.parse(poolMetadata);
-
-  console.log("the fucking pool", pool);
-  console.log("Pool metadata ", poolMetadata);
 
   return (
     <div>
