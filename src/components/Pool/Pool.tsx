@@ -36,7 +36,7 @@ const Pool = ({data, header, description}: {data: any, header?: string, descript
         <Address address={pool.strategy} chainId={pool.chainId} />,
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.token} chainId={pool.chainId} />,
-        formatAmount(pool.amount),
+        formatAmount(pool.amount, pool.tokenMetadata?.decimals ?? 18),
         shortenPoolName(pool.profile.name),
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.profile.owner} chainId={pool.chainId} />,

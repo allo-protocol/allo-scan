@@ -1,7 +1,6 @@
 import { Loading } from "@/components/Loading";
 import Pool from "@/components/Pool/Pool";
-import { getPoolDataQuery } from "@/utils/query";
-import { graphqlEndpoint } from "@/utils/utils";
+import { getPoolDataQuery, graphqlEndpoint } from "@/utils/query";
 import { request } from "graphql-request";
 import { Suspense } from "react";
 
@@ -16,7 +15,9 @@ export default async function PoolHome() {
       <Pool
         data={pools}
         header={"Pools"}
-        description={"A list of all the pools in the registry on all supported networks"}
+        description={
+          "A list of all the pools in the registry on all supported networks"
+        }
       />
     </Suspense>
   );

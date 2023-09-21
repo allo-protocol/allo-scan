@@ -1,7 +1,6 @@
 import ProfileDetail from "@/components/Registry/ProfileDetail";
 import { TProfileDetails } from "@/components/Registry/types";
-import { getProfileDetailDataQuery } from "@/utils/query";
-import { graphqlEndpoint } from "@/utils/utils";
+import { getProfileDetailDataQuery, graphqlEndpoint } from "@/utils/query";
 import request from "graphql-request";
 
 export default async function ProfileDetailPage({
