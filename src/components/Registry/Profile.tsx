@@ -8,9 +8,6 @@ import { convertChainIdToNetworkName } from "@/utils/utils";
 
 const Profile = (data: any) => {
   const tableData: TTableData = {
-    name: "Profiles",
-    description:
-      "A list of all the profiles in the registry on all supported networks",
     headers: ["ID", "Anchor", "Name", "Sender", "Network"],
     rows: Object.values(data.data).map((profile: any) => {
       return [
@@ -30,7 +27,15 @@ const Profile = (data: any) => {
     }),
   };
 
-  return <Table data={tableData} />;
+  return (
+    <Table
+      data={tableData}
+      header={"Profiles"}
+      description={
+        "A list of all the profiles in the registry on all supported networks"
+      }
+    />
+  );
 };
 
 export default Profile;

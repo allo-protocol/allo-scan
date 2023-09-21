@@ -11,11 +11,9 @@ import {
 import Link from "next/link";
 // import Status from "../Status";
 
-const Pool = (data: any) => {
+const Pool = ({data, header, description}: {data: any, header?: string, description?: string}) => {
+  
   const tableData: TTableData = {
-    name: "Pools",
-    description:
-      "A list of all the ools in the registry on all supported networks",
     headers: [
       "ID",
       "Address",
@@ -27,7 +25,7 @@ const Pool = (data: any) => {
       "Profile Owner",
       "Network",
     ],
-    rows: Object.values(data.data).map((pool: any) => {
+    rows: Object.values(data).map((pool: any) => {
       return [
         // eslint-disable-next-line react/jsx-key
         <Link
@@ -52,7 +50,7 @@ const Pool = (data: any) => {
     }),
   };
 
-  return <Table data={tableData} />;
+  return <Table data={tableData} header={header} description={description} />;
 };
 
 export default Pool;

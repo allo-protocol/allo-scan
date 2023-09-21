@@ -1,18 +1,36 @@
 import { TTableData } from "@/types/types";
 
-const Table = ({ data }: { data: TTableData }) => {
+const Table = ({
+  data,
+  header,
+  description,
+}: {
+  data: TTableData;
+  header: string | undefined | "";
+  description: string | undefined | "";
+}) => {
   return (
     <>
-      <div className="px-4 sm:px-6 lg:px-8 pt-2 mt-10">
+      <div
+        className={`px-4 sm:px-6 lg:px-8 ${
+          header || description ? "pt-2 mt-10" : ""
+        }`}
+      >
         <div className="sm:flex flex flex-col items-center">
-          <div className="sm:flex-auto flex-auto">
-            <h1 className="text-center text-base font-semibold leading-6 text-gray-900">
-              {data.name}
-            </h1>
-            <p className="mt-2 text-center text-sm text-gray-700">
-              {data.description}
-            </p>
-          </div>
+          {(header || description) && (
+            <div className="sm:flex-auto flex-auto">
+              {header && (
+                <h1 className="text-center text-base font-semibold leading-6 text-gray-900">
+                  {header}
+                </h1>
+              )}
+              {description && (
+                <p className="mt-2 text-center text-sm text-gray-700">
+                  {description}
+                </p>
+              )}
+            </div>
+          )}
         </div>
         <div className="mt-8 flow-root">
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 lg:border lg:rounded-md lg:shadow-gray lg:shadow-md">

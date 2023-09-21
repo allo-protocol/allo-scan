@@ -13,8 +13,12 @@ export default async function PoolHome() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <Pool data={pools} />
+      <Pool
+        data={pools}
+        header={"Pools"}
+        description={"A list of all the pools in the registry on all supported networks"}
+      />
     </Suspense>
   );
 }
-1
+1;

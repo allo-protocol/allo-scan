@@ -6,6 +6,8 @@ import { TProfileDetails } from "./types";
 import { MetadataProtocol } from "@/types/types";
 import { TbExternalLink } from "react-icons/tb";
 import JsonView from "@uiw/react-json-view";
+import Link from "next/link";
+import Pool from "../Pool/Pool";
 
 const ProfileDetail = ({
   profile,
@@ -14,17 +16,33 @@ const ProfileDetail = ({
   profile: TProfileDetails;
   metadata: string;
 }) => {
-  const metadataObj = JSON.parse(metadata);
+  let metadataObj;
+  try {
+    metadataObj = JSON.parse(metadata);
+  } catch (error) {
+    metadataObj = {
+      error: "Error parsing metadata",
+    };
+  }
 
   return (
-    <div>
-      <div className="px-4 sm:px-0 my-10">
-        <h3 className="text-base font-semibold leading-7 text-gray-900">
-          {profile.name}
-        </h3>
-        <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500 font-mono">
-          {profile.profileId}
-        </p>
+    <div className="pb-10">
+      <div className="flex flex-row items-center justify-between px-4 sm:px-0 my-10">
+        <div className="flex flex-col">
+          <h3 className="text-base font-semibold leading-7 text-gray-900">
+            {profile.name}
+          </h3>
+          <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500 font-mono">
+            {profile.profileId}
+          </p>
+        </div>
+        <div>
+          <Link href={`/profile/`}>
+            <button className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md shadow-sm text-white bg-green-800 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+              Back
+            </button>
+          </Link>
+        </div>
       </div>
       <div className="mt-6 border-t border-gray-100">
         <dl className="divide-y divide-gray-100">
@@ -83,13 +101,16 @@ const ProfileDetail = ({
             </dt>
             <dd className="mt-2 text-sm text-gray-900 sm:col-span-1 sm:mt-0">
               <ul role="list" className="">
-                {profile.members.map((member, index) => (
-                  <li key={index} className="flex items-center justify-between py-4 text-sm leading-6">
+                {profile.role.roleAccounts.map((account, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center justify-between py-4 text-sm leading-6"
+                  >
                     <div className="flex w-0 flex-1 items-center">
                       <div className="flex">
                         <span className="font-medium">
                           <AddressResponsive
-                            address={member}
+                            address={account.accountId}
                             chainId={profile.chainId}
                           />
                         </span>
@@ -102,16 +123,16 @@ const ProfileDetail = ({
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">
-              Metadata ({MetadataProtocol[profile.metadata.protocol]}){" "}
+              Metadata ({MetadataProtocol[profile.metadataProtocol]}){" "}
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               <div className="flex flex-row items-center">
-                {profile.metadata.pointer}
+                {profile.metadataPointer}
                 <a
                   className="ml-2"
                   // data-tip="view on explorer"
                   target="_blank"
-                  href={"https://ipfs.io/ipfs/" + profile.metadata.pointer}
+                  href={"https://ipfs.io/ipfs/" + profile.metadataPointer}
                 >
                   <TbExternalLink />
                 </a>
@@ -127,6 +148,14 @@ const ProfileDetail = ({
           />
         </div>
       </div>
+      {profile.pools.length > 0 && (
+        <>
+          <div className="text-sm font-medium leading-6 text-gray-900">
+            Pools
+          </div>
+          <Pool data={profile.pools} />
+        </>
+      )}
     </div>
   );
 };

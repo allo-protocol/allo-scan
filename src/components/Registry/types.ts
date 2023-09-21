@@ -1,5 +1,3 @@
-import { Metadata } from "@/types/types";
-
 export type TProfile = {
   profileId: string;
   anchor: string;
@@ -9,10 +7,17 @@ export type TProfile = {
 }
 
 export type TProfileDetails = TProfile & {
-  metadata: Metadata;
+  createdAt: string;
+  pools: {
+    poolId: string;
+  }[];
+  metadataPointer: string;
+  metadataProtocol: number;
   nonce: number;
   owner: string;
-  members: string[];
-  adminRoleId: string;
-  memberRoleId: string;
+  role: {
+    roleAccounts: {
+      accountId: string;
+    }[];
+  };
 }

@@ -51,6 +51,47 @@ export const getProfileDataQuery = gql`
   }
 `;
 
+export const getProfileDetailDataQuery = gql`
+  query getProfileDetails($chainId: String!, $profileId: String!) {
+    profile(chainId: $chainId, profileId: $profileId) {
+      pools {
+        poolId
+        chainId
+        token
+        amount
+        strategy
+        metadataProtocol
+        metadataPointer
+        tokenMetadata
+        profile {
+          profileId
+          name
+          owner
+          anchor
+          creator
+        }
+      }
+
+      profileId
+      anchor
+      name
+      chainId
+      creator
+      createdAt
+      metadataPointer
+      metadataProtocol
+      nonce
+      owner
+
+      role {
+        roleAccounts {
+          accountId
+        }
+      }
+    }
+  }
+`;
+
 export const getAlloStatsQuery = gql`
   query AlloStats ($chainId: String!) {
     allo(chainId: $chainId) {

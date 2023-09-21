@@ -18,7 +18,15 @@ const PoolDetailPage = ({
   pool: TPoolDetail;
   poolMetadata: string;
 }) => {
-  const metadataObj: {} = JSON.parse(poolMetadata);
+
+    let metadataObj;
+    try {
+      metadataObj = JSON.parse(poolMetadata);
+    } catch (error) {
+      metadataObj = {
+        error: "Error parsing metadata",
+      };
+    }
 
   return (
     <div>
