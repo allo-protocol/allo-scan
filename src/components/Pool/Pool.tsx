@@ -20,7 +20,6 @@ const Pool = ({
   header?: string;
   description?: string;
 }) => {
-  console.log(data);
 
   const tableData: TTableData = {
     headers: [

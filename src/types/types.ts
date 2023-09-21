@@ -38,7 +38,7 @@ export type TNetworkData = {
 
 export type TTableData = {
   headers?: string[];
-  rows: (string | React.JSX.Element)[][];
+  rows: (string | React.JSX.Element | undefined)[][];
 };
 
 export type Metadata = {

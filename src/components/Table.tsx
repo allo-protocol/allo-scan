@@ -64,7 +64,7 @@ const Table = ({
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
               <table className="min-w-full divide-y divide-gray-300">
                 <thead>
-                  <tr className="md:table-row lg:table-row">
+                  <tr key={"header-row"} className="md:table-row lg:table-row">
                     {data.headers?.map((header, index) => (
                       <th
                         key={"headers-" + index}

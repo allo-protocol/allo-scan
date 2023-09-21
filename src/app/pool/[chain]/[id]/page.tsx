@@ -31,7 +31,7 @@ export default async function PoolDetail({
       poolMetadata = await response.text();
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 
   return <PoolDetailPage pool={pool} poolMetadata={poolMetadata} />;
