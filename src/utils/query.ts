@@ -17,6 +17,33 @@ export const getPoolDataQuery = gql`
   }
 `;
 
+export const getPoolDetailDataQuery = gql`
+  query GetPoolDetails($chainId: String!, $poolId: String!) {
+    pool(chainId: $chainId, poolId: $poolId) {
+        poolId
+        chainId
+        token
+        amount
+        strategy
+        metadataProtocol
+        metadataPointer
+        profileId
+        tokenMetadata
+        profile {
+          profileId
+          nonce
+          name
+          metadataProtocol
+          metadataPointer
+          owner
+          anchor
+          creator
+          createdAt
+        }
+      }
+    }
+`;
+
 export const getProfileDataQuery = gql`
   {
     profiles {

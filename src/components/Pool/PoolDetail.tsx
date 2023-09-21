@@ -17,6 +17,8 @@ const PoolDetailPage = ({
 }) => {
   const metadataObj = JSON.parse(metadata);
 
+  console.log("the fucking pool", pool);
+
   return (
     <div>
       <div className="flex flex-row items-center justify-between px-4 sm:px-0 my-10">
@@ -44,7 +46,7 @@ const PoolDetailPage = ({
               Network
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {convertChainIdToNetworkName(pool.chainId)}
+              {convertChainIdToNetworkName(Number(pool.chainId))}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
@@ -52,7 +54,10 @@ const PoolDetailPage = ({
               Token
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {pool.token}
+              <AddressResponsive
+                address={pool.token}
+                chainId={Number(pool.chainId)}
+              />
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
@@ -60,7 +65,7 @@ const PoolDetailPage = ({
               Amount
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {ethers.formatEther(pool.amount.toString())}
+                {ethers.formatEther(pool.amount ?? 0)} {pool.tokenMetadata?.symbol ?? ""}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
@@ -69,23 +74,23 @@ const PoolDetailPage = ({
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               <AddressResponsive
-                address={pool.creator}
-                chainId={pool.chainId}
+                address={pool.profile.creator}
+                chainId={Number(pool.chainId)}
               />
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">
-              Metadata ({MetadataProtocol[pool.metadata.protocol]}){" "}
+              Metadata ({MetadataProtocol[pool.metadataProtocol]}){" "}
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               <div className="flex flex-row items-center">
-                {pool.metadata.pointer}
+                {pool.metadataPointer}
                 <a
                   className="ml-2"
                   // data-tip="view on explorer"
                   target="_blank"
-                  href={"https://ipfs.io/ipfs/" + pool.metadata.pointer}
+                  href={"https://ipfs.io/ipfs/" + pool.metadataPointer}
                 >
                   <TbExternalLink />
                 </a>
