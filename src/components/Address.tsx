@@ -1,5 +1,4 @@
-import { getNetworks } from "@/api/networks";
-import { Slug } from "@/types/types";
+import { getNetworks } from "@/utils/networks";
 import { TbCopy, TbExternalLink } from "react-icons/tb";
 
 export const convertAddressToShortString = (address: string) => {
@@ -30,12 +29,7 @@ export const Address = (props: { address: string; chainId: number }) => {
         <TbCopy />
       </div>
       <div>
-        <a
-          // className="tooltip"
-          // data-tip="view on explorer"
-          target="_blank"
-          href={explorerLink}
-        >
+        <a target="_blank" href={explorerLink}>
           <TbExternalLink />
         </a>
       </div>
@@ -53,7 +47,7 @@ export const AddressFull = (props: { address: string; chainId: number }) => {
 
   return (
     <div className="flex items-center">
-      <div className="ml-3 text-sm font-medium text-gray-900 font-mono">
+      <div className="text-sm font-medium text-gray-900 font-mono">
         {props.address}
       </div>
       <div
@@ -63,12 +57,7 @@ export const AddressFull = (props: { address: string; chainId: number }) => {
         <TbCopy />
       </div>
       <div>
-        <a
-          // className="tooltip"
-          // data-tip="view on explorer"
-          target="_blank"
-          href={explorerLink}
-        >
+        <a target="_blank" href={explorerLink}>
           <TbExternalLink />
         </a>
       </div>
@@ -82,12 +71,20 @@ export const AddressResponsive = (props: {
 }) => {
   return (
     <div>
-      <div className="hidden sm:block md:hidden"> {/* Show on sm screens, hide on md screens */}
+      <div className="hidden sm:block md:hidden">
+        {" "}
+        {/* Show on sm screens, hide on md screens */}
         <Address address={props.address} chainId={props.chainId} />
       </div>
-      <div className="sm:hidden md:block"> {/* Show on md screens, hide on sm screens */}
+      <div className="sm:hidden md:block">
+        {" "}
+        {/* Show on md screens, hide on sm screens */}
         <AddressFull address={props.address} chainId={props.chainId} />
       </div>
     </div>
   );
+};
+
+export const truncatedString = (str: string) => {
+  return <div className="truncate font-mono w-32">{str}</div>;
 };

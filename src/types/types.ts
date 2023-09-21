@@ -33,11 +33,20 @@ export type TNetworkData = {
   explorer: string;
   coreContracts: ICoreContracts;
   strategyContracts: IStrategyContracts;
+  symbol: string;
 };
 
 export type TTableData = {
-  name: string;
-  description: string;
   headers: string[];
   rows: any[][];
 };
+
+export type Metadata = {
+  protocol: number;
+  pointer: string;
+}
+
+export enum MetadataProtocol {
+  "Undefined",
+  "IPFS"
+}

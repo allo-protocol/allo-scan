@@ -1,77 +1,51 @@
-import { PoolContext } from "@/Context/PoolContext";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { useContext } from "react";
+"use client";
+
 import Table from "../Table";
 import { TTableData } from "@/types/types";
-import { Address, convertBytesToShortString } from "../Address";
-import { convertChainIdToNetworkName } from "@/utils";
-import Status from "../Status";
+import { Address } from "../Address";
+import {
+  convertChainIdToNetworkName,
+  formatAmount,
+  shortenPoolName,
+} from "@/utils/utils";
+import Link from "next/link";
 
-const Pool = () => {
-  // const { pools } = useContext(PoolContext);
-
-  const pools = [
-    {
-      id: 1,
-      address: "0xAEc621EC8D9dE4B524f4864791171045d6BBBe27",
-      name: "DonationVotingMerklePayout",
-      token: "0x0000000000000000000000000000000000000000",
-      amount: 500,
-      status: true,
-      profileOwner: "0x0000000000000000000000000000000000000000",
-      strategyIdentifier:
-        "0xd71275a698bbfb611216b5ed38a4b48cc165febd4c3da5bc13bc8398792e6bca",
-      chainId: 5,
-    },
-    {
-      id: 2,
-      address: "0xAEc621EC8D9dE4B524f4864791171045d6BBBe27",
-      name: "DonationVotingMerklePayout",
-      token: "0x0000000000000000000000000000000000000000",
-      amount: 20,
-      status: false,
-      profileOwner: "0x0000000000000000000000000000000000000000",
-      strategyIdentifier:
-        "0xd71275a698bbfb611216b5ed38a4b48cc165febd4c3da5bc13bc8398792e6bca",
-      chainId: 5,
-    },
-  ];
-
-  const data: TTableData = {
-    name: "Pools",
-    description:
-      "A list of all the pools in the registry on all supported networks",
+const Pool = ({data, header, description}: {data: any, header?: string, description?: string}) => {
+  
+  const tableData: TTableData = {
     headers: [
       "ID",
       "Address",
-      "Name",
       "Token",
       "Amount",
-      "Status",
+      "Profile Name",
       "Profile Owner",
-      "Identifier",
       "Network",
     ],
-    rows: pools.map((pool) => {
+    rows: Object.values(data).map((pool: any) => {
       return [
-        pool.id,
         // eslint-disable-next-line react/jsx-key
-        <Address address={pool.address} chainId={pool.chainId} />,
-        pool.name,
+        <Link
+          className="text-green-800 hover:bg-green-200 p-2 rounded-md"
+          href={`/pool/${pool.chainId}/${pool.poolId}`}
+        >
+          {pool.poolId}
+        </Link>,
+        ,
+        // eslint-disable-next-line react/jsx-key
+        <Address address={pool.strategy} chainId={pool.chainId} />,
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.token} chainId={pool.chainId} />,
-        pool.amount,
+        formatAmount(pool.amount),
+        shortenPoolName(pool.profile.name),
         // eslint-disable-next-line react/jsx-key
-        <Status status={pool.status} />,
-        // eslint-disable-next-line react/jsx-key
-        <Address address={pool.profileOwner} chainId={pool.chainId} />,
-        convertBytesToShortString(pool.strategyIdentifier),
+        <Address address={pool.profile.owner} chainId={pool.chainId} />,
         convertChainIdToNetworkName(pool.chainId),
       ];
     }),
   };
 
-  return <Table data={data} />;
+  return <Table data={tableData} header={header} description={description} />;
 };
 
 export default Pool;

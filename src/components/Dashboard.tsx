@@ -1,5 +1,5 @@
 import { NetworkContext } from "@/Context/NetworkContext";
-import { getNetworksBySlug } from "@/api/networks";
+import { getNetworksBySlug } from "@/utils/networks";
 import { useContext } from "react";
 import { AddressResponsive } from "./Address";
 import Table from "./Table";
@@ -10,9 +10,6 @@ export const Dashboard = () => {
   const networkData = getNetworksBySlug(network);
 
   const dataCore: TTableData = {
-    name: "Allo-At-A-Glance",
-    description:
-      "A list of all the core contracts in the registry on all supported networks",
     headers: ["Contract", "Address"],
     rows: Object.values(networkData.coreContracts).map((contract) => {
       return [
@@ -27,9 +24,6 @@ export const Dashboard = () => {
   };
 
   const dataStrategy: TTableData = {
-    name: "Cloneable Strategy Contracts",
-    description:
-      "A list of all the strategy contracts in the registry on all supported networks",
     headers: ["Contract", "Address"],
     rows: Object.values(networkData.strategyContracts).map((contract) => {
       return [
@@ -45,8 +39,20 @@ export const Dashboard = () => {
 
   return (
     <div>
-      <Table data={dataCore} />
-      <Table data={dataStrategy} />
+      <Table
+        data={dataCore}
+        header={"Allo-At-A-Glance"}
+        description={
+          "A list of all the core contracts in the registry on all supported networks"
+        }
+      />
+      <Table
+        data={dataStrategy}
+        header={"Cloneable Strategy Contracts"}
+        description={
+          "A list of all the strategy contracts in the registry on all supported networks"
+        }
+      />
     </div>
   );
 };

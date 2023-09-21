@@ -1,16 +1,9 @@
 "use client";
 import logo from "@/assets/logo.svg";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
-// import SelectNetwork from "./SelectNetwork";
-// import Sort from "./Sort";
-
-// function classNames(...classes: any) {
-//   return classes.filter(Boolean).join(" ");
-// }
 
 const Navbar = () => {
   return (
@@ -49,11 +42,6 @@ const Navbar = () => {
                   </Link>
                 </div>
               </div>
-              {/* <div className="flex flex-1 items-center justify-center px-2 lg:ml-6 lg:justify-end">
-                <div className="w-full max-w-lg lg:max-w-xs">
-                  <Sort />
-                </div>
-              </div> */}
               <div className="flex items-center lg:hidden">
                 {/* Mobile menu button */}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">

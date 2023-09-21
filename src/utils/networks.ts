@@ -48,6 +48,7 @@ export const getNetworks = (): INetwork => {
       explorer: "https://goerli.etherscan.io/",
       coreContracts: coreContracts,
       strategyContracts: strategyContracts,
+      symbol: "gETH",
     },
     [420]: {
       id: "420",
@@ -56,6 +57,7 @@ export const getNetworks = (): INetwork => {
       explorer: "https://goerli-optimism.etherscan.io/",
       coreContracts: coreContracts,
       strategyContracts: strategyContracts,
+      symbol: "opETH",
     },
     [42069]: {
       id: "42069",
@@ -64,6 +66,7 @@ export const getNetworks = (): INetwork => {
       explorer: "https://sepolia.etherscan.io/",
       coreContracts: coreContracts,
       strategyContracts: strategyContracts,
+      symbol: "sETH",
     },
     [58008]: {
       id: "58008",
@@ -72,6 +75,7 @@ export const getNetworks = (): INetwork => {
       explorer: "https://explorer.sepolia.publicgoods.network/",
       coreContracts: coreContracts,
       strategyContracts: strategyContracts,
+      symbol: "pgnETH",
     },
     [44787]: {
       id: "44787",
@@ -80,6 +84,7 @@ export const getNetworks = (): INetwork => {
       explorer: "https://explorer.celo.org/alfajores/",
       coreContracts: coreContracts,
       strategyContracts: strategyContracts,
+      symbol: "CELO",
     },
   };
 };
