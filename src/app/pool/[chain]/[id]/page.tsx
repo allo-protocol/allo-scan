@@ -1,5 +1,5 @@
 import PoolDetailPage from "@/components/Pool/PoolDetail";
-import { TPoolDetail } from "@/components/Pool/types";
+import { IPoolDetailResponse, TPoolDetail } from "@/components/Pool/types";
 import { getPoolDetailDataQuery, graphqlEndpoint } from "@/utils/query";
 import { request } from "graphql-request";
 
@@ -8,7 +8,7 @@ export default async function PoolDetail({
 }: {
   params: { chain: string; id: string };
 }) {
-  const poolDetails: any = await request(
+  const response: IPoolDetailResponse = await request(
     graphqlEndpoint,
     getPoolDetailDataQuery,
     {
@@ -17,7 +17,7 @@ export default async function PoolDetail({
     }
   );
 
-  const { pool }: { pool: TPoolDetail } = poolDetails;
+  const { pool }: { pool: TPoolDetail } = response;
 
   let poolMetadata = "{}";
 

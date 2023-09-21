@@ -12,7 +12,7 @@ export const NetworkContext = React.createContext<INetworkContextProps>({
   setNetwork: () => {},
 });
 
-export const NetworkContextProvider = (props: any) => {
+export const NetworkContextProvider = (props: { children: JSX.Element[] }) => {
   const [network, setNetwork] = useState(Object.values(Slug)[0]);
 
   return (

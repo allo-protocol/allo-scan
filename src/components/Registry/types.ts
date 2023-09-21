@@ -4,9 +4,9 @@ export type TProfile = {
   name: string;
   chainId: number;
   creator: string;
-}
+};
 
-export type TProfileDetails = TProfile & {
+export type TProfileDetail = TProfile & {
   createdAt: string;
   pools: {
     poolId: string;
@@ -20,4 +20,12 @@ export type TProfileDetails = TProfile & {
       accountId: string;
     }[];
   };
+};
+
+export interface IProfileResponse {
+  profiles: TProfileDetail[];
+}
+
+export interface IProfileDetailResponse {
+  profile: TProfileDetail;
 }

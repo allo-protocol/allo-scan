@@ -7,7 +7,7 @@ export const convertChainIdToNetworkName = (chainId: number) => {
   return `${networks[chainId]?.name} (${chainId})`;
 };
 
-export function classNames(...classes: any[]) {
+export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 

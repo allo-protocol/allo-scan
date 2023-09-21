@@ -9,11 +9,13 @@ const Table = ({
   header,
   description,
   rowsPerPage = 10,
+  showPagination,
 }: {
   data: TTableData;
   header: string | undefined | "";
   description: string | undefined | "";
   rowsPerPage?: number;
+  showPagination?: boolean;
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(data.rows.length / rowsPerPage);
@@ -63,7 +65,7 @@ const Table = ({
               <table className="min-w-full divide-y divide-gray-300">
                 <thead>
                   <tr className="md:table-row lg:table-row">
-                    {data.headers.map((header, index) => (
+                    {data.headers?.map((header, index) => (
                       <th
                         key={"headers-" + index}
                         scope="col"
@@ -95,25 +97,27 @@ const Table = ({
           </div>
         </div>
       </div>
-      <div className="flex justify-between mt-4">
-        <button
-          className="px-4 py-2 text-white bg-green-700 rounded disabled:cursor-not-allowed disabled:opacity-50"
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <span className="mt-2">
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          className="px-4 py-2 text-white bg-green-700 rounded disabled:cursor-not-allowed disabled:opacity-50"
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
-      </div>
+      {showPagination && (
+        <div className="flex justify-between mt-4">
+          <button
+            className="px-4 py-2 text-white bg-green-700 rounded disabled:cursor-not-allowed disabled:opacity-50"
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          <span className="mt-2">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            className="px-4 py-2 text-white bg-green-700 rounded disabled:cursor-not-allowed disabled:opacity-50"
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </>
   );
 };

@@ -1,26 +1,29 @@
 import ProfileDetail from "@/components/Registry/ProfileDetail";
-import { TProfileDetails } from "@/components/Registry/types";
+import {
+  IProfileDetailResponse,
+  TProfileDetail,
+} from "@/components/Registry/types";
 import { getProfileDetailDataQuery, graphqlEndpoint } from "@/utils/query";
 import request from "graphql-request";
 
 export default async function ProfileDetailPage({
   params,
 }: {
-  params: { id: string, chain: number };
+  params: { id: string; chain: number };
 }) {
-   const profileDetails: any = await request(
-     graphqlEndpoint,
-     getProfileDetailDataQuery,
-     {
-       chainId: params.chain,
-       profileId: params.id,
-     },
-   );
+  const profileDetails: IProfileDetailResponse = await request(
+    graphqlEndpoint,
+    getProfileDetailDataQuery,
+    {
+      chainId: params.chain,
+      profileId: params.id,
+    }
+  );
 
-   const profile: TProfileDetails = profileDetails.profile;
+  const profile: TProfileDetail = profileDetails.profile;
 
   const response = await fetch(
-    `https://ipfs.io/ipfs/${profile.metadataPointer}`,
+    `https://ipfs.io/ipfs/${profile.metadataPointer}`
   );
 
   let metadata = "";

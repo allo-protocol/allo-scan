@@ -37,16 +37,16 @@ export type TNetworkData = {
 };
 
 export type TTableData = {
-  headers: string[];
-  rows: any[][];
+  headers?: string[];
+  rows: (string | React.JSX.Element)[][];
 };
 
 export type Metadata = {
   protocol: number;
   pointer: string;
-}
+};
 
 export enum MetadataProtocol {
   "Undefined",
-  "IPFS"
+  "IPFS",
 }

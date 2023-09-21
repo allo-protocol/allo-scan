@@ -5,11 +5,12 @@ import { Address, truncatedString } from "../Address";
 import Table from "../Table";
 import { TTableData } from "@/types/types";
 import { convertChainIdToNetworkName } from "@/utils/utils";
+import { TProfileDetail } from "./types";
 
-const Profile = (data: any) => {
+const Profile = ({ data }: { data: TProfileDetail[] }) => {
   const tableData: TTableData = {
     headers: ["ID", "Anchor", "Name", "Sender", "Network"],
-    rows: Object.values(data.data).map((profile: any) => {
+    rows: Object.values(data).map((profile: TProfileDetail) => {
       return [
         // eslint-disable-next-line react/jsx-key
         <Link href={`/profile/${profile.chainId}/${profile.profileId}`}>
@@ -34,6 +35,7 @@ const Profile = (data: any) => {
       description={
         "A list of all the profiles in the registry on all supported networks"
       }
+      showPagination={true}
     />
   );
 };

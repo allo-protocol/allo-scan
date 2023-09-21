@@ -9,9 +9,19 @@ import {
   shortenPoolName,
 } from "@/utils/utils";
 import Link from "next/link";
+import { TPoolDetail } from "./types";
 
-const Pool = ({data, header, description}: {data: any, header?: string, description?: string}) => {
-  
+const Pool = ({
+  data,
+  header,
+  description,
+}: {
+  data: TPoolDetail[];
+  header?: string;
+  description?: string;
+}) => {
+  console.log(data);
+
   const tableData: TTableData = {
     headers: [
       "ID",
@@ -22,7 +32,7 @@ const Pool = ({data, header, description}: {data: any, header?: string, descript
       "Profile Owner",
       "Network",
     ],
-    rows: Object.values(data).map((pool: any) => {
+    rows: Object.values(data).map((pool: TPoolDetail) => {
       return [
         // eslint-disable-next-line react/jsx-key
         <Link
@@ -33,19 +43,26 @@ const Pool = ({data, header, description}: {data: any, header?: string, descript
         </Link>,
         ,
         // eslint-disable-next-line react/jsx-key
-        <Address address={pool.strategy} chainId={pool.chainId} />,
+        <Address address={pool.strategy} chainId={Number(pool.chainId)} />,
         // eslint-disable-next-line react/jsx-key
-        <Address address={pool.token} chainId={pool.chainId} />,
+        <Address address={pool.token} chainId={Number(pool.chainId)} />,
         formatAmount(pool.amount, pool.tokenMetadata?.decimals ?? 18),
         shortenPoolName(pool.profile.name),
         // eslint-disable-next-line react/jsx-key
-        <Address address={pool.profile.owner} chainId={pool.chainId} />,
-        convertChainIdToNetworkName(pool.chainId),
+        <Address address={pool.profile.owner} chainId={Number(pool.chainId)} />,
+        convertChainIdToNetworkName(Number(pool.chainId)),
       ];
     }),
   };
 
-  return <Table data={tableData} header={header} description={description} />;
+  return (
+    <Table
+      data={tableData}
+      header={header}
+      description={description}
+      showPagination={true}
+    />
+  );
 };
 
 export default Pool;
