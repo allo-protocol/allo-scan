@@ -1,23 +1,24 @@
-export type TPoolDetail = {
-  amount: number;
+import { TProfile } from "../Registry/types";
+
+export type TPool = {
+  poolId: string;
   chainId: string;
+  amount: number;
   metadataPointer: string;
   metadataProtocol: number;
-  poolId: string;
-  profile: {
-    profileId: string;
-    anchor: string;
-    creator: string;
-    name: string;
-    owner: string;
-  };
   strategy: string;
   token: string;
-  tokenMetadata: {
-    name: string;
-    symbol: string;
-    decimals: number;
-  };
+};
+
+export type TPoolDetail = TPool & {
+  profile: TProfile;
+  tokenMetadata: TTokenMetadata;
+};
+
+export type TTokenMetadata = {
+  name: string;
+  symbol: string;
+  decimals: number;
 };
 
 export interface IPoolsResponse {

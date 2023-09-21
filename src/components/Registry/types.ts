@@ -1,16 +1,17 @@
+import { TPoolDetail } from "../Pool/types";
+
 export type TProfile = {
   profileId: string;
   anchor: string;
   name: string;
   chainId: number;
   creator: string;
+  owner: string;
 };
 
 export type TProfileDetail = TProfile & {
   createdAt: string;
-  pools: {
-    poolId: string;
-  }[];
+  pools: TPoolDetail[];
   metadataPointer: string;
   metadataProtocol: number;
   nonce: number;
