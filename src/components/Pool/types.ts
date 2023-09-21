@@ -1,25 +1,21 @@
 export type TPoolDetail = {
-  poolId: string;
+  amount: string;
   chainId: string;
+  metadataPointer: string;
+  metadataProtocol: number;
+  poolId: string;
+  profile: {
+    anchor: string;
+    creator: string;
+    name: string;
+    owner: string;
+  };
   strategy: string;
   token: string;
   tokenMetadata: {
-    name: string | null;
-    symbol: string | null;
-    decimals: number | null;
-  }
-  amount: string;
-  metadataProtocol: number;
-  metadataPointer: string;
-  profile: {
-    profileId: string;
     name: string;
-    owner: string;
-    anchor: string;
-    creator: string;
+    symbol: string;
+    decimals: number;
   };
-  metadata: {
-    protocol: number;
-    pointer: string;
-  };
+
 };

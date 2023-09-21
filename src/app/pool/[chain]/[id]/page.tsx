@@ -18,12 +18,13 @@ export default async function PoolDetail({
     }
   );
 
-  console.log(poolDetails);
+  console.log("Details", poolDetails);
   let poolMetadata = "{}";
 
   try {
     const response = await fetch(
-      `https://ipfs.io/ipfs/${poolDetails.metadataPointer}`
+      `https://ipfs.io/ipfs/${poolDetails.metadataPointer}`,
+      { next: { revalidate: 300 } }
     );
 
     // Check if the response status is OK (200)
@@ -34,5 +35,5 @@ export default async function PoolDetail({
     console.log(error);
   }
 
-  return <PoolDetailPage pool={poolDetails} metadata={poolMetadata} />;
+  return <PoolDetailPage pool={poolDetails} poolMetadata={poolMetadata} />;
 }

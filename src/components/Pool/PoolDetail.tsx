@@ -1,4 +1,5 @@
 "use client";
+
 import { convertChainIdToNetworkName } from "@/utils/utils";
 import { AddressResponsive } from "../Address";
 import { TPoolDetail } from "./types";
@@ -7,19 +8,20 @@ import { TbExternalLink } from "react-icons/tb";
 import JsonView from "@uiw/react-json-view";
 import { ethers } from "ethers";
 import Link from "next/link";
+import { Loading } from "../Loading";
 
 const PoolDetailPage = ({
   pool,
-  metadata,
+  poolMetadata,
 }: {
   pool: TPoolDetail;
-  metadata: string;
+  poolMetadata: string;
 }) => {
-  const metadataObj = JSON.parse(metadata);
+  const metadataObj: {} = JSON.parse(poolMetadata);
 
   console.log("the fucking pool", pool);
 
-  return (
+  return pool && pool.profile ? (
     <div>
       <div className="flex flex-row items-center justify-between px-4 sm:px-0 my-10">
         <div className="flex flex-row">
@@ -65,7 +67,8 @@ const PoolDetailPage = ({
               Amount
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                {ethers.formatEther(pool.amount ?? 0)} {pool.tokenMetadata?.symbol ?? ""}
+              {ethers.formatEther(pool.amount ?? 0)}{" "}
+              {pool.tokenMetadata.symbol ?? ""}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
@@ -107,6 +110,8 @@ const PoolDetailPage = ({
         </div>
       </div>
     </div>
+  ) : (
+    <Loading />
   );
 };
 

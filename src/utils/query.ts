@@ -27,18 +27,12 @@ export const getPoolDetailDataQuery = gql`
         strategy
         metadataProtocol
         metadataPointer
-        profileId
         tokenMetadata
         profile {
-          profileId
-          nonce
           name
-          metadataProtocol
-          metadataPointer
           owner
           anchor
           creator
-          createdAt
         }
       }
     }
@@ -57,7 +51,7 @@ export const getProfileDataQuery = gql`
 `;
 
 export const getAlloStatsQuery = gql`
-  AlloStats ($chainId: String!) {
+  query AlloStats ($chainId: String!) {
     allo(chainId: $chainId) {
       registry
       feePercentage
