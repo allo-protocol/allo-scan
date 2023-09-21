@@ -5,6 +5,7 @@ export type TPoolDetail = {
   metadataProtocol: number;
   poolId: string;
   profile: {
+    profileId: string;
     anchor: string;
     creator: string;
     name: string;

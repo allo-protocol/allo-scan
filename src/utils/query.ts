@@ -29,6 +29,7 @@ export const getPoolDetailDataQuery = gql`
         metadataPointer
         tokenMetadata
         profile {
+          profileId
           name
           owner
           anchor

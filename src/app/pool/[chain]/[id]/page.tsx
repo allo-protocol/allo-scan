@@ -9,31 +9,34 @@ export default async function PoolDetail({
 }: {
   params: { chain: string; id: string };
 }) {
-  const poolDetails: TPoolDetail = await request(
+
+  const poolDetails: any = await request(
     graphqlEndpoint,
     getPoolDetailDataQuery,
     {
       chainId: params.chain,
       poolId: params.id,
-    }
+    },
   );
+
+  const { pool }: { pool: TPoolDetail } = poolDetails;
 
   console.log("Details", poolDetails);
   let poolMetadata = "{}";
 
   try {
     const response = await fetch(
-      `https://ipfs.io/ipfs/${poolDetails.metadataPointer}`,
-      { next: { revalidate: 300 } }
+      `https://ipfs.io/ipfs/${pool.metadataPointer}`
     );
 
     // Check if the response status is OK (200)
     if (response.ok) {
       poolMetadata = await response.text();
+      console.log("Pool metadata ", poolMetadata);
     }
   } catch (error) {
     console.log(error);
   }
 
-  return <PoolDetailPage pool={poolDetails} poolMetadata={poolMetadata} />;
+  return <PoolDetailPage pool={pool} poolMetadata={poolMetadata} />;
 }

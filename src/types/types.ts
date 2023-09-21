@@ -33,6 +33,7 @@ export type TNetworkData = {
   explorer: string;
   coreContracts: ICoreContracts;
   strategyContracts: IStrategyContracts;
+  symbol: string;
 };
 
 export type TTableData = {
