@@ -1,5 +1,7 @@
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { TTableData } from "@/types/types";
 import { useState } from "react";
+import TableMobile from "./TableMobile";
 
 /** TODO: the mobile view needs to be completed
  * we could create a new component for mobile view entirely
@@ -36,6 +38,10 @@ const Table = ({
   const endRow = startRow + rowsPerPage;
   const currentRows = data.rows.slice(startRow, endRow);
 
+  const isMobile = useMediaQuery(768);
+
+  console.log("isMobile", isMobile);
+
   return (
     <>
       <div
@@ -62,43 +68,50 @@ const Table = ({
         <div className="mt-8 flow-root">
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 lg:border lg:rounded-md lg:shadow-gray lg:shadow-md">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-              <table className="min-w-full divide-y divide-gray-300">
-                <thead>
-                  <tr key={"header-row"} className="md:table-row lg:table-row">
-                    {data.headers?.map((header, index) => (
-                      <th
-                        key={"headers-" + index}
-                        scope="col"
-                        className="py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
-                      >
-                        <div className="group inline-flex">{header}</div>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
-                  {currentRows.map((row, index) => (
-                    <tr key={"rows-" + index}>
-                      {row.map((col, colIndex) => (
-                        <>
-                          <td
-                            key={"rows-" + index + "-col-" + colIndex}
-                            className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0 lg:table-cell"
-                          >
-                            {col}
-                          </td>
-                        </>
+              {!isMobile ? (
+                <table className="min-w-full divide-y divide-gray-300">
+                  <thead>
+                    <tr
+                      key={"header-row"}
+                      className="md:table-row lg:table-row"
+                    >
+                      {data.headers?.map((header, index) => (
+                        <th
+                          key={"headers-" + index}
+                          scope="col"
+                          className="py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
+                        >
+                          <div className="group inline-flex">{header}</div>
+                        </th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 bg-white">
+                    {currentRows.map((row, index) => (
+                      <tr key={"rows-" + index}>
+                        {row.map((col, colIndex) => (
+                          <>
+                            <td
+                              key={"rows-" + index + "-col-" + colIndex}
+                              className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0 lg:table-cell"
+                            >
+                              {col}
+                            </td>
+                          </>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <TableMobile data={data} currentRows={currentRows} />
+              )}
             </div>
           </div>
         </div>
       </div>
       {showPagination && (
-        <div className="flex justify-between mt-4">
+        <div className="flex justify-between my-4">
           <button
             className="px-4 py-2 text-white bg-green-700 rounded disabled:cursor-not-allowed disabled:opacity-50"
             onClick={handlePrevPage}
