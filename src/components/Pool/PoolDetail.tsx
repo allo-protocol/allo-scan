@@ -1,14 +1,13 @@
 "use client";
 
 import { convertChainIdToNetworkName } from "@/utils/utils";
-import { AddressResponsive, truncatedString } from "../Address";
+import { AddressResponsive } from "../Address";
 import { TPoolDetail } from "./types";
 import { MetadataProtocol } from "@/types/types";
 import { TbExternalLink } from "react-icons/tb";
 import JsonView from "@uiw/react-json-view";
 import { ethers } from "ethers";
 import Link from "next/link";
-import { Loading } from "../Loading";
 import { getNetworks } from "@/utils/networks";
 
 const PoolDetailPage = ({
@@ -18,15 +17,14 @@ const PoolDetailPage = ({
   pool: TPoolDetail;
   poolMetadata: string;
 }) => {
-
-    let metadataObj;
-    try {
-      metadataObj = JSON.parse(poolMetadata);
-    } catch (error) {
-      metadataObj = {
-        error: "Error parsing metadata",
-      };
-    }
+  let metadataObj;
+  try {
+    metadataObj = JSON.parse(poolMetadata);
+  } catch (error) {
+    metadataObj = {
+      error: "Error parsing metadata",
+    };
+  }
 
   return (
     <div>
@@ -86,7 +84,7 @@ const PoolDetailPage = ({
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               {ethers.formatUnits(
                 pool.amount ?? 0,
-                pool.tokenMetadata.decimals ?? 18,
+                pool.tokenMetadata.decimals ?? 18
               )}{" "}
               {pool.tokenMetadata.symbol ??
                 getNetworks()[Number(pool.chainId)].symbol}
@@ -110,9 +108,11 @@ const PoolDetailPage = ({
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               {pool.profile.name}
 
-              <Link href={`/profile/${pool.chainId}/${pool.profile.anchor}`}>
+              <Link href={`/profile/${pool.chainId}/${pool.profile.profileId}`}>
                 <br />
-                <span className="font-mono text-green-900">{pool.profile.profileId}</span>
+                <span className="font-mono text-green-900">
+                  {pool.profile.profileId}
+                </span>
               </Link>
             </dd>
           </div>

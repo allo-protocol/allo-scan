@@ -1,5 +1,5 @@
 "use client";
-// eslint-disable-file react/jsx-key
+
 import Table from "../Table";
 import { TTableData } from "@/types/types";
 import { Address } from "../Address";
@@ -9,7 +9,6 @@ import {
   shortenPoolName,
 } from "@/utils/utils";
 import Link from "next/link";
-// import Status from "../Status";
 
 const Pool = ({data, header, description}: {data: any, header?: string, description?: string}) => {
   
@@ -17,10 +16,8 @@ const Pool = ({data, header, description}: {data: any, header?: string, descript
     headers: [
       "ID",
       "Address",
-      // "Name",
       "Token",
       "Amount",
-      // "Status",
       "Profile Name",
       "Profile Owner",
       "Network",
@@ -37,8 +34,6 @@ const Pool = ({data, header, description}: {data: any, header?: string, descript
         ,
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.strategy} chainId={pool.chainId} />,
-        // pool.name, FIXME: THE API DOES NOT RETURN THE POOL NAME
-        // shortenPoolName("Pool Name is really long"),
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.token} chainId={pool.chainId} />,
         formatAmount(pool.amount),

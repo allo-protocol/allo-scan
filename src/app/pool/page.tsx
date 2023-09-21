@@ -6,7 +6,7 @@ import { request } from "graphql-request";
 import { Suspense } from "react";
 
 export default async function PoolHome() {
-  // FIXME: THE API DOES NOT RETURN THE POOL NAME AND STATUS
+  // FIXME: THE API DOES NOT RETURN THE STATUS
 
   const data: any = await request(graphqlEndpoint, getPoolDataQuery);
   const { pools } = data;

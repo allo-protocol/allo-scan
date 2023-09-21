@@ -18,5 +18,4 @@ export type TPoolDetail = {
     symbol: string;
     decimals: number;
   };
-
 };

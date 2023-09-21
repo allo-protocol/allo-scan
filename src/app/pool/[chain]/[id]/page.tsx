@@ -21,7 +21,6 @@ export default async function PoolDetail({
 
   const { pool }: { pool: TPoolDetail } = poolDetails;
 
-  console.log("Details", poolDetails);
   let poolMetadata = "{}";
 
   try {
@@ -32,7 +31,6 @@ export default async function PoolDetail({
     // Check if the response status is OK (200)
     if (response.ok) {
       poolMetadata = await response.text();
-      console.log("Pool metadata ", poolMetadata);
     }
   } catch (error) {
     console.log(error);

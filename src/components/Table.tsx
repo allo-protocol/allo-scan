@@ -1,5 +1,8 @@
 import { TTableData } from "@/types/types";
 
+/** TODO: the mobile view needs to be completed 
+ * we could create a new component for mobile view entirely
+*/
 const Table = ({
   data,
   header,
@@ -37,7 +40,7 @@ const Table = ({
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
               <table className="min-w-full divide-y divide-gray-300">
                 <thead>
-                  <tr className="hidden md:table-row lg:table-row">
+                  <tr className="md:table-row lg:table-row">
                     {data.headers.map((header, index) => (
                       <th
                         key={"headers-" + index}
@@ -47,11 +50,6 @@ const Table = ({
                         <div className="group inline-flex">{header}</div>
                       </th>
                     ))}
-                  </tr>
-                  <tr className="md:hidden lg:hidden">
-                    <th>ID</th>
-                    {/* TODO: we need to dynamically display Anchor or Address depnding on profile or pool table */}
-                    <th>Anchress</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">

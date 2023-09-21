@@ -18,7 +18,7 @@ const ProfileDetail = ({
 }) => {
   let metadataObj;
   try {
-    metadataObj = JSON.parse(metadata);
+    metadataObj = JSON.parse(metadata ?? "");
   } catch (error) {
     metadataObj = {
       error: "Error parsing metadata",
