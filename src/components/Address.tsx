@@ -1,17 +1,10 @@
 import { getNetworks } from "@/utils/networks";
+import {
+  convertAddressToShortString,
+  convertBytesToShortString,
+  copy,
+} from "@/utils/utils";
 import { TbCopy, TbExternalLink } from "react-icons/tb";
-
-export const convertAddressToShortString = (address: string) => {
-  return address.slice(0, 6) + "..." + address.slice(-4);
-};
-
-export const convertBytesToShortString = (address: string) => {
-  return address.slice(0, 6) + "..." + address.slice(-4);
-};
-
-const copy = (data: string) => {
-  navigator.clipboard.writeText(data);
-};
 
 export const Hash = (props: { hash: string; chainId: number }) => {
   const explorerLink =

@@ -28,9 +28,7 @@ export default async function ProfileDetailPage({
 
   let metadata = "";
 
-  if (response.ok) {
-    metadata = await response.text();
-  }
+  if (response.ok) metadata = await response.text();
 
   return (
     <div>
