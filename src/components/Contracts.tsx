@@ -3,10 +3,9 @@
 import { NetworkContext } from "@/Context/NetworkContext";
 import { getNetworksBySlug } from "@/utils/networks";
 import { useContext } from "react";
-import { AddressResponsive, Hash } from "./Address";
+import { AddressResponsive } from "./Address";
 import Table from "./Table";
-import {  TTableData } from "@/types/types";
-import SelectNetworkTabs from "./SelectNetworkTabs";
+import { TTableData } from "@/types/types";
 import SelectNetwork from "./SelectNetwork";
 
 export const Contracts = () => {
@@ -42,7 +41,7 @@ export const Contracts = () => {
   };
 
    return (
-    <div>
+    <div className="mt-10">
       <SelectNetwork />
       <Table
         data={dataCore}

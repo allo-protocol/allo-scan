@@ -85,8 +85,8 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-white">
-      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-10 sm:py-10 lg:px-8">
+    <footer className="my-10">
+      <div className="mx-auto max-w-7xl overflow-hidden px-6 lg:px-8">
         <nav
           className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
           aria-label="Footer"
@@ -115,16 +115,16 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <p className="flex flex-row justify-items-center justify-center mt-10 text-center text-xs leading-5 text-gray-500">
+        <div className="flex flex-row justify-items-center justify-center mt-10 text-center text-xs leading-5 text-gray-500">
           Built with ❤️ by
           <Link href="https://allo.gitcoin.co" target="_blank">
-            <div className="text-green-500">&nbsp; Allo &nbsp;</div>
+            <span className="text-green-500">&nbsp; Allo &nbsp;</span>
           </Link>
           and
           <Link href="https://spec.dev/" target="_blank">
-            <div className="text-green-500">&nbsp; Spec.dev</div>
+            <span className="text-green-500">&nbsp; Spec.dev</span>
           </Link>
-        </p>
+        </div>
       </div>
     </footer>
   );

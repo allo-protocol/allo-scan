@@ -1,8 +1,5 @@
 "use client";
 
-import { NetworkContext } from "@/Context/NetworkContext";
-import { getNetworksBySlug } from "@/utils/networks";
-import { useContext } from "react";
 import { Address, Hash, truncatedString } from "./Address";
 import Table from "./Table";
 import { TAlloTransactionLog, TTableData } from "@/types/types";
@@ -49,7 +46,7 @@ export const Transactions = ({
           chainId={Number(alloTransaction.chainId)}
         />,
         // eslint-disable-next-line react/jsx-key
-        <div>{truncatedString(alloTransaction.functionName)}</div>,
+        truncatedString(alloTransaction.functionName),
         alloTransaction.blockNumber,
         transformedTimestamp,
         convertChainIdToNetworkName(Number(alloTransaction.chainId)),

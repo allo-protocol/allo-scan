@@ -22,11 +22,11 @@ const coreContracts: ICoreContracts = {
 const strategyContracts: IStrategyContracts = {
   donationVotingMerklePaout: {
     name: "Donation Voting Merkle Paout",
-    address: "0x0000000000000000000000000000000000000000",
+    address: "0xC88612a4541A28c221F3d03b6Cf326dCFC557C4E",
   },
   directGrantsSimple: {
     name: "Direct Grants Simple",
-    address: "0x0000000000000000000000000000000000000000",
+    address: "0xf243619f931c81617EE00bAAA5c5d97aCcC5af10",
   },
 }
 

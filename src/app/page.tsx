@@ -18,9 +18,7 @@ export default async function Home() {
 
   return (
     <div className="bg-white">
-      <main>
-        <Transactions alloTransactions={alloTransactionLog} />
-      </main>
+      <Transactions alloTransactions={alloTransactionLog} />
     </div>
   );
 }

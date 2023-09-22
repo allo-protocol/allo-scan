@@ -1,4 +1,7 @@
+"use client";
+
 import { TTableData } from "@/types/types";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
 /** TODO: the mobile view needs to be completed
@@ -96,15 +99,16 @@ const Table = ({
         </div>
       </div>
       {showPagination && (
-        <div className="text-sm flex justify-between my-8">
+        <div className="text-sm flex justify-between my-10">
           <button
             className="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
             onClick={handlePrevPage}
             disabled={currentPage === 1}
           >
+            <ArrowLeftIcon className="h-3 w-3 inline-block mr-2" />
             Previous
           </button>
-          <span className="mt-2 text-sm">
+          <span className="font-semibold text-sm">
             Page {currentPage} of {totalPages}
           </span>
           <button
@@ -113,6 +117,7 @@ const Table = ({
             disabled={currentPage === totalPages}
           >
             Next
+            <ArrowRightIcon className="h-3 w-3 inline-block ml-2" />
           </button>
         </div>
       )}
