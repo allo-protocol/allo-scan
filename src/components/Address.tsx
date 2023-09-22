@@ -12,7 +12,7 @@ export const Hash = (props: { hash: string; chainId: number }) => {
 
   return (
     <div className="flex items-center">
-      <div className="ml-3 text-sm font-medium text-gray-900 font-mono">
+      <div className="text-sm font-medium text-gray-900 font-mono">
         {convertBytesToShortString(props.hash)}
       </div>
       <div
@@ -36,7 +36,7 @@ export const Address = (props: { address: string; chainId: number }) => {
 
   return (
     <div className="flex items-center">
-      <div className="ml-3 text-sm font-medium text-gray-900 font-mono">
+      <div className="text-sm font-medium text-gray-900 font-mono">
         {convertAddressToShortString(props.address)}
       </div>
       <div
