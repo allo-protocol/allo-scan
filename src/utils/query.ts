@@ -8,9 +8,10 @@ export const graphqlEndpoint = "http://localhost:5555/graphql";
 /** Returns all the pools */
 export const getPoolDataQuery = gql`
   {
-    pools {
+    pools(orderBy: UPDATED_AT_DESC) {
       poolId
       chainId
+      updatedAt
       strategy
       token
       amount
@@ -29,6 +30,8 @@ export const getPoolDetailDataQuery = gql`
     pool(chainId: $chainId, poolId: $poolId) {
       poolId
       chainId
+      createdAt
+      updatedAt
       token
       amount
       strategy
@@ -49,12 +52,14 @@ export const getPoolDetailDataQuery = gql`
 /** Returns all of the profiles */
 export const getProfileDataQuery = gql`
   {
-    profiles {
+    profiles(orderBy: UPDATED_AT_DESC) {
       profileId
       anchor
       name
       chainId
       creator
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -62,13 +67,14 @@ export const getProfileDataQuery = gql`
 /** Function that finds all active role_account records for a given role */
 export const getActiveProfileDataQuery = gql`
   query GetAllActiveProfiles {
-    profiles {
+    profiles(orderBy: UPDATED_AT_DESC) {
       profileId
       anchor
       name
       chainId
       creator
       createdAt
+      updatedAt
       metadataPointer
       metadataProtocol
       nonce
@@ -109,6 +115,7 @@ export const getProfileDetailDataQuery = gql`
       chainId
       creator
       createdAt
+      updatedAt
       metadataPointer
       metadataProtocol
       nonce

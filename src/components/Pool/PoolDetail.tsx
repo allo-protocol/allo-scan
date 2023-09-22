@@ -84,7 +84,7 @@ const PoolDetailPage = ({
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               {ethers.formatUnits(
                 pool.amount ?? 0,
-                pool.tokenMetadata.decimals ?? 18
+                pool.tokenMetadata.decimals ?? 18,
               )}{" "}
               {pool.tokenMetadata.symbol ??
                 getNetworks()[Number(pool.chainId)].symbol}
@@ -114,6 +114,22 @@ const PoolDetailPage = ({
                   {pool.profile.profileId}
                 </span>
               </Link>
+            </dd>
+          </div>
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm font-medium leading-6 text-gray-900">
+              Created at
+            </dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              {new Date(pool.createdAt).toLocaleString()}
+            </dd>
+          </div>
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm font-medium leading-6 text-gray-900">
+              Updated at
+            </dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              {new Date(pool.updatedAt).toLocaleString()}
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
