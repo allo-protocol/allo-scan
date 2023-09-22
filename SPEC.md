@@ -6,6 +6,7 @@ The following docs are focused on:
 2. Adding Live Tables to Postgres for the Alloscan application
 3. Spinning up your Live Tables locally
 4. Running an instant GraphQL API on top of your Live Tables
+5. Migrations
 
 If you're looking for the Allo v2 Live Objects, those can be found [here](https://github.com/allo-protocol/allo-v2-spec).
 
@@ -15,6 +16,7 @@ With that said, let's hit it 😎
 * [Alloscan Project Setup](#alloscan-project-setup)
 * [Running Spec Locally](#running-spec-locally)
 * [Instant GraphQL API](#instant-graphql-api)
+* [Migrations](#migrations)
 * [Helpful Tips](#helpful-tips)
 
 # Intro to Spec Projects
@@ -266,6 +268,54 @@ Try running some test commands:
     chainId
   }
 }
+```
+
+# Migrations
+
+All of your Postgres table changes should be codified as migrations within the [`.spec/migrations`](/.spec/migrations) folder.
+When adding new live tables (via the desktop app), these get written for you. But for other migrations, such as adding new SQL functions to be exposed as GraphQL fields ([example](/.spec/migrations/1695301779000_allo_transactions_from/up.sql)) or adding indexes to table columns so that you can then "order by" these columns during your GraphQL queries ([example](/.spec/migrations/1695301364000_index_txs_by_timestamp/up.sql)), these should be written manually.
+
+### Generate a New Migration
+
+To create a new empty set of migration files for a particular migration/action you need to perform, you can run the following:
+
+```bash
+$ spec new migration add_some_index_to_something
+```
+
+This will generate a new subfolder within the `.spec/migrations/` directory, prefixed with a timestamp. It will also create the empty `up/down` migration files.
+
+## Writing Migrations
+
+You can add any type of schema-modifying SQL statements inside your migrations, just make sure to wrap them in a SQL transaction:
+```sql
+BEGIN;
+  ...
+COMMIT;
+```
+
+## Applying Migrations
+
+To apply the migrations to your database that haven't been run yet, you can run the following:
+
+```bash
+$ spec migrate
+```
+
+By default this will run the migrations against the **local** database outlined in your `.spec/connect.toml` file. To run migrations against another database environment (such as prod), you'll first need to create a new section within `connect.toml`:
+
+```toml
+[prod]
+name = '...'
+port = ...
+host = '...'
+user = '...'
+password = '...'
+```
+You can then specify which database environment to run migrations against with the `--env` flag.
+
+```bash
+$ spec migrate --env prod
 ```
 
 # Helpful Tips 
