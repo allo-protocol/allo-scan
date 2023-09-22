@@ -80,14 +80,12 @@ const Table = ({
                   {currentRows.map((row, index) => (
                     <tr key={"rows-" + index}>
                       {row.map((col, colIndex) => (
-                        <>
-                          <td
-                            key={"rows-" + index + "-col-" + colIndex}
-                            className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0 lg:table-cell"
-                          >
-                            {col}
-                          </td>
-                        </>
+                        <td
+                          key={"rows-" + index + "-col-" + colIndex}
+                          className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0 lg:table-cell"
+                        >
+                          {col}
+                        </td>
                       ))}
                     </tr>
                   ))}
