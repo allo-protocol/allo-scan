@@ -6,6 +6,7 @@ import Table from "../Table";
 import { TTableData } from "@/types/types";
 import { convertChainIdToNetworkName } from "@/utils/utils";
 import { TProfileDetail } from "./types";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const Profile = ({ data }: { data: TProfileDetail[] }) => {
   const tableData: TTableData = {
@@ -29,6 +30,8 @@ const Profile = ({ data }: { data: TProfileDetail[] }) => {
     }),
   };
 
+  const isMobile = useMediaQuery(768);
+
   return (
     <Table
       data={tableData}
@@ -37,6 +40,7 @@ const Profile = ({ data }: { data: TProfileDetail[] }) => {
         "A list of all the profiles in the registry on all supported networks"
       }
       showPagination={true}
+      rowsPerPage={isMobile ? 5 : 10}
     />
   );
 };

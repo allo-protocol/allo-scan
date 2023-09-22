@@ -10,6 +10,7 @@ import {
 } from "@/utils/utils";
 import Link from "next/link";
 import { TPoolDetail } from "./types";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const Pool = ({
   data,
@@ -55,12 +56,15 @@ const Pool = ({
     }),
   };
 
+  const isMobile = useMediaQuery(768);
+
   return (
     <Table
       data={tableData}
       header={header}
       description={description}
       showPagination={true}
+      rowsPerPage={isMobile ? 5 : 10}
     />
   );
 };

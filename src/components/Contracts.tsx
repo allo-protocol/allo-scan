@@ -7,10 +7,12 @@ import { AddressResponsive } from "./Address";
 import Table from "./Table";
 import { TTableData } from "@/types/types";
 import SelectNetwork from "./SelectNetwork";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export const Contracts = () => {
   const { network } = useContext(NetworkContext);
   const networkData = getNetworksBySlug(network);
+  const isMobile = useMediaQuery(768);
 
   const dataCore: TTableData = {
     headers: ["Contract", "Address"],
@@ -40,14 +42,16 @@ export const Contracts = () => {
     }),
   };
 
-   return (
+  return (
     <div className="mt-10">
       <SelectNetwork />
       <Table
         data={dataCore}
-        header={"Allo-At-A-Glance"}
+        header={"Allo Core Contracts"}
         description={
-          "A list of all the core contracts in the registry on all supported networks"
+          !isMobile
+            ? "A list of all the core contracts in the registry on all supported networks"
+            : ""
         }
         showPagination={false}
       />
@@ -55,7 +59,9 @@ export const Contracts = () => {
         data={dataStrategy}
         header={"Cloneable Strategy Contracts"}
         description={
-          "A list of all the strategy contracts in the registry on all supported networks"
+          !isMobile
+            ? "A list of all the strategy contracts in the registry on all supported networks"
+            : ""
         }
         showPagination={false}
       />
