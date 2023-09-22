@@ -29,6 +29,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </body>
+        <></>
       </NetworkContextProvider>
     </html>
   );

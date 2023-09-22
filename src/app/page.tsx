@@ -6,18 +6,15 @@ import { request } from "graphql-request";
 const getAlloTransactionLog = async () => {
   const response: IAlloTransactionLogResponse = await request(
     graphqlEndpoint,
-    getAlloTransactions
+    getAlloTransactions,
   );
-
-  // console.log("response", Object.values(response).map((alloTransaction, index) => alloTransaction));
 
   return response.alloTransactions;
 };
 
 export default async function Home() {
-  const alloTransactionLog: TAlloTransactionLog = await getAlloTransactionLog();
-
-  // console.log("tx log", alloTransactionLog);
+  const alloTransactionLog: TAlloTransactionLog[] =
+    await getAlloTransactionLog();
 
   return (
     <div className="bg-white">

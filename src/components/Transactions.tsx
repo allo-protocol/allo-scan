@@ -14,7 +14,6 @@ export const Transactions = ({
 }: {
   alloTransactions: TAlloTransactionLog[];
 }) => {
- 
   const dataAlloTransaction: TTableData = {
     headers: [
       "",
@@ -29,10 +28,12 @@ export const Transactions = ({
     rows: Object.values(alloTransactions).map((alloTransaction) => {
       const statusBoolean = alloTransaction.status === "1" ? true : false;
       const date = new Date(alloTransaction.blockTimestamp);
-      const transformedTimestamp = date.toLocaleString() //date.getTime().toString();
+      const transformedTimestamp = date.toLocaleString(); //date.getTime().toString();
 
       return [
+        // eslint-disable-next-line react/jsx-key
         <Status status={statusBoolean} />,
+        // eslint-disable-next-line react/jsx-key
         <Hash
           hash={alloTransaction.hash}
           chainId={Number(alloTransaction.chainId)}
@@ -47,6 +48,7 @@ export const Transactions = ({
           address={alloTransaction.toAddress}
           chainId={Number(alloTransaction.chainId)}
         />,
+        // eslint-disable-next-line react/jsx-key
         <div>{truncatedString(alloTransaction.functionName)}</div>,
         alloTransaction.blockNumber,
         transformedTimestamp,
@@ -56,13 +58,13 @@ export const Transactions = ({
   };
 
   return (
-      <Table
-        data={dataAlloTransaction}
-        header={"Allo Transaction Log"}
-        showPagination={true}
-        description={""}
-        rowsPerPage={20}
-      />
+    <Table
+      data={dataAlloTransaction}
+      header={"Allo Transaction Log"}
+      showPagination={true}
+      description={""}
+      rowsPerPage={20}
+    />
   );
 };
 
