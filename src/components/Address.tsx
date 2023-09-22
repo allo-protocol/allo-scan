@@ -9,11 +9,35 @@ export const convertBytesToShortString = (address: string) => {
   return address.slice(0, 6) + "..." + address.slice(-4);
 };
 
-export const Address = (props: { address: string; chainId: number }) => {
-  const copyAddress = (address: string) => {
-    navigator.clipboard.writeText(address);
-  };
+const copy = (data: string) => {
+  navigator.clipboard.writeText(data);
+};
 
+export const Hash = (props: { hash: string; chainId: number }) => {
+  const explorerLink =
+    getNetworks()[props.chainId].explorer + "/tx/" + props.hash;
+
+  return (
+    <div className="flex items-center">
+      <div className="ml-3 text-sm font-medium text-gray-900 font-mono">
+        {convertBytesToShortString(props.hash)}
+      </div>
+      <div
+        onClick={() => copy(props.hash)}
+        className="flex-shrink-0 h-5 w-5 mt-1.5 ml-1 cursor-pointer"
+      >
+        <TbCopy />
+      </div>
+      <div>
+        <a target="_blank" href={explorerLink}>
+          <TbExternalLink />
+        </a>
+      </div>
+    </div>
+  );
+};
+
+export const Address = (props: { address: string; chainId: number }) => {
   const explorerLink =
     getNetworks()[props.chainId].explorer + "/address/" + props.address;
 
@@ -23,7 +47,7 @@ export const Address = (props: { address: string; chainId: number }) => {
         {convertAddressToShortString(props.address)}
       </div>
       <div
-        onClick={() => copyAddress(props.address)}
+        onClick={() => copy(props.address)}
         className="flex-shrink-0 h-5 w-5 mt-1.5 ml-1 cursor-pointer"
       >
         <TbCopy />

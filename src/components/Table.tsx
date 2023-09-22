@@ -98,7 +98,7 @@ const Table = ({
         </div>
       </div>
       {showPagination && (
-        <div className="flex justify-between mt-4">
+        <div className="flex justify-between my-4">
           <button
             className="px-4 py-2 text-white bg-green-700 rounded disabled:cursor-not-allowed disabled:opacity-50"
             onClick={handlePrevPage}

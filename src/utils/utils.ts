@@ -18,3 +18,7 @@ export function formatAmount(amount: number, decimals: number) {
 export function shortenPoolName(name: string) {
   return name.length > 10 ? `${name.slice(0, 10)}...` : name;
 }
+
+export function truncateTimestamp(timestamp: string) {
+  return timestamp.slice(0, 10);
+}
