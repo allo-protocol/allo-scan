@@ -65,7 +65,7 @@ export enum MetadataProtocol {
 }
 
 export interface IAlloTransactionLogResponse {
-  alloTransactions: TAlloTransactionLog;
+  alloTransactions: TAlloTransactionLog[];
 }
 
 export type TAlloTransactionLog = {

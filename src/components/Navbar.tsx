@@ -11,8 +11,8 @@ const Navbar = () => {
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
-            <div className="flex h-16 justify-between">
-              <div className="flex">
+            <div className="flex h-16 justify-between items-center">
+              <div className="flex items-center">
                 <div className="flex items-center">
                   <Image
                     priority
@@ -27,25 +27,30 @@ const Navbar = () => {
                     </p>
                   </Link>
                 </div>
-                <div className="hidden lg:ml-6 lg:flex justify-between">
+              </div>
+              <div className="hidden lg:ml-6 lg:flex items-center">
+                {/* Links on the left */}
+                <div className="hidden lg:ml-6 lg:flex">
                   <Link
                     href="/profile"
-                    className="inline-flex items-center border-b-2 border-transparent active:border-green-800 px-5 pt-1 text-sm font-medium text-gray-500 hover:border-green-800 hover:text-gray-700"
+                    className="inline-flex items-center border-b-2 border-transparent active:border-green-800 px-1 pt-1 text-sm font-medium text-gray-500 hover:border-green-800 hover:text-gray-700"
                   >
                     Profiles
                   </Link>
+                  <span className="mx-3"></span>
                   <Link
                     href="/pool"
-                    className="inline-flex items-center border-b-2 border-transparent active:bottom-0 active:border-green-800 px-5 pt-1 text-sm font-medium text-gray-500 hover:border-green-800 hover:text-gray-700"
+                    className="inline-flex items-center border-b-2 border-transparent active:bottom-0 active:border-green-800 px-1 pt-1 text-sm font-medium text-gray-500 hover:border-green-800 hover:text-gray-700"
                   >
                     Pools
                   </Link>
                 </div>
               </div>
-              <div className="hidden absolute inset-y-0 right-0 lg:flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="hidden lg:flex items-center ml-auto">
+                {/* Contracts link on the right */}
                 <Link
                   href="/contracts"
-                  className="inline-flex items-center border-b-2 border-transparent active:border-green-800 px-5 pt-1 text-sm font-medium text-gray-500 hover:border-green-800 hover:text-gray-700"
+                  className="inline-flex items-center border-b-2 border-transparent active:border-green-800 px-1 pt-1 text-sm font-medium text-gray-500 hover:border-green-800 hover:text-gray-700"
                 >
                   Contracts
                 </Link>

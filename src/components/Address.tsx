@@ -8,11 +8,11 @@ import { TbCopy, TbExternalLink } from "react-icons/tb";
 
 export const Hash = (props: { hash: string; chainId: number }) => {
   const explorerLink =
-    getNetworks()[props.chainId].explorer + "/tx/" + props.hash;
+    getNetworks()[props.chainId].explorer + "tx/" + props.hash;
 
   return (
     <div className="flex items-center">
-      <div className="ml-3 text-sm font-medium text-gray-900 font-mono">
+      <div className="text-sm font-medium text-gray-900 font-mono">
         {convertBytesToShortString(props.hash)}
       </div>
       <div
@@ -32,11 +32,11 @@ export const Hash = (props: { hash: string; chainId: number }) => {
 
 export const Address = (props: { address: string; chainId: number }) => {
   const explorerLink =
-    getNetworks()[props.chainId].explorer + "/address/" + props.address;
+    getNetworks()[props.chainId].explorer + "address/" + props.address;
 
   return (
     <div className="flex items-center">
-      <div className="ml-3 text-sm font-medium text-gray-900 font-mono">
+      <div className="text-sm font-medium text-gray-900 font-mono">
         {convertAddressToShortString(props.address)}
       </div>
       <div
@@ -60,7 +60,7 @@ export const AddressFull = (props: { address: string; chainId: number }) => {
   };
 
   const explorerLink =
-    getNetworks()[props.chainId].explorer + "/address/" + props.address;
+    getNetworks()[props.chainId].explorer + "address/" + props.address;
 
   return (
     <div className="flex items-center">

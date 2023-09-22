@@ -3,7 +3,7 @@ import { gql } from "graphql-request";
 /** Endpont for graphql queries
  *  todo: make this configurable and move to .env
  */
-export const graphqlEndpoint = "http://localhost:5555/graphql";
+export const graphqlEndpoint = process.env.GRAPHQL_URL || "";
 
 /** Returns all the pools */
 export const getPoolDataQuery = gql`

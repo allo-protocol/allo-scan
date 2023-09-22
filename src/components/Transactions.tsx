@@ -1,8 +1,5 @@
 "use client";
 
-import { NetworkContext } from "@/Context/NetworkContext";
-import { getNetworksBySlug } from "@/utils/networks";
-import { useContext } from "react";
 import { Address, Hash, truncatedString } from "./Address";
 import Table from "./Table";
 import { TAlloTransactionLog, TTableData } from "@/types/types";
@@ -14,7 +11,6 @@ export const Transactions = ({
 }: {
   alloTransactions: TAlloTransactionLog[];
 }) => {
- 
   const dataAlloTransaction: TTableData = {
     headers: [
       "",
@@ -29,10 +25,12 @@ export const Transactions = ({
     rows: Object.values(alloTransactions).map((alloTransaction) => {
       const statusBoolean = alloTransaction.status === "1" ? true : false;
       const date = new Date(alloTransaction.blockTimestamp);
-      const transformedTimestamp = date.toLocaleString() //date.getTime().toString();
+      const transformedTimestamp = date.toLocaleString(); //date.getTime().toString();
 
       return [
+        // eslint-disable-next-line react/jsx-key
         <Status status={statusBoolean} />,
+        // eslint-disable-next-line react/jsx-key
         <Hash
           hash={alloTransaction.hash}
           chainId={Number(alloTransaction.chainId)}
@@ -47,7 +45,7 @@ export const Transactions = ({
           address={alloTransaction.toAddress}
           chainId={Number(alloTransaction.chainId)}
         />,
-        <div>{truncatedString(alloTransaction.functionName)}</div>,
+        truncatedString(alloTransaction.functionName),
         alloTransaction.blockNumber,
         transformedTimestamp,
         convertChainIdToNetworkName(Number(alloTransaction.chainId)),
@@ -56,13 +54,13 @@ export const Transactions = ({
   };
 
   return (
-      <Table
-        data={dataAlloTransaction}
-        header={"Allo Transaction Log"}
-        showPagination={true}
-        description={""}
-        rowsPerPage={20}
-      />
+    <Table
+      data={dataAlloTransaction}
+      header={"Allo Transaction Log"}
+      showPagination={true}
+      description={""}
+      rowsPerPage={20}
+    />
   );
 };
 
