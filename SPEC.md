@@ -306,10 +306,10 @@ By default this will run the migrations against the **local** database outlined 
 
 ```toml
 [prod]
-name = 'alloscan'
-port = 54321
+name = '...'
+port = ...
 host = '...'
-user = 'postgres'
+user = '...'
 password = '...'
 ```
 You can then specify which database environment to run migrations against with the `--env` flag.
