@@ -1,4 +1,4 @@
-import Dashboard from "@/components/Dashboard";
+import Transactions from "@/components/Transactions";
 import { IAlloTransactionLogResponse, TAlloTransactionLog } from "@/types/types";
 import { graphqlEndpoint, getAlloTransactions } from "@/utils/query";
 import { request } from "graphql-request";
@@ -22,7 +22,7 @@ export default async function Home() {
   return (
     <div className="bg-white">
       <main>
-        <Dashboard alloTransactions={alloTransactionLog} />
+        <Transactions alloTransactions={alloTransactionLog} />
       </main>
     </div>
   );

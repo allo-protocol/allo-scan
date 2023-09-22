@@ -11,6 +11,7 @@ export type TProfile = {
 
 export type TProfileDetail = TProfile & {
   createdAt: string;
+  updatedAt: string;
   pools: TPoolDetail[];
   metadataPointer: string;
   metadataProtocol: number;

@@ -28,6 +28,7 @@ const Pool = ({
       "Amount",
       "Profile Name",
       "Profile Owner",
+      "Updated At",
       "Network",
     ],
     rows: Object.values(data).map((pool: TPoolDetail) => {
@@ -48,6 +49,7 @@ const Pool = ({
         truncatePoolName(pool.profile.name),
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.profile.owner} chainId={Number(pool.chainId)} />,
+        (new Date(pool.updatedAt)).toLocaleString(),
         convertChainIdToNetworkName(Number(pool.chainId)),
       ];
     }),

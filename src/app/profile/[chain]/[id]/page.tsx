@@ -23,7 +23,7 @@ export default async function ProfileDetailPage({
   const profile: TProfileDetail = profileDetails.profile;
 
   const response = await fetch(
-    `https://ipfs.io/ipfs/${profile.metadataPointer}`
+    `https://gitcoin.mypinata.cloud/ipfs/${profile.metadataPointer}`,
   );
 
   let metadata = "";

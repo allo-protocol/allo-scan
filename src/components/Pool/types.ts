@@ -13,6 +13,8 @@ export type TPool = {
 export type TPoolDetail = TPool & {
   profile: TProfile;
   tokenMetadata: TTokenMetadata;
+  updatedAt: string;
+  createdAt: string;
 };
 
 export type TTokenMetadata = {

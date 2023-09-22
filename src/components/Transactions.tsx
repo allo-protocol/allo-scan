@@ -3,48 +3,18 @@
 import { NetworkContext } from "@/Context/NetworkContext";
 import { getNetworksBySlug } from "@/utils/networks";
 import { useContext } from "react";
-import { Address, AddressResponsive, Hash } from "./Address";
+import { Address, Hash, truncatedString } from "./Address";
 import Table from "./Table";
 import { TAlloTransactionLog, TTableData } from "@/types/types";
 import { convertChainIdToNetworkName } from "@/utils/utils";
 import Status from "./Status";
 
-export const Dashboard = ({
+export const Transactions = ({
   alloTransactions,
 }: {
   alloTransactions: TAlloTransactionLog[];
 }) => {
-  const { network } = useContext(NetworkContext);
-  const networkData = getNetworksBySlug(network);
-
-  const dataCore: TTableData = {
-    headers: ["Contract", "Address"],
-    rows: Object.values(networkData.coreContracts).map((contract) => {
-      return [
-        contract.name,
-        // eslint-disable-next-line react/jsx-key
-        <AddressResponsive
-          address={contract.address}
-          chainId={Number(networkData.id)}
-        />,
-      ];
-    }),
-  };
-
-  const dataStrategy: TTableData = {
-    headers: ["Contract", "Address"],
-    rows: Object.values(networkData.strategyContracts).map((contract) => {
-      return [
-        contract.name,
-        // eslint-disable-next-line react/jsx-key
-        <AddressResponsive
-          address={contract.address}
-          chainId={Number(networkData.id)}
-        />,
-      ];
-    }),
-  };
-
+ 
   const dataAlloTransaction: TTableData = {
     headers: [
       "",
@@ -59,7 +29,7 @@ export const Dashboard = ({
     rows: Object.values(alloTransactions).map((alloTransaction) => {
       const statusBoolean = alloTransaction.status === "1" ? true : false;
       const date = new Date(alloTransaction.blockTimestamp);
-      const transformedTimestamp = date.getTime().toString();
+      const transformedTimestamp = date.toLocaleString() //date.getTime().toString();
 
       return [
         <Status status={statusBoolean} />,
@@ -77,7 +47,7 @@ export const Dashboard = ({
           address={alloTransaction.toAddress}
           chainId={Number(alloTransaction.chainId)}
         />,
-        <div>{alloTransaction.functionName}</div>,
+        <div>{truncatedString(alloTransaction.functionName)}</div>,
         alloTransaction.blockNumber,
         transformedTimestamp,
         convertChainIdToNetworkName(Number(alloTransaction.chainId)),
@@ -86,32 +56,14 @@ export const Dashboard = ({
   };
 
   return (
-    <div>
-      <Table
-        data={dataCore}
-        header={"Allo-At-A-Glance"}
-        description={
-          "A list of all the core contracts in the registry on all supported networks"
-        }
-        showPagination={false}
-      />
-      <Table
-        data={dataStrategy}
-        header={"Cloneable Strategy Contracts"}
-        description={
-          "A list of all the strategy contracts in the registry on all supported networks"
-        }
-        showPagination={false}
-      />
       <Table
         data={dataAlloTransaction}
         header={"Allo Transaction Log"}
         showPagination={true}
         description={""}
-        rowsPerPage={8}
+        rowsPerPage={20}
       />
-    </div>
   );
 };
 
-export default Dashboard;
+export default Transactions;
