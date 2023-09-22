@@ -3,10 +3,10 @@
 import { NetworkContext } from "@/Context/NetworkContext";
 import { getNetworksBySlug } from "@/utils/networks";
 import { useContext } from "react";
-import { Address, AddressResponsive, Hash, truncatedString } from "./Address";
+import { Address, AddressResponsive, Hash } from "./Address";
 import Table from "./Table";
 import { TAlloTransactionLog, TTableData } from "@/types/types";
-import { convertChainIdToNetworkName, truncateTimestamp } from "@/utils/utils";
+import { convertChainIdToNetworkName } from "@/utils/utils";
 import Status from "./Status";
 
 export const Dashboard = ({
