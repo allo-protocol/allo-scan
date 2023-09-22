@@ -6,6 +6,8 @@ import { useContext } from "react";
 import { AddressResponsive, Hash } from "./Address";
 import Table from "./Table";
 import {  TTableData } from "@/types/types";
+import SelectNetworkTabs from "./SelectNetworkTabs";
+import SelectNetwork from "./SelectNetwork";
 
 export const Contracts = () => {
   const { network } = useContext(NetworkContext);
@@ -41,6 +43,7 @@ export const Contracts = () => {
 
    return (
     <div>
+      <SelectNetwork />
       <Table
         data={dataCore}
         header={"Allo-At-A-Glance"}

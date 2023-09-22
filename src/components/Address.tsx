@@ -8,7 +8,7 @@ import { TbCopy, TbExternalLink } from "react-icons/tb";
 
 export const Hash = (props: { hash: string; chainId: number }) => {
   const explorerLink =
-    getNetworks()[props.chainId].explorer + "/tx/" + props.hash;
+    getNetworks()[props.chainId].explorer + "tx/" + props.hash;
 
   return (
     <div className="flex items-center">
@@ -32,7 +32,7 @@ export const Hash = (props: { hash: string; chainId: number }) => {
 
 export const Address = (props: { address: string; chainId: number }) => {
   const explorerLink =
-    getNetworks()[props.chainId].explorer + "/address/" + props.address;
+    getNetworks()[props.chainId].explorer + "address/" + props.address;
 
   return (
     <div className="flex items-center">
@@ -60,7 +60,7 @@ export const AddressFull = (props: { address: string; chainId: number }) => {
   };
 
   const explorerLink =
-    getNetworks()[props.chainId].explorer + "/address/" + props.address;
+    getNetworks()[props.chainId].explorer + "address/" + props.address;
 
   return (
     <div className="flex items-center">

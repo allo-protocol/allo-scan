@@ -23,7 +23,7 @@ export default async function PoolDetail({
 
   try {
     const response = await fetch(
-      `https://ipfs.io/ipfs/${pool.metadataPointer}`
+      `https://gitcoin.mypinata.cloud/ipfs/${pool.metadataPointer}`,
     );
 
     // Check if the response status is OK (200)
