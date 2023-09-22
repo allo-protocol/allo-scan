@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable react/jsx-key */
 
 import { Address, Hash, truncatedString } from "./Address";
 import Table from "./Table";
