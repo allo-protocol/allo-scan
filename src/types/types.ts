@@ -7,7 +7,7 @@ export enum Slug {
 }
 
 export enum OrderBy {
-  BLOCK_TIMESTAMP_DESC
+  BLOCK_TIMESTAMP_DESC,
 }
 
 export interface IContract {
@@ -45,6 +45,15 @@ export type TTableData = {
   rows: (string | React.JSX.Element | undefined)[][];
 };
 
+/** todo: table overrride type */
+export type TOverride = {
+  header: string | undefined | "";
+  description: string | undefined | "";
+  rowsPerPage: number;
+  showPagination: boolean;
+  className: string;
+};
+
 export type Metadata = {
   protocol: number;
   pointer: string;
@@ -54,3 +63,26 @@ export enum MetadataProtocol {
   "Undefined",
   "IPFS",
 }
+
+export interface IAlloTransactionLogResponse {
+  alloTransactions: TAlloTransactionLog;
+}
+
+export type TAlloTransactionLog = {
+  hash: string;
+  fromAddress: string;
+  toAddress: string;
+  functionName: string;
+  functionArgs: TFunctionArgs[];
+  status: string;
+  blockHash: string;
+  blockNumber: string;
+  blockTimestamp: string;
+  chainId: string;
+};
+
+export type TFunctionArgs = {
+  name: string;
+  type: string;
+  value: string;
+};

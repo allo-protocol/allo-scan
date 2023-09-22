@@ -6,7 +6,7 @@ import { Address } from "../Address";
 import {
   convertChainIdToNetworkName,
   formatAmount,
-  shortenPoolName,
+  truncatePoolName,
 } from "@/utils/utils";
 import Link from "next/link";
 import { TPoolDetail } from "./types";
@@ -20,7 +20,6 @@ const Pool = ({
   header?: string;
   description?: string;
 }) => {
-
   const tableData: TTableData = {
     headers: [
       "ID",
@@ -46,7 +45,7 @@ const Pool = ({
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.token} chainId={Number(pool.chainId)} />,
         formatAmount(pool.amount, pool.tokenMetadata?.decimals ?? 18),
-        shortenPoolName(pool.profile.name),
+        truncatePoolName(pool.profile.name),
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.profile.owner} chainId={Number(pool.chainId)} />,
         convertChainIdToNetworkName(Number(pool.chainId)),

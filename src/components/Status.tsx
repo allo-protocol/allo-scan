@@ -11,15 +11,15 @@ const Status = ({ status }: { status: boolean }) => {
       >
         <div className="h-1.5 w-1.5 rounded-full bg-current" />
       </div>
-      <div
+      {/* <div
         className={`${
           status ? "text-green-400" : "text-rose-400"
         } hidden sm:block ml-1 text-xs`}
       >
         {" "}
         {/* Add margin for spacing */}
-        {status ? "Active" : "Inactive"}
-      </div>
+      {/* </>{status ? "Success" : "Failed"} */}
+      {/* </div> */}
     </>
   );
 };

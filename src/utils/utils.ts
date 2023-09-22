@@ -15,6 +15,23 @@ export function formatAmount(amount: number, decimals: number) {
   return ethers.formatUnits(amount, decimals);
 }
 
-export function shortenPoolName(name: string) {
+export function truncatePoolName(name: string) {
   return name.length > 10 ? `${name.slice(0, 10)}...` : name;
 }
+
+export function truncateTimestamp(timestamp: string) {
+  return timestamp.slice(0, 10);
+}
+
+export const convertBytesToShortString = (address: string) => {
+  return address.slice(0, 6) + "..." + address.slice(-4);
+};
+
+
+export const convertAddressToShortString = (address: string) => {
+  return address.slice(0, 6) + "..." + address.slice(-4);
+};
+
+export const copy = (data: string) => {
+  navigator.clipboard.writeText(data);
+};

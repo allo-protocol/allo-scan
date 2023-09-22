@@ -138,7 +138,25 @@ export const getAlloStatsQuery = gql`
 
 /** Return all Allo transactions */
 export const getAlloTransactions = gql`
-  {
+  query GetAlloTransactions {
+    alloTransactions {
+      hash
+      fromAddress
+      toAddress
+      functionName
+      functionArgs
+      status
+      blockHash
+      blockNumber
+      blockTimestamp
+      chainId
+    }
+  }
+`;
+
+/** Return all Allo transactions by network */
+export const getAlloTransactionsByChain = gql`
+  query GetAlloTransactionsByChain($chainId: String!) {
     alloTransactions {
       hash
       fromAddress
