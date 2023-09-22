@@ -29,24 +29,19 @@ export const Transactions = ({
       const transformedTimestamp = date.toLocaleString(); //date.getTime().toString();
 
       return [
-        // eslint-disable-next-line react/jsx-key
         <Status status={statusBoolean} />,
-        // eslint-disable-next-line react/jsx-key
         <Hash
           hash={alloTransaction.hash}
           chainId={Number(alloTransaction.chainId)}
         />,
-        // eslint-disable-next-line react/jsx-key
         <Address
           address={alloTransaction.fromAddress}
           chainId={Number(alloTransaction.chainId)}
         />,
-        // eslint-disable-next-line react/jsx-key
         <Address
           address={alloTransaction.toAddress}
           chainId={Number(alloTransaction.chainId)}
         />,
-        // eslint-disable-next-line react/jsx-key
         truncatedString(alloTransaction.functionName),
         alloTransaction.blockNumber,
         transformedTimestamp,
