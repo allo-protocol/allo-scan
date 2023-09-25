@@ -5,6 +5,7 @@ import Table from "./Table";
 import { TAlloTransactionLog, TTableData } from "@/types/types";
 import { convertChainIdToNetworkName } from "@/utils/utils";
 import Status from "./Status";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export const Transactions = ({
   alloTransactions,
@@ -53,13 +54,15 @@ export const Transactions = ({
     }),
   };
 
+  const isMobile = useMediaQuery(768);
+
   return (
     <Table
       data={dataAlloTransaction}
       header={"Allo Transaction Log"}
       showPagination={true}
       description={""}
-      rowsPerPage={20}
+      rowsPerPage={isMobile ? 5 : 20}
     />
   );
 };

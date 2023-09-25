@@ -1,13 +1,14 @@
 "use client";
 
 import { convertChainIdToNetworkName } from "@/utils/utils";
-import { AddressResponsive } from "../Address";
+import { AddressResponsive, truncatedString } from "../Address";
 import { TProfileDetail } from "./types";
 import { MetadataProtocol } from "@/types/types";
 import { TbExternalLink } from "react-icons/tb";
 import JsonView from "@uiw/react-json-view";
 import Link from "next/link";
 import Pool from "../Pool/Pool";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const ProfileDetail = ({
   profile,
@@ -24,6 +25,8 @@ const ProfileDetail = ({
       error: "Error parsing metadata",
     };
   }
+  const isMobile = useMediaQuery(768);
+  const py = isMobile ? "py-2" : "py-6";
 
   return (
     <div className="pb-10">
@@ -33,7 +36,7 @@ const ProfileDetail = ({
             {profile.name}
           </h3>
           <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500 font-mono">
-            {profile.profileId}
+            {isMobile ? truncatedString(profile.profileId) : profile.profileId}
           </p>
         </div>
         <div>
@@ -46,7 +49,7 @@ const ProfileDetail = ({
       </div>
       <div className="mt-6 border-t border-gray-100">
         <dl className="divide-y divide-gray-100">
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Network
             </dt>
@@ -54,7 +57,7 @@ const ProfileDetail = ({
               {convertChainIdToNetworkName(profile.chainId)}
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Nonce
             </dt>
@@ -62,7 +65,7 @@ const ProfileDetail = ({
               {profile.nonce}
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Anchor
             </dt>
@@ -73,7 +76,7 @@ const ProfileDetail = ({
               />
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Creator
             </dt>
@@ -84,7 +87,7 @@ const ProfileDetail = ({
               />
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Owner
             </dt>
@@ -95,7 +98,7 @@ const ProfileDetail = ({
               />
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Members
             </dt>
@@ -121,7 +124,7 @@ const ProfileDetail = ({
               </ul>
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Created at
             </dt>
@@ -129,7 +132,7 @@ const ProfileDetail = ({
               {new Date(profile.createdAt).toLocaleString()}
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Updated at
             </dt>
@@ -137,13 +140,15 @@ const ProfileDetail = ({
               {new Date(profile.updatedAt).toLocaleString()}
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Metadata ({MetadataProtocol[profile.metadataProtocol]}){" "}
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               <div className="flex flex-row items-center">
-                {profile.metadataPointer}
+                {isMobile
+                  ? truncatedString(profile.metadataPointer)
+                  : profile.metadataPointer}
                 <a
                   className="ml-2"
                   // data-tip="view on explorer"
