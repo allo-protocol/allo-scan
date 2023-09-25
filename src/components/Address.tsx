@@ -1,3 +1,4 @@
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { getNetworks } from "@/utils/networks";
 import {
   convertAddressToShortString,
@@ -86,20 +87,11 @@ export const AddressResponsive = (props: {
   address: string;
   chainId: number;
 }) => {
-  return (
-    <div>
-      <div className="hidden sm:block md:hidden">
-        {" "}
-        {/* Show on sm screens, hide on md screens */}
-        <Address address={props.address} chainId={props.chainId} />
-      </div>
-      <div className="sm:hidden md:block">
-        {" "}
-        {/* Show on md screens, hide on sm screens */}
-        <AddressFull address={props.address} chainId={props.chainId} />
-      </div>
-    </div>
-  );
+  const isMobile = useMediaQuery(768);
+
+  if (isMobile)
+    return <Address address={props.address} chainId={props.chainId} />;
+  return <AddressFull address={props.address} chainId={props.chainId} />;
 };
 
 export const truncatedString = (str: string) => {

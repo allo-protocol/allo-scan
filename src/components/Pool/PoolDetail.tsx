@@ -1,7 +1,7 @@
 "use client";
 
 import { convertChainIdToNetworkName } from "@/utils/utils";
-import { AddressResponsive } from "../Address";
+import { AddressResponsive, truncatedString } from "../Address";
 import { TPoolDetail } from "./types";
 import { MetadataProtocol } from "@/types/types";
 import { TbExternalLink } from "react-icons/tb";
@@ -9,6 +9,7 @@ import JsonView from "@uiw/react-json-view";
 import { ethers } from "ethers";
 import Link from "next/link";
 import { getNetworks } from "@/utils/networks";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const PoolDetailPage = ({
   pool,
@@ -25,6 +26,8 @@ const PoolDetailPage = ({
       error: "Error parsing metadata",
     };
   }
+    const isMobile = useMediaQuery(768);
+    const py = isMobile ? "py-2" : "py-6";
 
   return (
     <div>
@@ -47,7 +50,7 @@ const PoolDetailPage = ({
       </div>
       <div className="mt-6 border-t border-gray-100">
         <dl className="divide-y divide-gray-100">
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Strategy
             </dt>
@@ -58,7 +61,7 @@ const PoolDetailPage = ({
               />
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Network
             </dt>
@@ -66,7 +69,7 @@ const PoolDetailPage = ({
               {convertChainIdToNetworkName(Number(pool.chainId))}
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Token
             </dt>
@@ -77,7 +80,7 @@ const PoolDetailPage = ({
               />
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Amount
             </dt>
@@ -90,7 +93,7 @@ const PoolDetailPage = ({
                 getNetworks()[Number(pool.chainId)].symbol}
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Creator
             </dt>
@@ -101,7 +104,7 @@ const PoolDetailPage = ({
               />
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Profile
             </dt>
@@ -111,12 +114,14 @@ const PoolDetailPage = ({
               <Link href={`/profile/${pool.chainId}/${pool.profile.profileId}`}>
                 <br />
                 <span className="font-mono text-green-900">
-                  {pool.profile.profileId}
+                  {isMobile
+                    ? truncatedString(pool.profile.profileId)
+                    : pool.profile.profileId}{" "}
                 </span>
               </Link>
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Created at
             </dt>
@@ -124,7 +129,7 @@ const PoolDetailPage = ({
               {new Date(pool.createdAt).toLocaleString()}
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Updated at
             </dt>
@@ -132,13 +137,15 @@ const PoolDetailPage = ({
               {new Date(pool.updatedAt).toLocaleString()}
             </dd>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Metadata ({MetadataProtocol[pool.metadataProtocol]}){" "}
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               <div className="flex flex-row items-center">
-                {pool.metadataPointer}
+                {isMobile
+                  ? truncatedString(pool.metadataPointer)
+                  : pool.metadataPointer}
                 <a
                   className="ml-2"
                   // data-tip="view on explorer"
