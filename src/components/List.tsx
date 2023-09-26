@@ -6,7 +6,7 @@ const List = (props: {data: TListProps[]}) => {
   const py = isMobile ? "py-2" : "py-6";
 
   return (
-    <div className="mt-6 border-t border-gray-100">
+    <div className="mt-6 border-t border-gray-100 w-full">
       <dl className="divide-y divide-gray-100">
         {props.data.map((d, index) => (
           <div

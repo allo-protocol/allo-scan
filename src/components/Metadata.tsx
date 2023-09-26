@@ -3,11 +3,19 @@ import JsonView from "@uiw/react-json-view";
 import { TbExternalLink } from "react-icons/tb";
 import { truncatedString } from "./Address";
 
-const Metadata = (props: { isMobile: boolean; metadata: Metadata, metadataObj: Object }) => {
-  const { isMobile } = props;
-  const { metadata } = props;
-  const { metadataObj } = props;
-
+const Metadata = ({
+  isMobile,
+  metadata,
+  metadataObj,
+  shortenTexteAfterLength = 120,
+  collapsed = 2,
+}: {
+  isMobile: boolean;
+  metadata: Metadata;
+  metadataObj: Object;
+  shortenTexteAfterLength?: number;
+  collapsed?: number;
+}) => {
   return (
     <div>
       <div className="flex flex-row items-center">
@@ -24,8 +32,8 @@ const Metadata = (props: { isMobile: boolean; metadata: Metadata, metadataObj: O
       <div className="pb-6">
         <JsonView
           value={metadataObj}
-          shortenTextAfterLength={120}
-          collapsed={2}
+          shortenTextAfterLength={shortenTexteAfterLength}
+          collapsed={collapsed}
         />
       </div>
     </div>

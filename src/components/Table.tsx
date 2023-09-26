@@ -15,12 +15,14 @@ const Table = ({
   description,
   rowsPerPage = 10,
   showPagination,
+  showBorder = true,
  }: {
   data: TTableData;
   header: string | undefined | "";
   description: string | undefined | "";
   rowsPerPage?: number;
   showPagination?: boolean;
+  showBorder?: boolean;
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(data.rows.length / rowsPerPage);
@@ -47,8 +49,8 @@ const Table = ({
   return (
     <>
       <div
-        className={`px-4 sm:px-6 lg:px-8 ${
-          header || description ? "pt-2 mt-10" : ""
+        className={`w-full ${
+          header || description ? " px-4 sm:px-6 lg:px-8  pt-2 mt-10" : ""
         }`}
       >
         <div className="sm:flex flex flex-col items-center">
@@ -68,7 +70,13 @@ const Table = ({
           )}
         </div>
         <div className="mt-8 flow-root">
-          <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 lg:border lg:rounded-md lg:shadow-gray lg:shadow-md">
+          <div
+            className={`-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 ${
+              showBorder
+                ? "lg:border lg:rounded-md lg:shadow-gray lg:shadow-md"
+                : ""
+            }`}
+          >
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
               {!isMobile ? (
                 <table className="min-w-full divide-y divide-gray-300">

@@ -1,6 +1,7 @@
 import { Metadata, MetadataProtocol } from "@/types/types";
 import { getNetworks } from "./networks";
 import { ethers } from "ethers";
+import { TTokenMetadata } from "@/components/Pool/types";
 
 const networks = getNetworks();
 
@@ -34,6 +35,17 @@ export const convertAddressToShortString = (address: string) => {
 
 export const copy = (data: string) => {
   navigator.clipboard.writeText(data);
+};
+
+export const amountString = (
+  amount: number,
+  tokenMetadata: TTokenMetadata,
+  chainId: number,
+): string => {
+  return (
+    ethers.formatUnits(amount, tokenMetadata.decimals ?? 18) + " " +
+      (tokenMetadata.symbol ?? getNetworks()[Number(chainId)].symbol)
+  );
 };
 
 export const fetchIpfsMetadata = async (

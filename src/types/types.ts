@@ -42,7 +42,7 @@ export type TNetworkData = {
 
 export type TTableData = {
   headers?: string[];
-  rows: (string | React.JSX.Element | undefined)[][];
+  rows: (string | React.JSX.Element | undefined)[];
 };
 
 /** todo: table overrride type */

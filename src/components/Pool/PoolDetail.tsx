@@ -1,8 +1,8 @@
 "use client";
 
-import { convertChainIdToNetworkName } from "@/utils/utils";
+import { amountString, convertChainIdToNetworkName } from "@/utils/utils";
 import { AddressResponsive, truncatedString } from "../Address";
-import { TPoolDetail } from "./types";
+import { StrategyId, TPoolDetail } from "./types";
 import { MetadataProtocol, TListProps } from "@/types/types";
 import { ethers } from "ethers";
 import Link from "next/link";
@@ -10,6 +10,7 @@ import { getNetworks } from "@/utils/networks";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import List from "../List";
 import Metadata from "../Metadata";
+import RfpDetails from "./Strategies/RfpDetails";
 
 const PoolDetailPage = ({
   pool,
@@ -45,15 +46,10 @@ const PoolDetailPage = ({
     },
     {
       label: "Amount",
-      value: (
-        <>
-          {ethers.formatUnits(
-            pool.amount ?? 0,
-            pool.tokenMetadata.decimals ?? 18,
-          )}{" "}
-          {pool.tokenMetadata.symbol ??
-            getNetworks()[Number(pool.chainId)].symbol}
-        </>
+      value: amountString(
+        pool.amount,
+        pool.tokenMetadata,
+        Number(pool.chainId),
       ),
     },
     {
@@ -105,6 +101,23 @@ const PoolDetailPage = ({
     },
   ];
 
+  const renderDetails = () => {
+    if (!pool.strategyDetails) return null;
+
+    switch (pool.strategyDetails.strategyId) {
+      case StrategyId.RFP:
+        return (
+          <RfpDetails
+            details={pool.strategyDetails.details}
+            tokenMetadata={pool.tokenMetadata}
+            chainId={Number(pool.chainId)}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-row items-center justify-between px-4 sm:px-0 my-10">
@@ -125,6 +138,7 @@ const PoolDetailPage = ({
         </div>
       </div>
       <List data={listProps} />
+      {renderDetails()}
     </div>
   );
 };
