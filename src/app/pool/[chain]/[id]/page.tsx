@@ -1,6 +1,7 @@
 import PoolDetailPage from "@/components/Pool/PoolDetail";
 import { IPoolDetailResponse, TPoolDetail } from "@/components/Pool/types";
 import { getPoolDetailDataQuery, graphqlEndpoint } from "@/utils/query";
+import { fetchIpfsMetadata } from "@/utils/utils";
 import { request } from "graphql-request";
 
 export default async function PoolDetail({
@@ -19,20 +20,10 @@ export default async function PoolDetail({
 
   const { pool }: { pool: TPoolDetail } = response;
 
-  let poolMetadata = "{}";
+    const metadataObj: Object = await fetchIpfsMetadata({
+      pointer: pool.metadataPointer,
+      protocol: pool.metadataProtocol,
+    });
 
-  try {
-    const response = await fetch(
-      `https://gitcoin.mypinata.cloud/ipfs/${pool.metadataPointer}`,
-    );
-
-    // Check if the response status is OK (200)
-    if (response.ok) {
-      poolMetadata = await response.text();
-    }
-  } catch (error) {
-    console.error(error);
-  }
-
-  return <PoolDetailPage pool={pool} poolMetadata={poolMetadata} />;
+  return <PoolDetailPage pool={pool} metadataObj={metadataObj} />;
 }
