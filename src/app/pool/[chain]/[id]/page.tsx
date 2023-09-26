@@ -15,7 +15,6 @@ export default async function PoolDetail({
 }: {
   params: { chain: string; id: string };
 }) {
-
   // ============ todo: replace dummy data with real data ============
   const rfpStrategyDetails: TRfpStrategy = {
     useRegistryAnchor: true,
@@ -85,8 +84,6 @@ export default async function PoolDetail({
     ],
   };
 
-
-
   const response: IPoolDetailResponse = await request(
     graphqlEndpoint,
     getPoolDetailDataQuery,
@@ -98,10 +95,11 @@ export default async function PoolDetail({
 
   const { pool }: { pool: TPoolDetail } = response;
 
-  pool.strategyDetails = {
-    strategyId: StrategyId.RFP,
-    details: rfpStrategyDetails,
-  };
+  if (pool.poolId === "42")
+    pool.strategyDetails = {
+      strategyId: StrategyId.RFP,
+      details: rfpStrategyDetails,
+    };
 
   const metadataObj: Object = await fetchIpfsMetadata({
     pointer: pool.metadataPointer,
