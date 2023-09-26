@@ -26,7 +26,9 @@ const RfpDetails = ({
       "Registry Anchor",
     ],
     rows: details.recipients.map((r) => [
+      // eslint-disable-next-line react/jsx-key
       <Address address={r.recipient} chainId={chainId} />,
+      // eslint-disable-next-line react/jsx-key
       <Address address={r.recipientAddress} chainId={chainId} />,
       amountString(r.proposalBid, tokenMetadata, chainId),
       r.recipientStatus.toString(),
@@ -38,6 +40,7 @@ const RfpDetails = ({
     headers: ["Amount", "Metadata", "Status"],
     rows: details.milestones.map((m) => [
       m.amountPercentage.toString() + "%",
+      // eslint-disable-next-line react/jsx-key
       <Metadata
         metadata={m.metadata}
         isMobile={isMobile}
@@ -52,9 +55,12 @@ const RfpDetails = ({
   const distributionsTable: TTableData = {
     headers: ["Recipient", "Recipient Address", "Amount", "Sender"],
     rows: details.distributions.map((r) => [
+      // eslint-disable-next-line react/jsx-key
       <Address address={r.acceptedRecipient} chainId={chainId} />,
+      // eslint-disable-next-line react/jsx-key
       <Address address={r.recipientAddress} chainId={chainId} />,
       amountString(r.amount, tokenMetadata, chainId),
+      // eslint-disable-next-line react/jsx-key
       <Address address={r.sender} chainId={chainId} />,
     ]),
   };
@@ -63,6 +69,7 @@ const RfpDetails = ({
     headers: ["Recipients"],
     rows: [
       [
+        // eslint-disable-next-line react/jsx-key
         <Table
           data={recipientsTable}
           header={undefined}
@@ -79,6 +86,7 @@ const RfpDetails = ({
     headers: ["Milestones"],
     rows: [
       [
+        // eslint-disable-next-line react/jsx-key
         <Table
           data={milestonesTable}
           header={undefined}
@@ -95,6 +103,7 @@ const RfpDetails = ({
     headers: ["Distributions"],
     rows: [
       [
+        // eslint-disable-next-line react/jsx-key
         <Table
           data={distributionsTable}
           header={undefined}
@@ -119,6 +128,7 @@ const RfpDetails = ({
     {
       label: "Accepted Recipient",
       value: (
+        // eslint-disable-next-line react/jsx-key
         <AddressResponsive
           address={details.acceptedRecipient}
           chainId={chainId}
