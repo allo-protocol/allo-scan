@@ -86,3 +86,9 @@ export type TFunctionArgs = {
   type: string;
   value: string;
 };
+
+export type TListProps = {
+  label: string;
+  value: string | React.JSX.Element;
+};
+

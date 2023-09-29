@@ -1,33 +1,123 @@
 "use client";
 
-import { convertChainIdToNetworkName } from "@/utils/utils";
+import { amountString, convertChainIdToNetworkName } from "@/utils/utils";
 import { AddressResponsive, truncatedString } from "../Address";
-import { TPoolDetail } from "./types";
-import { MetadataProtocol } from "@/types/types";
-import { TbExternalLink } from "react-icons/tb";
-import JsonView from "@uiw/react-json-view";
+import { StrategyId, TPoolDetail } from "./types";
+import { MetadataProtocol, TListProps } from "@/types/types";
 import { ethers } from "ethers";
 import Link from "next/link";
 import { getNetworks } from "@/utils/networks";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import List from "../List";
+import Metadata from "../Metadata";
+import RfpDetails from "./Strategies/RfpDetails";
 
 const PoolDetailPage = ({
   pool,
-  poolMetadata,
+  metadataObj,
 }: {
   pool: TPoolDetail;
-  poolMetadata: string;
+  metadataObj: Object;
 }) => {
-  let metadataObj;
-  try {
-    metadataObj = JSON.parse(poolMetadata);
-  } catch (error) {
-    metadataObj = {
-      error: "Error parsing metadata",
-    };
-  }
-    const isMobile = useMediaQuery(768);
-    const py = isMobile ? "py-2" : "py-6";
+  const isMobile = useMediaQuery(768);
+
+  const listProps: TListProps[] = [
+    {
+      label: "Strategy",
+      value: (
+        <AddressResponsive
+          address={pool.strategy}
+          chainId={Number(pool.chainId)}
+        />
+      ),
+    },
+    {
+      label: "Network",
+      value: convertChainIdToNetworkName(Number(pool.chainId)),
+    },
+    {
+      label: "Token",
+      value: (
+        <AddressResponsive
+          address={pool.token}
+          chainId={Number(pool.chainId)}
+        />
+      ),
+    },
+    {
+      label: "Amount",
+      value: amountString(
+        pool.amount,
+        pool.tokenMetadata,
+        Number(pool.chainId),
+      ),
+    },
+    {
+      label: "Creator",
+      value: (
+        <AddressResponsive
+          address={pool.profile.creator}
+          chainId={Number(pool.chainId)}
+        />
+      ),
+    },
+    {
+      label: "Profile",
+      value: (
+        <>
+          {pool.profile.name}
+
+          <Link href={`/profile/${pool.chainId}/${pool.profile.profileId}`}>
+            <br />
+            <span className="font-mono text-green-900">
+              {isMobile
+                ? truncatedString(pool.profile.profileId)
+                : pool.profile.profileId}{" "}
+            </span>
+          </Link>
+        </>
+      ),
+    },
+    {
+      label: "Created at",
+      value: new Date(pool.createdAt).toLocaleString(),
+    },
+    {
+      label: "Updated at",
+      value: new Date(pool.updatedAt).toLocaleString(),
+    },
+    {
+      label: "Metadata (" + MetadataProtocol[pool.metadataProtocol] + ")",
+      value: (
+        <Metadata
+          isMobile={isMobile}
+          metadata={{
+            pointer: pool.metadataPointer,
+            protocol: pool.metadataProtocol,
+          }}
+          metadataObj={metadataObj}
+        />
+      ),
+    },
+  ];
+
+  const renderDetails = () => {
+    if (!pool.strategyDetails) return null;
+
+    switch (pool.strategyDetails.strategyId) {
+      case StrategyId.RFPSimple:
+      case StrategyId.RFPCommittee:
+        return (
+          <RfpDetails
+            details={pool.strategyDetails.details}
+            tokenMetadata={pool.tokenMetadata}
+            chainId={Number(pool.chainId)}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div>
@@ -48,124 +138,8 @@ const PoolDetailPage = ({
           </Link>
         </div>
       </div>
-      <div className="mt-6 border-t border-gray-100">
-        <dl className="divide-y divide-gray-100">
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Strategy
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              <AddressResponsive
-                address={pool.strategy}
-                chainId={Number(pool.chainId)}
-              />
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Network
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {convertChainIdToNetworkName(Number(pool.chainId))}
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Token
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              <AddressResponsive
-                address={pool.token}
-                chainId={Number(pool.chainId)}
-              />
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Amount
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {ethers.formatUnits(
-                pool.amount ?? 0,
-                pool.tokenMetadata.decimals ?? 18,
-              )}{" "}
-              {pool.tokenMetadata.symbol ??
-                getNetworks()[Number(pool.chainId)].symbol}
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Creator
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              <AddressResponsive
-                address={pool.profile.creator}
-                chainId={Number(pool.chainId)}
-              />
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Profile
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {pool.profile.name}
-
-              <Link href={`/profile/${pool.chainId}/${pool.profile.profileId}`}>
-                <br />
-                <span className="font-mono text-green-900">
-                  {isMobile
-                    ? truncatedString(pool.profile.profileId)
-                    : pool.profile.profileId}{" "}
-                </span>
-              </Link>
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Created at
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {new Date(pool.createdAt).toLocaleString()}
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Updated at
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {new Date(pool.updatedAt).toLocaleString()}
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Metadata ({MetadataProtocol[pool.metadataProtocol]}){" "}
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              <div className="flex flex-row items-center">
-                {isMobile
-                  ? truncatedString(pool.metadataPointer)
-                  : pool.metadataPointer}
-                <a
-                  className="ml-2"
-                  // data-tip="view on explorer"
-                  target="_blank"
-                  href={"https://ipfs.io/ipfs/" + pool.metadataPointer}
-                >
-                  <TbExternalLink />
-                </a>
-              </div>
-            </dd>
-          </div>
-        </dl>
-        <div className="pb-6">
-          <JsonView
-            value={metadataObj}
-            shortenTextAfterLength={120}
-            collapsed={2}
-          />
-        </div>
-      </div>
+      <List data={listProps} />
+      {renderDetails()}
     </div>
   );
 };
