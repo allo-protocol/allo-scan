@@ -77,57 +77,6 @@ const RfpDetails = ({
     ]),
   };
 
-  const rfpDetailsMilestonesTable: TTableData = {
-    headers: ["Milestones"],
-    rows: [
-      [
-        // eslint-disable-next-line react/jsx-key
-        <Table
-          data={milestonesTable}
-          header={undefined}
-          description={undefined}
-          rowsPerPage={milestonesTable.rows.length}
-          showPagination={false}
-          showBorder={false}
-        />,
-      ],
-    ],
-  };
-
-  const rfpDetailsDistributionsTable: TTableData = {
-    headers: ["Distributions"],
-    rows: [
-      [
-        // eslint-disable-next-line react/jsx-key
-        <Table
-          data={distributionsTable}
-          header={undefined}
-          description={undefined}
-          rowsPerPage={distributionsTable.rows.length}
-          showPagination={false}
-          showBorder={false}
-        />,
-      ],
-    ],
-  };
-
-  const rfpDetailsVotesTable: TTableData = {
-    headers: ["Votes"],
-    rows: [
-      [
-        // eslint-disable-next-line react/jsx-key
-        <Table
-          data={voteTable}
-          header={undefined}
-          description={undefined}
-          rowsPerPage={voteTable.rows.length}
-          showPagination={false}
-          showBorder={false}
-        />,
-      ],
-    ],
-  };
-
   const listProps: TListProps[] = [
     {
       label: "Use Registry Anchor",
