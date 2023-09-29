@@ -82,6 +82,18 @@ export default async function PoolDetail({
         sender: "0x1234567890123456789012345678901234567890",
       },
     ],
+    votes: [
+      {
+        voter: "0x1234567890123456789012345678901234567890",
+        recipientId: "0x1234567890123456789012345678901234567890",
+        timestamp: 1234567890,
+      },
+      {
+        voter: "0x1234567890123456789012345678901234567890",
+        recipientId: "0x1234567890123456789012345678901234567890",
+        timestamp: 1234567890,
+      },
+    ],
   };
 
   const response: IPoolDetailResponse = await request(
@@ -97,7 +109,7 @@ export default async function PoolDetail({
 
   if (pool.poolId === "42")
     pool.strategyDetails = {
-      strategyId: StrategyId.RFP,
+      strategyId: StrategyId.RFPCommittee,
       details: rfpStrategyDetails,
     };
 

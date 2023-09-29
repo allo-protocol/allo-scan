@@ -105,7 +105,8 @@ const PoolDetailPage = ({
     if (!pool.strategyDetails) return null;
 
     switch (pool.strategyDetails.strategyId) {
-      case StrategyId.RFP:
+      case StrategyId.RFPSimple:
+      case StrategyId.RFPCommittee:
         return (
           <RfpDetails
             details={pool.strategyDetails.details}

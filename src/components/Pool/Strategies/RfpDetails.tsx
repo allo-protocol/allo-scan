@@ -65,21 +65,16 @@ const RfpDetails = ({
     ]),
   };
 
-  const rfpDetailsRecipientsTable: TTableData = {
-    headers: ["Recipients"],
-    rows: [
-      [
-        // eslint-disable-next-line react/jsx-key
-        <Table
-          data={recipientsTable}
-          header={undefined}
-          description={undefined}
-          rowsPerPage={recipientsTable.rows.length}
-          showPagination={false}
-          showBorder={false}
-        />,
-      ],
-    ],
+  const voteTable: TTableData = {
+    headers: ["Voter", "Recipient", "Timestamp"],
+    rows: details.votes.map((v) => [
+      // eslint-disable-next-line react/jsx-key
+      <Address address={v.voter} chainId={chainId} />,
+      // eslint-disable-next-line react/jsx-key
+      <Address address={v.recipientId} chainId={chainId} />,
+      // eslint-disable-next-line react/jsx-key
+      new Date(v.timestamp).toLocaleString(),
+    ]),
   };
 
   const rfpDetailsMilestonesTable: TTableData = {
@@ -109,6 +104,23 @@ const RfpDetails = ({
           header={undefined}
           description={undefined}
           rowsPerPage={distributionsTable.rows.length}
+          showPagination={false}
+          showBorder={false}
+        />,
+      ],
+    ],
+  };
+
+  const rfpDetailsVotesTable: TTableData = {
+    headers: ["Votes"],
+    rows: [
+      [
+        // eslint-disable-next-line react/jsx-key
+        <Table
+          data={voteTable}
+          header={undefined}
+          description={undefined}
+          rowsPerPage={voteTable.rows.length}
           showPagination={false}
           showBorder={false}
         />,
@@ -148,7 +160,7 @@ const RfpDetails = ({
   return (
     <div>
       <div className="flex flex-row">
-        <h3 className="text-base font-semibold leading-7 text-gray-900">
+        <h3 className="text-xl font-semibold leading-7 text-gray-900">
           RFP Strategy Details
         </h3>
       </div>
@@ -156,38 +168,68 @@ const RfpDetails = ({
         <List data={listProps} />
       </div>
 
-      <div className="flex flex-row">
-        <Table
-          data={rfpDetailsRecipientsTable}
-          header={undefined}
-          description={undefined}
-          rowsPerPage={rfpDetailsRecipientsTable.rows.length}
-          showPagination={false}
-          showBorder={false}
-        />
-      </div>
+      {details.recipients.length > 0 && (
+        <div className="flex flex-col mt-20">
+          <h3 className="text-lg font-semibold leading-7 text-gray-900">
+            Recipients
+          </h3>
+          <Table
+            data={recipientsTable}
+            header={undefined}
+            description={undefined}
+            rowsPerPage={recipientsTable.rows.length}
+            showPagination={false}
+            showBorder={false}
+          />
+        </div>
+      )}
 
-      <div className="flex flex-row">
-        <Table
-          data={rfpDetailsMilestonesTable}
-          header={undefined}
-          description={undefined}
-          rowsPerPage={rfpDetailsMilestonesTable.rows.length}
-          showPagination={false}
-          showBorder={false}
-        />
-      </div>
+      {details.milestones.length > 0 && (
+        <div className="flex flex-col mt-20">
+          <h3 className="text-lg font-semibold leading-7 text-gray-900">
+            Milestones
+          </h3>
+          <Table
+            data={milestonesTable}
+            header={undefined}
+            description={undefined}
+            rowsPerPage={milestonesTable.rows.length}
+            showPagination={false}
+            showBorder={false}
+          />
+        </div>
+      )}
 
-      <div className="flex flex-row">
-        <Table
-          data={rfpDetailsDistributionsTable}
-          header={undefined}
-          description={undefined}
-          rowsPerPage={rfpDetailsDistributionsTable.rows.length}
-          showPagination={false}
-          showBorder={false}
-        />
-      </div>
+      {details.distributions.length > 0 && (
+        <div className="flex flex-col mt-20">
+          <h3 className="text-lg font-semibold leading-7 text-gray-900">
+            Distributions
+          </h3>
+          <Table
+            data={distributionsTable}
+            header={undefined}
+            description={undefined}
+            rowsPerPage={distributionsTable.rows.length}
+            showPagination={false}
+            showBorder={false}
+          />
+        </div>
+      )}
+      {details.votes.length > 0 && (
+        <div className="flex flex-col mt-20">
+          <h3 className="text-lg font-semibold leading-7 text-gray-900">
+            Votes
+          </h3>
+          <Table
+            data={voteTable}
+            header={undefined}
+            description={undefined}
+            rowsPerPage={voteTable.rows.length}
+            showPagination={false}
+            showBorder={false}
+          />
+        </div>
+      )}
     </div>
   );
 };
