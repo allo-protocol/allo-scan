@@ -21,7 +21,13 @@ id = 'allov2.Allo@0.0.1'
 [objects.Transaction]
 id = 'goerli.Transaction@0.0.1'
 
-# = Live Tables (Outputs) ------------------------------
+[objects.MicroGrant]
+id = 'allov2.MicroGrant@0.0.1'
+
+[objects.MicroGrantRecipient]
+id = 'allov2.MicroGrantRecipient@0.0.1'
+
+# = Live Columns (Outputs) ------------------------------
 
 [tables.public.profile]
 profile_id = 'Profile.profileId'
@@ -117,6 +123,36 @@ block_hash = 'Transaction.blockHash'
 block_number = 'Transaction.blockNumber'
 block_timestamp = 'Transaction.blockTimestamp'
 
+[tables.public.micro_grant]
+strategy = 'MicroGrant.strategy'
+strategy_id = 'MicroGrant.strategyId'
+pool_id = 'MicroGrant.poolId'
+use_registry_anchor = 'MicroGrant.useRegistryAnchor'
+allocation_start_time = 'MicroGrant.allocationStartTime'
+allocation_end_time = 'MicroGrant.allocationEndTime'
+approval_threshold = 'MicroGrant.approvalThreshold'
+max_requested_amount = 'MicroGrant.maxRequestedAmount'
+block_hash = 'MicroGrant.blockHash'
+block_number = 'MicroGrant.blockNumber'
+block_timestamp = 'MicroGrant.blockTimestamp'
+chain_id = 'MicroGrant.chainId'
+
+[tables.public.micro_grant_recipient]
+recipient_id = 'MicroGrantRecipient.recipientId'
+strategy = 'MicroGrantRecipient.strategy'
+pool_id = 'MicroGrantRecipient.poolId'
+recipient_address = 'MicroGrantRecipient.recipientAddress'
+requested_amount = 'MicroGrantRecipient.requestedAmount'
+is_using_registry_anchor = 'MicroGrantRecipient.isUsingRegistryAnchor'
+status = 'MicroGrantRecipient.status'
+metadata_protocol = 'MicroGrantRecipient.metadataProtocol'
+metadata_pointer = 'MicroGrantRecipient.metadataPointer'
+sender = 'MicroGrantRecipient.sender'
+block_hash = 'MicroGrantRecipient.blockHash'
+block_number = 'MicroGrantRecipient.blockNumber'
+block_timestamp = 'MicroGrantRecipient.blockTimestamp'
+chain_id = 'MicroGrantRecipient.chainId'
+
 # = Links & Filters --------------------------------------
 
 [[objects.Profile.links]]
@@ -148,21 +184,27 @@ table = 'public.allo_transaction'
 uniqueBy = [ 'hash', 'chainId' ]
 filterBy = [
 	{ from = { op = 'in', value = [
-		'0x79536cc062ee8fafa7a19a5fa07783bd7f792206',
-		'0xaec621ec8d9de4b524f4864791171045d6bbbe27',
+		'0x4aacca72145e1df2aec137e1f3c5e3d75db8b5f3',
 		'0xbc23124ed2655a1579291f7adde581ff18327d41',
-		'0xbb6b237a98d907b04682d8567f4a8d0b4b611a3b'
+		'0xaec621ec8d9de4b524f4864791171045d6bbbe27',
+		'0x1133ea7af70876e64665ecd07c0a0476d09465a1',
+		'0xbb6b237a98d907b04682d8567f4a8d0b4b611a3b',
+		'0x79536cc062ee8fafa7a19a5fa07783bd7f792206',
 	] } },
 	{ to = { op = 'in', value = [
-		'0x79536cc062ee8fafa7a19a5fa07783bd7f792206',
-		'0xaec621ec8d9de4b524f4864791171045d6bbbe27',
+		'0x4aacca72145e1df2aec137e1f3c5e3d75db8b5f3',
 		'0xbc23124ed2655a1579291f7adde581ff18327d41',
-		'0xbb6b237a98d907b04682d8567f4a8d0b4b611a3b'
-	] } },
-	{ hash = { op = 'in', value = [
-		'0xc5eb0a67b8aecf121fe83b0834c5f4f878218f376f394514eb9679e9689f886e',
-		'0xb8c7a1c4ada74d30fca6f9784e42f6a0eb6c1ad6d04ed4ae4d3137fe1ba9a666',
-		'0x6988504d059372bef4e8b4e116ab2ac0cd4f8b5942a17e05125f63b515be39a5',
-		'0x4980c433eee083f108452753680c8d82fffde2a933197286e7ed1b71d09d1687'
+		'0xaec621ec8d9de4b524f4864791171045d6bbbe27',
+		'0x1133ea7af70876e64665ecd07c0a0476d09465a1',
+		'0xbb6b237a98d907b04682d8567f4a8d0b4b611a3b',
+		'0x79536cc062ee8fafa7a19a5fa07783bd7f792206',
 	] } },
 ]
+
+[[objects.MicroGrant.links]]
+table = 'public.micro_grant'
+uniqueBy = [ 'strategy', 'chainId' ]
+
+[[objects.MicroGrantRecipient.links]]
+table = 'public.micro_grant_recipient'
+uniqueBy = [ 'strategy', 'recipientId', 'chainId' ]
