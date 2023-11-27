@@ -47,9 +47,9 @@ const Pool = ({
         // eslint-disable-next-line react/jsx-key
         <Address address={pool.token} chainId={Number(pool.chainId)} />,
         formatAmount(pool.amount, pool.tokenMetadata?.decimals ?? 18),
-        truncatePoolName(pool.profile.name),
+        truncatePoolName(pool.profile?.name ?? ""),
         // eslint-disable-next-line react/jsx-key
-        <Address address={pool.profile.owner} chainId={Number(pool.chainId)} />,
+        <Address address={pool.profile?.owner ?? ""} chainId={Number(pool.chainId)} />,
         (new Date(pool.updatedAt)).toLocaleString(),
         convertChainIdToNetworkName(Number(pool.chainId)),
       ];
