@@ -21,11 +21,11 @@ const coreContracts: ICoreContracts = {
 
 const strategyContracts: IStrategyContracts = {
   donationVotingMerklePayoutVault: {
-    name: "Donation Voting Merkle Vault Paout",
+    name: "Donation Voting Merkle Vault Payout",
     address: "0x68d67bf72fcCf0E0f269C67b934b4050d2917F91",
   },
   donationVotingMerklePayoutDirect: {
-    name: "Donation Voting Merkle Direct Paout",
+    name: "Donation Voting Merkle Direct Payout",
     address: "0xD13ec67938B5E9Cb05A05D8e160daF02Ed5ea9C9",
   },
 }
