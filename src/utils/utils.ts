@@ -1,5 +1,7 @@
+import { Metadata, MetadataProtocol } from "@/types/types";
 import { getNetworks } from "./networks";
 import { ethers } from "ethers";
+import { TTokenMetadata } from "@/components/Pool/types";
 
 const networks = getNetworks();
 
@@ -27,11 +29,57 @@ export const convertBytesToShortString = (address: string) => {
   return address.slice(0, 6) + "..." + address.slice(-4);
 };
 
-
 export const convertAddressToShortString = (address: string) => {
   return address.slice(0, 6) + "..." + address.slice(-4);
 };
 
 export const copy = (data: string) => {
   navigator.clipboard.writeText(data);
+};
+
+export const amountString = (
+  amount: number,
+  tokenMetadata: TTokenMetadata,
+  chainId: number,
+): string => {
+  return (
+    ethers.formatUnits(amount, tokenMetadata.decimals ?? 18) + " " +
+      (tokenMetadata.symbol ?? getNetworks()[Number(chainId)].symbol)
+  );
+};
+
+export const fetchIpfsMetadata = async (
+  metadata: Metadata,
+): Promise<Object> => {
+  let metadataObj: Object = {};
+
+  if (metadata.protocol === MetadataProtocol.IPFS) {
+    try {
+      const response = await fetch(
+        `https://gitcoin.mypinata.cloud/ipfs/${metadata.pointer}`,
+      );
+      // Check if the response status is OK (200)
+      if (response.ok) {
+        const data = await response.text();
+        try {
+          let metadataObjJson = JSON.parse(data ?? "");
+          metadataObj = metadataObjJson;
+        } catch (error) {
+          metadataObj = {
+            error: "Error parsing metadata",
+          };
+        }
+      } else {
+        metadataObj = {
+          error: "Error fetching metadata",
+        };
+      }
+    } catch (error) {
+      metadataObj = {
+        error: "Error fetching metadata",
+      };
+    }
+  }
+
+  return metadataObj;
 };

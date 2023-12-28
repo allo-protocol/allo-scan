@@ -4,6 +4,7 @@ import {
   TProfileDetail,
 } from "@/components/Registry/types";
 import { getProfileDetailDataQuery, graphqlEndpoint } from "@/utils/query";
+import { fetchIpfsMetadata } from "@/utils/utils";
 import request from "graphql-request";
 
 export default async function ProfileDetailPage({
@@ -21,18 +22,14 @@ export default async function ProfileDetailPage({
   );
 
   const profile: TProfileDetail = profileDetails.profile;
-
-  const response = await fetch(
-    `https://gitcoin.mypinata.cloud/ipfs/${profile.metadataPointer}`,
-  );
-
-  let metadata = "";
-
-  if (response.ok) metadata = await response.text();
+  const metadataObj: Object = await fetchIpfsMetadata({
+    pointer: profile.metadataPointer,
+    protocol: profile.metadataProtocol,
+  });
 
   return (
     <div>
-      <ProfileDetail profile={profile} metadata={metadata} />
+      <ProfileDetail profile={profile} metadataObj={metadataObj}/>
     </div>
   );
 }

@@ -3,30 +3,95 @@
 import { convertChainIdToNetworkName } from "@/utils/utils";
 import { AddressResponsive, truncatedString } from "../Address";
 import { TProfileDetail } from "./types";
-import { MetadataProtocol } from "@/types/types";
-import { TbExternalLink } from "react-icons/tb";
-import JsonView from "@uiw/react-json-view";
+import { MetadataProtocol, TListProps } from "@/types/types";
 import Link from "next/link";
 import Pool from "../Pool/Pool";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import List from "../List";
+import Metadata from "../Metadata";
 
 const ProfileDetail = ({
   profile,
-  metadata,
+  metadataObj,
 }: {
   profile: TProfileDetail;
-  metadata: string;
+  metadataObj: Object;
 }) => {
-  let metadataObj;
-  try {
-    metadataObj = JSON.parse(metadata ?? "");
-  } catch (error) {
-    metadataObj = {
-      error: "Error parsing metadata",
-    };
-  }
   const isMobile = useMediaQuery(768);
-  const py = isMobile ? "py-2" : "py-6";
+
+  const listProps: TListProps[] = [
+    {
+      label: "Network",
+      value: convertChainIdToNetworkName(profile.chainId),
+    },
+    {
+      label: "Nonce",
+      value: profile.nonce.toString(),
+    },
+    {
+      label: "Anchor",
+      value: (
+        <AddressResponsive address={profile.anchor} chainId={profile.chainId} />
+      ),
+    },
+    {
+      label: "Creator",
+      value: (
+        <AddressResponsive
+          address={profile.creator}
+          chainId={profile.chainId}
+        />
+      ),
+    },
+    {
+      label: "Owner",
+      value: (
+        <AddressResponsive address={profile.owner} chainId={profile.chainId} />
+      ),
+    },
+    {
+      label: "Members",
+      value: (
+        <ul role="list" className="">
+          {profile.role.roleAccounts.map((account, index) => (
+            <li
+              key={index}
+              className="flex items-center justify-between py-4 text-sm leading-6"
+            >
+              <div className="flex w-0 flex-1 items-center">
+                <div className="flex">
+                  <span className="font-medium">
+                    <AddressResponsive
+                      address={account.accountId}
+                      chainId={profile.chainId}
+                    />
+                  </span>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ),
+    },
+    {
+      label: "Created at",
+      value: new Date(profile.createdAt).toLocaleString(),
+    },
+    {
+      label: "Updated at",
+      value: new Date(profile.updatedAt).toLocaleString(),
+    },
+    {
+      label: `Metadata (${MetadataProtocol[profile.metadataProtocol]})`,
+      value: <Metadata isMobile={isMobile} metadata={
+        {
+          pointer: profile.metadataPointer,
+          protocol: profile.metadataProtocol,
+        }
+      } 
+      metadataObj={metadataObj} />,
+    },
+  ];
 
   return (
     <div className="pb-10">
@@ -47,128 +112,9 @@ const ProfileDetail = ({
           </Link>
         </div>
       </div>
-      <div className="mt-6 border-t border-gray-100">
-        <dl className="divide-y divide-gray-100">
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Network
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {convertChainIdToNetworkName(profile.chainId)}
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Nonce
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {profile.nonce}
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Anchor
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              <AddressResponsive
-                address={profile.anchor}
-                chainId={profile.chainId}
-              />
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Creator
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              <AddressResponsive
-                address={profile.creator}
-                chainId={profile.chainId}
-              />
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Owner
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              <AddressResponsive
-                address={profile.owner}
-                chainId={profile.chainId}
-              />
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Members
-            </dt>
-            <dd className="mt-2 text-sm text-gray-900 sm:col-span-1 sm:mt-0">
-              <ul role="list" className="">
-                {profile.role.roleAccounts.map((account, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center justify-between py-4 text-sm leading-6"
-                  >
-                    <div className="flex w-0 flex-1 items-center">
-                      <div className="flex">
-                        <span className="font-medium">
-                          <AddressResponsive
-                            address={account.accountId}
-                            chainId={profile.chainId}
-                          />
-                        </span>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Created at
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {new Date(profile.createdAt).toLocaleString()}
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Updated at
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {new Date(profile.updatedAt).toLocaleString()}
-            </dd>
-          </div>
-          <div className={`px-4 ${py} sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0`}>
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Metadata ({MetadataProtocol[profile.metadataProtocol]}){" "}
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              <div className="flex flex-row items-center">
-                {isMobile
-                  ? truncatedString(profile.metadataPointer)
-                  : profile.metadataPointer}
-                <a
-                  className="ml-2"
-                  // data-tip="view on explorer"
-                  target="_blank"
-                  href={"https://ipfs.io/ipfs/" + profile.metadataPointer}
-                >
-                  <TbExternalLink />
-                </a>
-              </div>
-            </dd>
-          </div>
-        </dl>
-        <div className="pb-6">
-          <JsonView
-            value={metadataObj}
-            shortenTextAfterLength={120}
-            collapsed={2}
-          />
-        </div>
-      </div>
+
+      <List data={listProps} />
+
       {profile.pools.length > 0 && (
         <>
           <div className="text-sm font-medium leading-6 text-gray-900">
